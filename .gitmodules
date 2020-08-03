@@ -1,0 +1,9 @@
+[submodule "FStar"]
+	path = FStar
+	url = git://github.com/FStarLang/FStar.git
+[submodule "scribble-java"]
+	path = scribble-java
+	url = git://github.com/rhu1/scribble-java.git
+[submodule "ScribbleCodeGenOCaml"]
+	path = ScribbleCodeGenOCaml
+	url = git://github.com/fangyi-zhou/ScribbleCodeGenOCaml.git
