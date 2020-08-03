@@ -1,0 +1,44 @@
+//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -fair -z3 -batch OAuth.scr
+//$ sessionstar OAuth.scr OAuth U
+
+module OAuth;
+
+type <fstar> "int" from "..." as int;
+type <fstar> "string" from "..." as string;  
+
+global protocol OAuth(role U, role S, role A) {
+  login(redir: string) from S to U;  // Message name unclear?
+  //credential(userid: int, password: string, redirresp : string) from U to A; @"redir = redirresp"
+  credential(userid: int) from U to A;
+  pw(password: string) from U to A;
+  re(redirresp : string) from U to A; @"redir = redirresp"
+  choice at A {
+    authed(token: string) from A to U;
+    authed(tokenresp: string) from U to S; @"token = tokenresp"
+    request_resource_token(authtoken: string) from S to A; @"authtoken = tokenresp"
+    resource_token(restoken: string) from A to S;
+  } or {
+    not_authed() from A to U;
+    not_authed() from U to S;
+  }
+}
+//*/
+
+/*
+global protocol OAuth(role U, role S, role A) {
+  login(redir: int) from S to U;  // Message name unclear?
+  //credential(userid: int, password: int, redirresp : int) from U to A; @"redir = redirresp"
+  credential(userid: int) from U to A;
+  pw(password: int) from U to A;
+  re(redirresp : int) from U to A; @"redir = redirresp"
+  choice at A {
+    authed(token: int) from A to U;
+    authed(tokenresp: int) from U to S; @"token = tokenresp"
+    request_resource_token(authtoken: int) from S to A; @"authtoken = tokenresp"
+    resource_token(restoken: int) from A to S;
+  } or {
+    not_authed() from A to U;
+    not_authed() from U to S;
+  }
+}
+//*/

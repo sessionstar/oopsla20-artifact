@@ -1,0 +1,39 @@
+//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -fair -z3 -batch OnlineWallet.scr
+//$ sessionstar OnlineWallet.scr OnlineWallet C
+
+module OnlineWallet;
+
+type <fstar> "int" from "" as int;
+type <fstar> "string" from "" as string;
+
+global protocol OnlineWallet(role S, role C, role A) {
+  login(id: int) from C to A;
+  password(pw: int) from C to A;
+  choice at A {
+    login_ok() from A to C;
+    login_ok() from A to S;
+    account(balance: int) from S to C; @"balance>=0"
+    ov(overdraft: int) from S to C; @"overdraft>=0"
+    do Authenticated(S, C, A); @"C[balance+overdraft] S[overdraft, balance]"
+  } or {
+    login_fail(error: int) from A to C;
+    login_fail() from A to S;
+  }
+}
+
+aux global protocol Authenticated(role S, role C, role A)
+      @"C[allowance: int = 0] S[overdraft1: int = 0, balance1: int = 0]
+            allowance>=0 && overdraft1>=0 && balance1=allowance-overdraft1)" {
+  choice at C {
+    pay(amount: int) from C to S; @"amount<=allowance"  // N.B. amount first
+    payee(payee: int) from C to S;
+    pay_auth() from C to A;
+    account(newbalance: int) from S to C; @"newbalance=balance1-amount"
+    account(newoverdraft: int) from S to C; @"newoverdraft=overdraft1"
+    do Authenticated(S, C, A); @"C[allowance-amount] S[overdraft1, newbalance]"
+  } or {
+    quit() from C to S;
+    quit() from C to A;
+  }
+}
+//*/

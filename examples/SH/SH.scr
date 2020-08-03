@@ -1,0 +1,62 @@
+//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -fair -z3 -batch SH.scr
+//$ sessionstar SH.scr SH P
+
+module SH;
+
+type <fstar> "int" from "" as int;
+
+global protocol SH(role P, role R, role C)
+{
+  Plane(x1:int) from P to R;
+  Plane2(x2:int) from P to R;
+  Plane3(x3:int) from P to R;
+  Plane4(x4:int) from P to R;
+  do Loop(P, R, C);
+}
+
+aux global protocol Loop(role P, role R, role C)
+{
+  choice at P
+  {
+    IsAbove(v1:int) from P to R;
+    Res(b1:int) from R to P; @"b1=0 || b1=1"
+    IsAbove(v2:int) from P to R;
+    Res(b2:int) from R to P; @"b2=0 || b2=1"
+    choice at P
+    {
+      BothIn() from P to R; @"b1=1 && b2=1"
+      BothIn(r1:int) from P to C;
+      do Loop(P, R, C);
+    }
+    or
+    {
+      BothOut() from P to R; @"b1=0 && b2=0"
+      BothOut() from P to C;
+      do Loop(P, R, C);
+    }
+    or
+    {
+      Intersct(y1:int) from P to R;
+        @"((b1=1 && b2=0) || (b1=0 && b2=1)) && (y1=v1)"
+      Intersct2(y2:int) from P to R;
+        @"(y2=v2)"
+      Res(i:int) from R to P;
+      choice at P
+      {
+        SecOut(r2:int) from P to C; @"b2=0 && r2=i"
+        do Loop(P, R, C);
+      }
+      or
+      {
+        SecIn(r3:int) from P to C; @"b2=1 && (r3=i)"
+        SecIn2(r4:int) from P to C; @"(r4=v2)"
+        do Loop(P, R, C);
+      }
+    }
+  }
+  or
+  {
+    Close() from P to R;
+    Close() from P to C;
+  }
+}

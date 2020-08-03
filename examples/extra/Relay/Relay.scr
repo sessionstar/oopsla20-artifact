@@ -1,0 +1,17 @@
+//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -fair -z3 -batch Relay.scr
+//$ sessionstar Relay.scr Relay A
+
+module Relay;
+
+type <fstar> "int" from "..." as int;
+//type <fstar> "string from "..." as string;
+
+global protocol Relay(role A, role B, role C) {
+  Hello(x:int) from A to B; @"x > 0"
+
+  //Relay(y:int) from B to C; @"x = y"
+  //Relay(z:int) from C to A; @"z = x"
+
+  Relay(y:int) from B to C; @"y > x"
+  Relay(z:int) from C to A; @"z > x"  // z > y => z > x -- CHECKME: max int? dynamic?
+}

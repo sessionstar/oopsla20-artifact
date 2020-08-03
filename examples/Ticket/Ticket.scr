@@ -1,0 +1,19 @@
+//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -fair -z3 -batch Ticket.scr
+//$ sessionstar Ticket.scr Ticket C
+
+module Ticket;
+
+type <fstar> "int" from "" as int;
+//type <fstar> "string" from "" as string;
+
+global protocol Ticket(role S, role C)
+            @"C[creditC: int = 1000] S[creditS: int = 0, count: int = 0] creditC>=0" {
+  Offer(x: int) from C to S; @"x>=0 && creditC>=x" // TODO: use creditC>=x phantom for S, offer more affordable offers
+  choice at S {
+    Ok(y: int) from S to C; @"count<1000 && y=count"  // count, for loops
+    do Ticket(S, C); @"C[creditC-x] S[creditS+x, count+1]"
+  } or {
+    Ko() from S to C;
+    do Ticket(S, C); @"C[creditC] S[creditS, count]"
+  }
+}

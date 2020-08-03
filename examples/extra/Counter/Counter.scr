@@ -1,0 +1,17 @@
+//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -fair -z3 -batch Counter.scr
+//$ sessionstar Counter.scr Count A
+
+module Counter;
+
+type <fstar> "int" from "..." as int;
+//type <fstar> "string" from "..." as string;
+
+//global protocol Count(role A, role B) @"A[cnt:int{cnt>=0}]"
+global protocol Count(role A, role B) @'A[c: int = 0] c>=0'
+//global protocol Count(role A, role B) @'<c:B=0> c>=0'  // A cannot construct c+1, leave to F* typing?
+{
+  Succ (x:int) from A to B; @'x=c+1'
+  SuccSucc (y:int) from B to A; @'y=x+1'
+  //do Count(A, B); @A[y]
+  do Count(A, B); @'A[y]'
+}

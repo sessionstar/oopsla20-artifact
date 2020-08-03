@@ -1,0 +1,21 @@
+//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -fair -z3 -batch TwoBuyer.scr
+//$ sessionstar TwoBuyer.scr TwoBuyer A
+
+module TwoBuyer;
+
+type <fstar> "int" from "" as int;
+//type <fstar> "string" from "" as string;
+
+global protocol TwoBuyer(role A, role B, role S) {
+    bookId(id: int) from A to S;
+    quoteA(x: int) from S to A; @"x >= 0"
+    quoteB(y: int) from S to B; @"x = y"
+    proposeA(a: int) from A to B; @"a >= 0 && a <= x"
+    choice at B {
+        ok(b: int) from B to A; @"b = y - a && b <= a"  // B is stingy
+        buy() from A to S;
+    } or {
+        no() from B to A;
+        cancel() from A to S;
+    }
+}

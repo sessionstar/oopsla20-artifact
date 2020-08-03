@@ -1,0 +1,54 @@
+//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -fair -z3 -batch Http.scr
+//$ sessionstar Http.scr Http S
+
+module Http;
+
+type <fstar> "string" from "" as string;
+type <fstar> "int" from "" as int;
+
+global protocol Http(role C, role S)
+{
+  do Request(C, S);
+}
+
+aux global protocol Request(role C, role S)
+{
+  Method(httpmethod: string) from C to S;
+  Target(target: string) from C to S;
+  Version(reqversion: string) from C to S;
+  do RequestHeaderOrBody(C, S);
+}
+
+aux global protocol RequestHeaderOrBody(role C, role S)
+{
+  choice at C
+  {
+    HeaderName(reqheadername: string) from C to S;
+    HeaderValue(reqheadervalue: string) from C to S;
+    do RequestHeaderOrBody(C, S);
+  } or {
+    Body(reqbody: string) from C to S;
+    do Response(C, S);
+  }
+}
+
+aux global protocol Response(role C, role S)
+{
+  Version(respversion: string) from S to C;
+  Status(status: int) from S to C; @"status >= 100 && status <= 999"
+  Reason(reason: string) from S to C;
+  do ResponseHeaderOrBody(C, S);
+}
+
+aux global protocol ResponseHeaderOrBody(role C, role S)
+{
+  choice at S
+  {
+    HeaderName(respheadername: string) from S to C;
+    HeaderValue(respheadervalue: string) from S to C;
+    do ResponseHeaderOrBody(C, S);
+  } or {
+    Body(respbody: string) from S to C;
+  }
+}
+

@@ -1,0 +1,25 @@
+//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -fair -z3 -batch Calc.scr
+//$ sessionstar Calc.scr Calc C
+
+module Calc;
+
+type <fstar> "int" from "" as int;
+//type <fstar> "string" from "" as string;
+
+global protocol Calc(role S , role C) {
+  choice at C {
+    sum1(x1:int) from C to S;
+    sum2(y1:int) from C to S;
+    result(r1:int) from S to C; @"r1=x1+y1"
+    do Calc(S, C);
+  } /*or {
+    multiply1(x2:int) from C to S;
+    multiply2(y2:int) from C to S;
+    result(r2:int) from S to C; @"r2=x2*y2"  // TODO: Cannot parse (r2 = (x2 * y2)), dropping
+    do Calc(S, C);
+  }*/ or {
+    quit() from C to S;
+    terminate() from S to C;
+  }
+}
+

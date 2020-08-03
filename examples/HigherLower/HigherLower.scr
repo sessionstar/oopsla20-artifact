@@ -1,0 +1,35 @@
+//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -fair -z3 -batch HigherLower.scr
+//$ sessionstar HigherLower.scr HigherLower A
+
+module HigherLower;
+
+type <fstar> "int" from "" as int;
+//type <fstar> "string" from "" as string;
+
+global protocol HigherLower(role A, role B, role C) {
+  start(n0:int) from A to B;  @'0<=n0 && n0<100'
+  limit(t0:int) from A to B;  @'0<t0'
+  do Aux(A, B, C);     @'B[n0, t0]'
+}
+
+aux global protocol Aux(role A, role B, role C)
+            @'B[n: int = 0, t: int = 1] (0<=n && n<100) && 0<t' {
+  guess(x:int) from C to B;  @'0<=x && x<100'
+  choice at B {
+    higher() from B to C;    @'n>x && t>1'
+    higher() from B to A;
+    do Aux(A, B, C);   @'B[n, t-1]'
+  } or {
+    win() from B to C;       @'n=x'
+    lose() from B to A;
+  } or {
+    lower() from B to C;     @'n<x && t>1'
+    lower() from B to A;
+    do Aux(A, B, C);   @'B[n, t-1]'
+  } or {
+    lose() from B to C;      //@'(!(n1=x)) && t1=1'  // FIXME: !-precedence, and !-dot-output
+                             @'((n<x || n>x) && t=1)'
+    win() from B to A;
+  }
+}
+

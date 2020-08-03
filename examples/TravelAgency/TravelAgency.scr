@@ -1,0 +1,32 @@
+//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -fair -z3 -batch TravelAgency.scr
+//$ sessionstar TravelAgency.scr Booking A
+
+module TravelAgency;
+
+type <fstar> "string" from "" as string;
+type <fstar> "int" from "" as int;
+
+global protocol Booking(role C, role A, role S)
+{
+  choice at C
+  {
+    Query(query: string) from C to A;
+    Quote(quot: int) from A to C;  // "quote" clash
+    Dummy() from A to S;
+    do Booking(C, A, S);
+  }
+  or
+  {
+    Yes() from C to A;  // no query/quote data flow here
+    Yes() from A to S;
+    Payment(payment: string) from C to S;
+    Ack() from S to C;
+    Bye() from C to A;
+  }
+  or
+  {
+    No() from C to A;
+    No() from A to S;
+    Bye() from C to A;
+  }
+}

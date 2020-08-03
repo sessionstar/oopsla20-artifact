@@ -1,0 +1,24 @@
+//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -fair -z3 -batch Adder.scr
+//$ sessionstar Adder.scr Adder C
+
+module Adder;
+
+type <fstar> "int" from "..." as int;
+//type <fstar> "string" from "..." as string;
+
+global protocol Adder(role C, role S)
+{
+  HELLO(u:int) from C to S;  // redundant u
+  choice at C
+  {
+    ADD(w:int) from C to S;
+    ADD(v:int) from C to S;
+    RES(f:int) from S to C;  @"f = w + v"
+    do Adder(C, S);
+  }
+  or
+  {
+    BYE() from C to S;
+    BYE() from S to C;
+  }
+}
