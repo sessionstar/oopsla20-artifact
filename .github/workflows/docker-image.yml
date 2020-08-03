@@ -20,5 +20,5 @@ jobs:
         username: fangyi-zhou
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
-        repository: sessionstar/oopsla20-artifact
+        repository: sessionstar/oopsla20-artifact/artifact
         tags: latest
