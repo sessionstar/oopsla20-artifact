@@ -1,0 +1,28 @@
+#!/bin/bash
+
+FILE=$1
+PROTOCOL=$2
+ROLE=$3
+
+function usage {
+  echo "usage: $0 [file] [protocol] [role]"
+}
+
+if [ -z "$FILE" ] || [ -z "$PROTOCOL" ] || [ -z "$ROLE" ]
+then
+  usage
+  exit 1
+fi
+
+FSM="${PROTOCOL}_${ROLE}.fsm"
+FSTAR="Generated${PROTOCOL}${ROLE}.fst"
+
+scribblec-assrt.sh "$FILE" -z3 -batch -fair -assrt -fsm "$PROTOCOL" "$ROLE" > "$FSM"
+
+if [ $? -ne 0 ]
+then
+  echo "Scribble reported a problem, aborting"
+  exit 1
+fi
+
+ScribbleCodeGen.exe --protocol "$PROTOCOL" --role "$ROLE" -o "$FSTAR" "$FSM"
