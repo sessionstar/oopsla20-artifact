@@ -17,9 +17,9 @@ docker run -it docker.pkg.github.com/sessionstar/oopsla20-artifact/artifact:late
 ```
 Note: if you get the error: no authentication, then login to docker:
 ```
-~/TOKEN.txt | docker login https://docker.pkg.github.com -u USERNAME --password-stdin
+cat ~/TOKEN.txt | docker login https://docker.pkg.github.com -u USERNAME --password-stdin
 ```
-where TOKEN.txt should conatin your Github authentication token (see how to generate one [here](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token))
+where TOKEN.txt should contain your Github authentication token (see how to generate one [here](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token))
 
 3. The docker file comes with a vim installation, if you prefer to use other editors or your local vim set-up, you should enable [docker directory mount](https://docs.docker.com/storage/bind-mounts/).
 
