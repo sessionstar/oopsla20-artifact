@@ -4,7 +4,7 @@ We would like you to be able to:
 * compile the examples, reported in Table 2, Section 5.4. For that purpose, complete [Part I (Step 2)](#step-2-compile-applications-implemented-with-session-table-2-section-54) of this document.
 * test the running example (HigherLower) from the paper, described in Section 2. For that purpose, complete [Part II (Step 1)](#step-1-execute-the-runnign-example) of this document.
 
-Additionally, you can test and modify any of the examples we have implemented ([Part II, Step 2](#step-1-execute-the-runnign-example)), as well as implement and verify your own protocols ([Part II, Step 3](#step-2-observe-refinement-violations)) using our toolchain.
+Additionally, you can test and modify any of the examples we have implemented ([Part II, Step 2](#s#step-2-observe-refinement-violations)), as well as implement and verify your own protocols ([Part II, Step 3](#step-3-run-other-example-optional)) using our toolchain.
 
 ## Getting started
 
@@ -28,7 +28,7 @@ In the following, we assume that you are in the ```/home/sessionstar/examples```
 
 In addition to the source code of the library, which is a git clone of the [sessionstar repository](https://github.com/sessionstar/oopsla20-artifact), the artifact also contains
 * a [scripts](examples/scripts) folder, which includes the scripts for producing the results from Table 1 and Table 2.
-* an [examples](examples/) folder, which includes various examples, including the source for the running example from the paper, i.e HigherLower (Section 2), and the applications from Table 2.
+* an [examples](examples/) folder, which contains various examples, including the source for the running example from the paper, i.e HigherLower (Section 2), and the applications from Table 2.
 * a [template](template/) folder that gives you template files and guides you through implementing and testing your own examples
 * ```sessionstar``` command. The command generates F* callbacks from Scribble protocols (See Part II (Step I)).  
 
@@ -54,7 +54,12 @@ To execute the benchmarks run:
 python3 scripts/pingpong.py
 ```
 
-The produced table corresponds to Table 1 from the paper.
+The produced table (which corresponds to Table 1 from the paper) contains the following columns. In brackets we give the name of the corresponding columns from Table 1.
+* ```Gen Time (CFSM)``` - the time taken for Scribble to generate the CFSM (```CFSM```)
+* ```Gen Time (F\*)``` - the time taken for the code generation tool to convert the CFSM to F\*. (```F\* APIs```)
+* ```TC Time (Gen.)``` - the time taken for the generated APIs to type-check in F\⋆(```Gen. Code```)
+* ```TC Time (Impl)``` - the time taken to time check the implementation (```Callbacks```)
+
 The script runs the example 30 times and displays the average.
 (TODO: 1. explain the option to adjust n, 2. option to adjust how many times the example are run; 3.explain the option to run remotely)
 
@@ -71,22 +76,28 @@ To run all examples at once:
 python3 scripts/examples.py
 ```
 The produced table corresponds to Table 2 from the paper.
-The source code (protocols and implementations) for each of these examples is located in a separate folder. The script measures the time taken for code generation and type-checking for each implementation.
+It contains the same columns as the table produces in Step 1. Note that Table 2 from the paper reports:
+- the total generation time, which is a sum of the ```Gen Time (CFSM)``` and ```Gen Time (F*)``` from the produced table.
+- the total time checking time, which is a sum of ```TC Time (Gen.)``` and ```TC Time (Impl)``` from the produced table.
+
+The source code (protocols and implementations) for each of these examples is located in a separate folder.
 
 ## Part 2: A walk-through tutorial
 
 ### Step 1: Execute the runnign example
 The purpose of this section is to give you a quick walk through of using the toolchains to implement and verify a protocol. We focus on the running example - [HigherLower.scr](/examples/HigherLower)
 
-(a) **generation**: the first step of our toolchain is the generation of callback signatures from Scribble protocols. The ```sessionstar``` command takes a file name, a protocol name and a role and it (1) verifies the protocol and (2) produces the callback signatures in F*
+(a) **generation**: the first step of our toolchain is the generation of callback signatures from Scribble protocols. The ```sessionstar``` command takes a file name, a protocol name and a role and it (1) generates a CFSM and (2) produces the callback signatures in F*
 
  To generate the callback file for role A for the HigherLower protocol, i.e ```HigherLower/HigherLower.scr```:
  ```
  sessionstar HigherLower/HigherLower.scr HigherLower A
  ```
- The above genrates two files:
-   -  ```HigherLower_A.fsm``` - contains the CFSM for role A  
-   -  ```GeneratedHigherLowerA.fst``` - contains the generated API, as callback signatures, for role A.
+ The above generates two files:
+
+   (1)  ```HigherLower_A.fsm``` - contains the CFSM for role A  
+
+   (2) ```GeneratedHigherLowerA.fst``` - contains the generated API, as callback signatures, for role A.
 
  A user has to implement the program logic for each callback from the generated API file (```GeneratedHigherLowerA.fst```).
 
