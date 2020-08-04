@@ -46,7 +46,7 @@ The above script verifies and executes all implemented examples.
 
 ### Step 1: Run the microbenchamarks (Table 1, Section 5.2 and 5.3)
 
-The purpose of these set of benchmarks is to demonstrate the scalabilty of our tool on protocols of increasing length (as explained in Section 5.2). We also measure the execution overhead of our implementation by comparing it against an implementation without session types or refinement types, which we call bare implementation (as explained in Section 5.3).
+The purpose of this set of benchmarks is to demonstrate the scalabilty of our tool on protocols of increasing length (as explained in Section 5.2). We also measure the execution overhead of our implementation by comparing it against an implementation without session types or refinement types, which we call bare implementation (as explained in Section 5.3).
 
 To execute the benchmarks run:
 
