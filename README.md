@@ -2,9 +2,9 @@ The purpose of this document is to describe in details the steps required to ass
 We would like you to be able to:
 * reproduce our benchmarks from Table 1, Section 5.2 and 5.3. For that purpose, complete [Part I (Step 1)](#step-1-run-the-microbenchamarks-table-1-section-52-and-53) of this document.
 * compile the examples, reported in Table 2, Section 5.4. For that purpose, complete [Part I (Step 2)](#step-2-compile-applications-implemented-with-session-table-2-section-54) of this document.
-* test the running example (HigherLower) from the paper, described in Section 2. For that purpose, complete [Part II (Step 1)](#step-1-execute-the-runnign-example)s of this document.
+* test the running example (HigherLower) from the paper, described in Section 2. For that purpose, complete [Part II (Step 1)](#step-1-execute-the-runnign-example) of this document.
 
-Additionally, you can test and modify any of the examples we have implemented ([Part II, Step 1](#step-1-execute-the-runnign-example)), as well as implement and verify your own protocols ([Part II, Step 2](#step-2-observe-refinement-violations)) using our toolchain.
+Additionally, you can test and modify any of the examples we have implemented ([Part II, Step 2](#step-1-execute-the-runnign-example)), as well as implement and verify your own protocols ([Part II, Step 3](#step-2-observe-refinement-violations)) using our toolchain.
 
 ## Getting started
 
