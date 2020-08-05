@@ -235,34 +235,67 @@ Below we briefly explain each example:
 <details>
   <summary>Two Buyer</summary>
 
-- source folder:  [examples/TwoBuyer](examples/Makefile)
+- source folder:  [examples/TwoBuyer](examples/TwoBuyer)
 - explanation:Two Buyer is a canonical example for demonstrating business logic interactions. It specifies a negotiation between two buyers and
 a seller  to  purchase a book;
 
 </details>
 <details>
   <summary>Negotiation</summary>
+
+- source folder:  [examples/Negotiation](examples/Negotiation)
+- explanation: This is a Service Agreement Proposal protocol.
+
 </details>
 <details>
   <summary>Fibonacci</summary>
+
+- source folder:  [examples/Fibonacci](examples/Fibonacci)
+- explanation: It computes a fibonacci number requested by a client.
+
 </details>
 <details>
   <summary>Travel Agency</summary>
+
+- source folder:  [examples/TravelAgency](examples/TravelAgency)
+- explanation: Travel Agency is from a W3C Choreographies use case.
+
 </details>
 <details>
-  <summary>Calculator</summary>
+  <summary>Calculator</summary>  
+
+- source folder:  [examples/Calculator](examples/Calculator)
+- explanation: a distributed service for arithmetic operations (+, -). The recursive protocol allows a client to repeatedly send an operation request with two numbers, and receive back the result.
+
 </details>
 <details>
   <summary>SH</summary>
+
+  - source folder:  [examples/SH](examples/SH)
+  - explanation:  SH is short for Sutherland-Hodgman algorithm. It is a 3-role protocol for polygon clipping. It takes a plane, and the vertices of a polygon as a series of points; and produces vertices for
+the polygon restricted to one side of the plane.
 </details>
 <details>
-  <summary>Online Wallet</summary>
+  <summary>OnlineWallet</summary>
+
+- source folder:  [examples/Online Wallet](examples/OnlineWallet)
+- explanation: This is the running example from [Neykova et al. 2013].
+It represents an online payment application.
+
 </details>
 <details>
-  <summary>Ticket</summary>
+<summary>Ticket</summary>
+
+- source folder:[examples/Ticket](examples/Ticket)
+- explanation: This is the running example from [Bocchi et al. 2013], where a customer negotiates with teh bank for buying a ticket. The protocol is recursive.
+
 </details>
 <details>
   <summary>HTTP</summary>
+
+- source folder:  [examples/HTTP](examples/HTTP)
+- explanation: It is minimal specification of the [Hypertext Transfer protocol](https://tools.ietf.org/html/rfc2616) protocol. We have  implemented an HTTP server in F*. The example can interoperate with HTTP clients, e.g Chrome, Firefox, etc.
+
 </details>  
 
 #### Step 2: Implementing your own protocols (Optional)
