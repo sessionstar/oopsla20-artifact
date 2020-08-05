@@ -1,40 +1,82 @@
-The purpose of this document is to describe in details the steps required to assess the artifact associated with our paper.
-We would like you to be able to:
-* reproduce our benchmarks from Table 1, Section 5.2 and 5.3. For that purpose, complete [Part I (Step 1)](#step-1-run-the-microbenchamarks-table-1-section-52-and-53) of this document.
-* compile the examples, reported in Table 2, Section 5.4. For that purpose, complete [Part I (Step 2)](#step-2-compile-applications-implemented-with-session-table-2-section-54) of this document.
-* test the running example (HigherLower) from the paper, described in Section 2. For that purpose, complete [Part II (Step 1)](#step-1-execute-the-runnign-example) of this document.
+# OOPSLA '20 Artifacts #11 - README.md
 
-Additionally, you can test and modify any of the examples we have implemented ([Part II, Step 2](#s#step-2-observe-refinement-violations)), as well as implement and verify your own protocols ([Part II, Step 3](#step-3-run-other-example-optional)) using our toolchain.
+> *Statically Verified Refinements for Multiparty Protocols*
+>
+> Fangyi Zhou, Francisco Ferreira, Raymond Hu, Rumyana Neykova and Nobuko Yoshida
 
-## Getting started
+This artifact submission contains the following:
 
-For the OOPSLA'20 artifact evaluation, please use the docker file provided:
+1. An [overview](...TODO...) of the artifact (this document).
+2. The main artifact as a [Docker image](...TODO...).
+3. The [md5 hash](...TODO...) of the Docker image.
 
-1. Make sure you have docker installed ([install docker](https://docs.docker.com/engine/install/))
-2. Run the docker container:
-```
-docker run -it docker.pkg.github.com/sessionstar/oopsla20-artifact/artifact:latest
-```
-Note: if you get the error: no authentication, then login to docker:
-```
-~/TOKEN.txt | docker login https://docker.pkg.github.com -u USERNAME --password-stdin
-```
-where TOKEN.txt should contain your Github authentication token (see how to generate one [here](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token))
+The above [paper](...TODO...) presents **Session&#42;**, a toolchain for
+specifying message passing protocols using **Refined Multiparty Session Types**
+and safely implementing the distributed endpoint programs in **F&#42;**.
 
-3. The docker file comes with a vim installation, if you prefer to use other editors or your local vim set-up, you should enable [docker directory mount](https://docs.docker.com/storage/bind-mounts/).
+This overview describes the steps to assess the practical claims of the
+paper using the artifact:
+* [Part I (Step 1)](#step-1-run-the-microbenchamarks-table-1-section-52-and-53)
+  reproduces our benchmark methodology for Table 1 (Sections 5.2 and 5.3).
+* [Part I (Step
+  2)](#step-2-compile-applications-implemented-with-session-table-2-section-54)
+  compiles **..and runs..** the examples listed in Table 2 (Section 5.4).
+* [Part II (Step 1)](#step-1-execute-the-runnign-example) runs through the main
+  example (HigherLower) of the paper (Section 2).
 
-In the following, we assume that you are in the ```/home/sessionstar/examples``` directory.
-## Artifact layout
+Additionally, you can test and modify any of the above examples ([Part II, Step
+2](#s#step-2-observe-refinement-violations)), as well as implement and verify
+your own protocols using our toolchain ([Part II, Step
+3](#step-3-run-other-example-optional)).
 
-In addition to the source code of the library, which is a git clone of the [sessionstar repository](https://github.com/sessionstar/oopsla20-artifact), the artifact also contains
-* a [scripts](examples/scripts) folder, which includes the scripts for producing the results from Table 1 and Table 2.
-* an [examples](examples/) folder, which contains various examples, including the source for the running example from the paper, i.e HigherLower (Section 2), and the applications from Table 2.
-* a [template](template/) folder that gives you template files and guides you through implementing and testing your own examples
-* ```sessionstar``` command. The command generates F* callbacks from Scribble protocols (See Part II (Step I)).  
+
+### Getting Started
+
+For the OOPSLA'20 artifact evaluation, please use the **..docker file..**
+provided:
+
+0. [Install docker](https://docs.docker.com/engine/install/).
+1. Run the docker container:  ...**TODO**: update to use provided image
+    ```
+    docker run -it docker.pkg.github.com/sessionstar/oopsla20-artifact/artifact:latest
+    ```
+    Note: if you get the error: no authentication, then login to docker:
+    ```
+    ~/TOKEN.txt | docker login https://docker.pkg.github.com -u USERNAME --password-stdin
+    ```
+    where TOKEN.txt should contain your Github authentication token (see how to
+    generate one
+    [here](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)).
+2. The Docker image comes with a Vim installation.  ...**If you prefer to use your
+   own locally installed editor, you may try a [docker directory
+   mount](https://docs.docker.com/storage/bind-mounts/).**
+   - ...apt-get install...
+3. The instructions in this overview assume you are in the
+   `/home/sessionstar/examples` directory.  ...**CHECKME**: e.g., next subsec
+
+
+### Artifact Layout
+
+The artifact contains the full source code of the toolchain -- it is clone of
+this [commit](...TODO:https://github.com/sessionstar/oopsla20-artifact...) in
+the sessionstar GitHub repository.  The artifact also contains the following.
+* The ```sessionstar``` command: it performs the Scribble protocol to F* API
+  generation (e.g., the F* callback signatures); see Part II (Step I).
+* A [scripts](examples/scripts) directory: the scripts for executing the
+  benchmarks from Table 1 and Table 2.
+* An [examples](examples/) directory: the source code for the various examples,
+  including the HigherLower running example from the paper (Section 2) and
+  those listed in Table 2.
+* A [template](template/) directory: template files to help you through writing
+  and testing your own examples.
+
+
+---
 
 ## Part I: Quick start
 We have provided several scripts that allow you to quickly test the main claims of the paper.
 A step by step explanation on how to use the toolchain, and how to test each example separately is deferred to Part II of this document.
+
 ### Step 0: Test that all examples can be executed
 
 ```
@@ -81,6 +123,9 @@ It contains the same columns as the table produces in Step 1. Note that Table 2 
 - the total time checking time, which is a sum of ```TC Time (Gen.)``` and ```TC Time (Impl)``` from the produced table.
 
 The source code (protocols and implementations) for each of these examples is located in a separate folder.
+
+
+---
 
 ## Part 2: A walk-through tutorial
 
