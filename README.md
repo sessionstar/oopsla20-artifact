@@ -111,7 +111,7 @@ Outputs: a running program
 **Guarantees** If all endpoints in a protocol type-check, then the execution of the protocol is guaranteed to proceed without deadlocks, and/or communications errors/mismatches. Hence, a well-typed implementation inherits the core communication properties of the theory (as explained in Section 4).
 
 **Note on discrepencies**  
-On F\*: The formalisation in the paper assumes that only default ML effects are used (terminating and side-effect free). In reality, F* supports arbitrary ML effects. Hence, the user can compromise progress if they opt-in to use arbitrary effect ML, which permits state mutation, non-terminating recursion, exceptions, etc.
+On F\*: The formalisation in the paper assumes that only default effects are used (terminating and side-effect free). In reality, F* supports arbitrary ML effects. Hence, the user can compromise progress if they opt-in to use arbitrary effect ML, which permits state mutation, non-terminating recursion, exceptions, etc.
 
 On Scribble: We have extended the syntax of Scribble to support refinements. In addition to the guarantees described in the paper, Scribble supports additional validation as to ensure that the specified refinements are satisfiable. Note that this validation is optional. It is useful for early detection of protocols that are not realisable.
 
