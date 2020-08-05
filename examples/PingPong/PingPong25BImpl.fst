@@ -1,0 +1,59 @@
+module PingPong25BImpl
+open GeneratedPingPong25B
+open FStar.Ref
+open FStar.Mul
+let mk_callbacks (count: pos) =
+  let it = alloc 0 in {
+  state161OnreceiveBye = (fun _ -> ());
+  state161OnreceivePing = (fun _ _ -> ());
+  state163OnsendPong = (fun st -> Mkstate163?.x0 st + 1);
+  state164OnreceivePing = (fun _ _ -> ());
+  state165OnsendPong = (fun st -> Mkstate165?.x1 st + 1);
+  state166OnreceivePing = (fun _ _ -> ());
+  state167OnsendPong = (fun st -> Mkstate167?.x2 st + 1);
+  state168OnreceivePing = (fun _ _ -> ());
+  state169OnsendPong = (fun st -> Mkstate169?.x3 st + 1);
+  state170OnreceivePing = (fun _ _ -> ());
+  state171OnsendPong = (fun st -> Mkstate171?.x4 st + 1);
+  state172OnreceivePing = (fun _ _ -> ());
+  state173OnsendPong = (fun st -> Mkstate173?.x5 st + 1);
+  state174OnreceivePing = (fun _ _ -> ());
+  state175OnsendPong = (fun st -> Mkstate175?.x6 st + 1);
+  state176OnreceivePing = (fun _ _ -> ());
+  state177OnsendPong = (fun st -> Mkstate177?.x7 st + 1);
+  state178OnreceivePing = (fun _ _ -> ());
+  state179OnsendPong = (fun st -> Mkstate179?.x8 st + 1);
+  state180OnreceivePing = (fun _ _ -> ());
+  state181OnsendPong = (fun st -> Mkstate181?.x9 st + 1);
+  state182OnreceivePing = (fun _ _ -> ());
+  state183OnsendPong = (fun st -> Mkstate183?.x10 st + 1);
+  state184OnreceivePing = (fun _ _ -> ());
+  state185OnsendPong = (fun st -> Mkstate185?.x11 st + 1);
+  state186OnreceivePing = (fun _ _ -> ());
+  state187OnsendPong = (fun st -> Mkstate187?.x12 st + 1);
+  state188OnreceivePing = (fun _ _ -> ());
+  state189OnsendPong = (fun st -> Mkstate189?.x13 st + 1);
+  state190OnreceivePing = (fun _ _ -> ());
+  state191OnsendPong = (fun st -> Mkstate191?.x14 st + 1);
+  state192OnreceivePing = (fun _ _ -> ());
+  state193OnsendPong = (fun st -> Mkstate193?.x15 st + 1);
+  state194OnreceivePing = (fun _ _ -> ());
+  state195OnsendPong = (fun st -> Mkstate195?.x16 st + 1);
+  state196OnreceivePing = (fun _ _ -> ());
+  state197OnsendPong = (fun st -> Mkstate197?.x17 st + 1);
+  state198OnreceivePing = (fun _ _ -> ());
+  state199OnsendPong = (fun st -> Mkstate199?.x18 st + 1);
+  state200OnreceivePing = (fun _ _ -> ());
+  state201OnsendPong = (fun st -> Mkstate201?.x19 st + 1);
+  state202OnreceivePing = (fun _ _ -> ());
+  state203OnsendPong = (fun st -> Mkstate203?.x20 st + 1);
+  state204OnreceivePing = (fun _ _ -> ());
+  state205OnsendPong = (fun st -> Mkstate205?.x21 st + 1);
+  state206OnreceivePing = (fun _ _ -> ());
+  state207OnsendPong = (fun st -> Mkstate207?.x22 st + 1);
+  state208OnreceivePing = (fun _ _ -> ());
+  state209OnsendPong = (fun st -> Mkstate209?.x23 st + 1);
+  state210OnreceivePing = (fun _ _ -> ());
+  state211OnsendPong = (fun st -> Mkstate211?.x24 st + 1);
+  state212OnsendBye = (fun _ -> ());
+}
