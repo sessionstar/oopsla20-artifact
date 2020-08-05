@@ -11,6 +11,7 @@ RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime \
     libgomp1 \
     m4 \
     make \
+    nano \
     patch \
     python3 \
     sudo \
