@@ -84,10 +84,45 @@ The source code (protocols and implementations) for each of these examples is lo
 
 ## Part 2: A walk-through tutorial
 
+### Framework Overview
+
+<details>
+<summary>
+Unfold here for a quick overview of the tool.
+</summary>
+
+**In a nutshell** The Session* toolchain enables verification of <em> refined </em> multiparty session protocols and programs. Refined multiparty protocols express data dependent protocols via refinement types on the payloads. The toolchain allows users to specify, implement and verify data dependent protocols, i.e protocols with payload and control-flow constraints.
+
+**How**
+Users can describe a protocol in the protocol description language [Scribble](scribble.org) and implement the endpoints in [F*](fstar.org) using refinement-typed APIs
+generated from the toolchain. Then, the F* compiler statically verifies the refinements and ensures that the protocol is free from deadlocks and communication errros.
+
+An overviwew of the toolchain is given below (the figure corresponds to Fig.2 from the paper).
+![](images/framework_overview.png)
+
+Programming with Session* starts by writing a protocol in Scribble. Then the user has to:  
+:one: **generates** from a Scribble protocol a CSFM representation of the protocol and an F* API. We provide a command (```sessionstar```) that takes a protocol, parses it, and generates the corresponding files. The ```sessionstar``` tool is the **main artifact of the paper.**  
+Outputs: CFSM file and F* API file .  
+:two: implement and **compile** - in this stage, the user has to supply an endpoint implementation (an implementation of the business logic using the generated F* API from stage 1). Then the user has to verify the implementation using the F* type checker.
+Outputs: F* binaries.  
+:three: **execute** -- finally, when all endpoints are implemented, the user executes the program, and enjoys the guarantees provided by the toolchain.  
+Outputs: a running program  
+
+**Guarantees** If all endpoints in a protocol type-check, then the execution of the protocol is guaranteed to proceed without deadlocks, and/or communications errors/mismatches. Hence, a well-typed implementation inherits the core communication properties of the theory (as explained in Section 4).
+
+**Note on discrepencies**  
+On F\*: The formalisation in the paper assumes that only default ML effects are used (terminating and side-effect free). In reality, F* supports arbitrary ML effects. Hence, the user can compromise progress if they opt-in to use arbitrary effect ML, which permits state mutation, non-terminating recursion, exceptions, etc.
+
+On Scribble: We have extended the syntax of Scribble to support refinements. In addition to the guarantees described in the paper, Scribble supports additional validation as to ensure that the specified refinements are satisfiable. Note that this validation is optional. It is useful for early detection of protocols that are not realisable.
+
+There are minor syntactic dependencies w.r.t the Scribble syntax fpr refinements in the paper, for details see [Note on discrepencies](#note-on-discrepencies).
+
+</details>
+
 ### Step 1: Execute the runnign example
 The purpose of this section is to give you a quick walk through of using the toolchains to implement and verify a protocol. We focus on the running example - [HigherLower.scr](/examples/HigherLower)
 
-(a) **generation**: the first step of our toolchain is the generation of callback signatures from Scribble protocols. The ```sessionstar``` command takes a file name, a protocol name and a role. To generate the callback file for role A for the HigherLower protocol, i.e ```HigherLower/HigherLower.scr```:
+:one: **generation**: the first step of our toolchain is the generation of callback signatures from Scribble protocols. The ```sessionstar``` command takes a file name, a protocol name and a role. To generate the callback file for role A for the HigherLower protocol, i.e ```HigherLower/HigherLower.scr```:
  ```
  sessionstar HigherLower/HigherLower.scr HigherLower A
  ```
@@ -99,7 +134,7 @@ The purpose of this section is to give you a quick walk through of using the too
 
 <!-- A sample implementation of role A is given in ```HigherLower/HigherLowerA_CallbackImpl.fst```. -->
 
-(b) **compilation**: after we implement the program logic for role A  using the callback signatures produced in the previous step, we can verify that the implementation is correct by running the F* type checker.
+:two: **compilation**: after we implement the program logic for role A  using the callback signatures produced in the previous step, we can verify that the implementation is correct by running the F* type checker.
 
  A sample implementation of role A is given in ```HigherLower/A/HigherLowerA_CallbackImpl.fst```. To compile this implementation for endpoint A, we first move the generated file to the correct folder, and then we build the endpoint using the F* compiler:
 ```
@@ -109,7 +144,7 @@ make -C HigherLower/A main.ocaml.exe
  The above command generates the binary for role A,  ```main.ocaml.exe```.
 
 
-(c) **execution**: repeat the above steps (generation and compilation for role B and C). After all endpoints have been implemented and their binaries have been generated, we can run them.
+:three: **execution**: repeat the above steps (generation and compilation for role B and C). After all endpoints have been implemented and their binaries have been generated, we can run them.
  To run all endpoins:
 ```
 HigherLower/B/main.ocaml.exe & HigherLower/C/main.ocaml.exe & HigherLower/A/main.ocaml.exe
@@ -186,7 +221,7 @@ See the [Makefile](examples/Makefile) for more details.
 Each examples is in a separate folder. The folder contains:
 - The protocol, specified in Scribble - a file with extension .scr
 - a folder for each role in a protocol. Each role folder contains:
-  - Generated API file (automaticaly generated by the toolchain) - the name convention of such files is Generated[ProtocolName][RoleName].fst
+  - Generated API file (automaticaly generated by the toolchain) - the name convention of such files is Generated[ProtocolName][RoleName].fst. Note that this file will be generated only after running the ```sessionstar``` command on the target protocol.
   - Callback Implementation file (specific to the implementation, should be implemented by the user)- the name convention of such files is [ProtocolName][RoleName]_CallbackImpl.fst
   - Boilerplate files (non-specific to the implementation):
     - Payload.fst - specifies serialisation of the payload types (e.g int, strings)
@@ -234,8 +269,11 @@ Create a simple calculator protocol, following the short tutorial here.
 
 Hint: If you are struggling, the Calculator folder contains the full implementation, and you can use it for reference.
 
-<!--
-##  Additional information
-rm .depend; make; make main.ocaml.exe
+
+##  Additional information (Debugging tips)
+* If you have problems compiling the examples, try:
+ * rm .depend;
+ * make clean-[example-name]
+* A socket error ECONNREFUSED:
+ * the error indicates that you have not started the roles in the expected order, you should always start the server role first.
 P.S The (current) readme is here https://github.com/fangyi-zhou/FluidSession
--->
