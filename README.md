@@ -298,7 +298,7 @@ It represents an online payment application.
 
 </details>  
 
-#### Step 2: Implementing your own protocols (Optional)
+### Step 2: Implementing your own protocols (Optional)
 
 Create a simple calculator protocol, following the short tutorial here.
 
