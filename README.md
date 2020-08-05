@@ -19,7 +19,7 @@ Note: if you get the error: no authentication, then login to docker:
 ```
 ~/TOKEN.txt | docker login https://docker.pkg.github.com -u USERNAME --password-stdin
 ```
-where TOKEN.txt should conatin your Github authentication token (see how to generate one [here](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token))
+where TOKEN.txt should contain your Github authentication token (see how to generate one [here](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token))
 
 3. The docker file comes with a vim installation, if you prefer to use other editors or your local vim set-up, you should enable [docker directory mount](https://docs.docker.com/storage/bind-mounts/).
 
@@ -46,7 +46,7 @@ The above script verifies and executes all implemented examples.
 
 ### Step 1: Run the microbenchamarks (Table 1, Section 5.2 and 5.3)
 
-The purpose of these set of benchmarks is to demonstrate the scalabilty of our tool on protocols of increasing length (as explained in Section 5.2). We also measure the execution overhead of our implementation by comparing it against an implementation without session types or refinement types, which we call bare implementation (as explained in Section 5.3).
+The purpose of this set of benchmarks is to demonstrate the scalabilty of our tool on protocols of increasing length (as explained in Section 5.2). We also measure the execution overhead of our implementation by comparing it against an implementation without session types or refinement types, which we call bare implementation (as explained in Section 5.3).
 
 To execute the benchmarks run:
 
@@ -145,9 +145,11 @@ make -C HigherLower/A main.ocaml.exe
 
 
 :three: **execution**: repeat the above steps (generation and compilation for role B and C). After all endpoints have been implemented and their binaries have been generated, we can run them.
- To run all endpoins:
+ To run all endpoins issue all the commands:
 ```
-HigherLower/B/main.ocaml.exe & HigherLower/C/main.ocaml.exe & HigherLower/A/main.ocaml.exe
+HigherLower/B/main.ocaml.exe &
+HigherLower/C/main.ocaml.exe &
+HigherLower/A/main.ocaml.exe &
 ```
  The above command runs the three endpoins, i.e A, B and C.
 
