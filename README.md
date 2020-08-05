@@ -274,8 +274,8 @@ Hint: If you are struggling, the Calculator folder contains the full implementat
 
 ##  Additional information (Debugging tips)
 * If you have problems compiling the examples, try:
- * rm .depend;
- * make clean-[example-name]
+  * rm .depend;
+  * make clean-[example-name]
 * A socket error ECONNREFUSED:
- * the error indicates that you have not started the roles in the expected order, you should always start the server role first.
-P.S The (current) readme is here https://github.com/fangyi-zhou/FluidSession
+  * the error indicates that you have not started the roles in the expected order, you should always start the server role first.
+<!-- P.S The (current) readme is here https://github.com/fangyi-zhou/FluidSession -->
