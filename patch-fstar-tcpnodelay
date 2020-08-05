@@ -1,0 +1,20 @@
+diff --git a/ulib/ml/FStar_Tcp.ml b/ulib/ml/FStar_Tcp.ml
+index d4177a1dab..9bd65ed8db 100644
+--- a/ulib/ml/FStar_Tcp.ml
++++ b/ulib/ml/FStar_Tcp.ml
+@@ -9,6 +9,7 @@
+       let i = Z.to_int i in
+       let server_sock = socket PF_INET SOCK_STREAM 0 in
+       (setsockopt server_sock SO_REUSEADDR true ;
++       setsockopt server_sock TCP_NODELAY true;
+        let address = inet_addr_of_string s in
+        bind server_sock (ADDR_INET (address, i)) ;
+        listen server_sock 10;
+@@ -25,6 +26,7 @@
+   let connect s i =
+       let i = Z.to_int i in
+       let client_sock = socket PF_INET SOCK_STREAM 0 in
++      setsockopt client_sock TCP_NODELAY true;
+       let hentry = gethostbyname s in
+       connect client_sock (ADDR_INET (hentry.h_addr_list.(0), i)) ;
+       client_sock

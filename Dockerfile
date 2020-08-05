@@ -46,7 +46,7 @@ COPY --chown=sessionstar:sessionstar \
 COPY --chown=sessionstar:sessionstar \
   FStar /home/sessionstar/FStar/
 COPY --chown=sessionstar:sessionstar \
-  examples /home/sessionstar/examples/
+  patch-fstar-tcpnodelay /home/sessionstar/FStar/
 COPY --chown=sessionstar:sessionstar \
   template /home/sessionstar/template/
 
@@ -90,8 +90,12 @@ RUN cd ScribbleCodeGenOCaml \
   && cp _build/default/bin/main.exe ~/bin/ScribbleCodeGen.exe
 
 RUN cd FStar \
+  && patch -p1 < patch-fstar-tcpnodelay \
   && make
 
 ENV FSTAR_HOME="/home/sessionstar/FStar"
 
 COPY --chown=sessionstar:sessionstar sessionstar /home/sessionstar/bin
+
+COPY --chown=sessionstar:sessionstar \
+  examples /home/sessionstar/examples/
