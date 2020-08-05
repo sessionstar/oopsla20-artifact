@@ -33,11 +33,11 @@ let () =
     | "serverforever" -> (
         let protocol_parameter = Sys.argv.(4) |> int_of_string in
         match protocol_parameter with
-        | 1 -> Server1.run_once
-        | 5 -> Server5.run_once
-        | 10 -> Server10.run_once
-        | 20 -> Server20.run_once
-        | 25 -> Server25.run_once
+        | 1 -> Server1.run_forever
+        | 5 -> Server5.run_forever
+        | 10 -> Server10.run_forever
+        | 20 -> Server20.run_forever
+        | 25 -> Server25.run_forever
         | _ -> failwith "Protocol parameter must be 1, 5, 10, 20, 25" )
     | "bareserver" -> PingPongBBase.run_once
     | "bareserverforever" -> PingPongBBase.run_forever
