@@ -1,4 +1,6 @@
 # !/usr/bin/env python3
+import os
+import subprocess
 import sys
 import tempfile
 import util
@@ -79,12 +81,22 @@ def benchmark_for_pingpong_with_iteration(
     return result
 
 
+def compile_pingpong():
+    os.chdir("PingPong")
+    print("Compiling endpoints for execution, this may take up to 20 min...")
+    subprocess.check_output(["make", "main.ocaml.exe"], stderr=subprocess.DEVNULL)
+
+
+PING_PONGS = 100_000
+
+
 if __name__ == "__main__":
     iterations = [1, 5, 10, 15, 20, 25]
     repetition = int(sys.argv[1]) if len(sys.argv) > 1 else None
+    print("Compilation Times".center(80))
     print("=" * 80)
     headers = [
-        "Iteration",
+        "Protocol Len.",
         "Gen Time (CFSM)",
         "Gen Time (F*)",
         "TC Time (Gen.)",
@@ -106,4 +118,36 @@ if __name__ == "__main__":
         ]
         columns = [c.center(15) for c in columns]
         print(*columns, sep="|")
+    print("=" * 80)
+    compile_pingpong()
+    print("Execution Times".center(80))
+    print("=" * 80)
+    iterations = [1, 5, 10, 20, 25]
+    headers = ["Protocol Len.", "Execution Time"]
+    headers = [h.center(38) for h in headers]
+    print(*headers, sep="|")
+    print("=" * 80)
+    for iteration in iterations:
+        server = subprocess.Popen(
+            ["./main.ocaml.exe", "127.0.0.1", "3000", "serverforever", str(iteration)]
+        )
+        if repetition is None:
+            repetition = 1
+        times = []
+        for i in range(repetition):
+            time = subprocess.check_output(
+                [
+                    "./main.ocaml.exe",
+                    "127.0.0.1",
+                    "3000",
+                    "client",
+                    str(PING_PONGS // iteration),
+                    str(iteration),
+                ]
+            )
+            times.append(float(time.decode("ascii")))
+        columns = ["%d" % iteration, "%f" % (sum(times) / len(times))]
+        columns = [c.center(38) for c in columns]
+        print(*columns, sep="|")
+        server.terminate()
     print("=" * 80)
