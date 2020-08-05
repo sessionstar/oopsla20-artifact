@@ -205,7 +205,7 @@ TODO: A quick explanation on the main differences...
 
 For details, see the [notes on Scribble syntax](README.md#notes-on-scribble-syntax).
 
-### Step 3: Run other example (Optional)
+### Step 3: Run other examples (Optional)
 
 To build a selected example from Table 2:
 ```
