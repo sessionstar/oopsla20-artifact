@@ -145,9 +145,11 @@ make -C HigherLower/A main.ocaml.exe
 
 
 :three: **execution**: repeat the above steps (generation and compilation for role B and C). After all endpoints have been implemented and their binaries have been generated, we can run them.
- To run all endpoins:
+ To run all endpoins issue all the commands:
 ```
-HigherLower/B/main.ocaml.exe & HigherLower/C/main.ocaml.exe & HigherLower/A/main.ocaml.exe
+HigherLower/B/main.ocaml.exe &
+HigherLower/C/main.ocaml.exe &
+HigherLower/A/main.ocaml.exe &
 ```
  The above command runs the three endpoins, i.e A, B and C.
 
