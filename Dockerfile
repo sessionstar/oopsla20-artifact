@@ -100,3 +100,5 @@ COPY --chown=sessionstar:sessionstar sessionstar /home/sessionstar/bin
 
 COPY --chown=sessionstar:sessionstar \
   examples /home/sessionstar/examples/
+
+EXPOSE 3000/tcp
