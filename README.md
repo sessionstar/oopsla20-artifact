@@ -81,7 +81,7 @@ For the OOPSLA'20 artifact evaluation, please use the docker image provided:
     ```
 6. Run the docker container:
     ```bash
-    docker run -it docker.pkg.github.com/sessionstar/oopsla20-artifact/artifact:latest
+    docker run -it -p 3000:3000 docker.pkg.github.com/sessionstar/oopsla20-artifact/artifact:latest
     ```
 7. The Docker image comes with an installation of vim and nano for editing.
    If you wish to install additional software for editing or other purposes, you may obtain sudo
