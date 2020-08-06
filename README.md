@@ -559,10 +559,9 @@ aux global protocol MyProtoAux(role A, role B, role C)
       This is a common extension in the
       literature, e.g., [Yoshida et al.](https://link.springer.com/chapter/10.1007/978-3-642-12032-9_10)
 - Regarding refinements, ...**int only?**  The basic operations that we
-  currently support in refinements include: equality (`=`), inequalities (`<`,
-  `<=`, `>=`, `>`), addition (`+`), and conjunction/disjunction (`&&`, `||`).
-  We can readily extend with additional sorts and functions based on what Z3
-  supports.
+  currently support in refinements include: comparisons (`<`, `<=`, `=`, `>=`,
+  `>`), addition (`+`) and connectives (`&&`, `||`).  We can readily extend
+  with additional sorts and functions based on what Z3 supports.
 
 
 ---
