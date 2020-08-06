@@ -511,7 +511,7 @@ The following summarises the syntax using another compact example.
 ```
 module Foo;  // Corresponds to the file name, i.e., Foo.scr
 
-type <fstar> "..." from "..." as int;  // The "..." are irrelevant
+type <fstar> "..." from "..." as int;  // The "..." are currently irrelevant
 
 // A "main" protocol
 global protocol MyProto(role A, role B, role C) {
