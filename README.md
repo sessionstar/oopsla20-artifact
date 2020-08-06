@@ -12,7 +12,7 @@ This artifact submission contains the following:
 
 - An [overview](...TODO...) of the artifact (this document).
 - The main artifact, a [Docker image](...TODO...).
-- The md5 hash of the artifact file is 3f3de4314a0dee94f56f69eb68717324.
+- The md5 hash of the artifact file is TODO.
 
 For better usability, please use the [online](...TODO...) version of this document.
 
@@ -23,23 +23,23 @@ This overview describes the steps to assess the practical claims of the
 paper using the artifact.
 
 1. **[Getting Started](#getting-started)**  
-    [1.1](...TODO...) Run the Artifact (Docker image)  
-    [1.2](...TODO...) Artifact Layout  
-    [1.3](...TODO...) Quick Test  
-    &nbsp;&nbsp;&nbsp;&nbsp;[1.3.1](...TODO...) Run all examples  
-    &nbsp;&nbsp;&nbsp;&nbsp;[1.3.2](...TODO...) Run the benchmarks for Table 1 (Sections 5.2 and 5.3).   
-    &nbsp;&nbsp;&nbsp;&nbsp;[1.3.2](...TODO...) Run the benchmarks for Table 2 (Section 5.4).
+    - [1.1](#run-the-artifact) Run the Artifact (Docker image)  
+    - [1.2](#artifact-layout) Artifact Layout  
+    - [1.3](#quick-test) Quick Test  
+        - [1.3.1](#run-all-examples) Run all examples  
+        - [1.3.2](#run-table-1) Run the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper).   
+        - [1.3.2](#run-table-2) Run the benchmarks for Table 2 (Section 5.4 in the paper).
 2. **Step-by-Step Instructions**  
-    [2.1](...TODO...) Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3).  
-    [2.2](...TODO...) Run and verify the example listed in Table 2 (Sections 5.4).  
-    [2.3](...TODO...) Run the main example (HigherLower) of the paper (Section 2).  
+    [2.1](...TODO...) Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper).  
+    [2.2](...TODO...) Run and verify the example listed in Table 2 (Sections 5.4 in the paper).  
+    [2.3](...TODO...) Run the main example (HigherLower) of the paper (Section 2 in the paper).  
     [2.4](...TODO...) Modify examples and observe refinement violations  
-    [2.5](...TODO...) Run Through Other Examples (Optional)(optional)
+    [2.5](...TODO...) Run Through Other Examples (Optional)
 3. **Additional Information**  
     [3.1.](...TODO...) ...toolchain overview  
     &nbsp;&nbsp;&nbsp;&nbsp;[3.1.1.](...TODO...) ...discrepancies between the artifact and the paper  
     &nbsp;&nbsp;&nbsp;&nbsp;[3.1.2.](...TODO...) ...Syntax of Refined Scribble  
-    [3.2.](#s#step-2-observe-refinement-violations) ...implementing your own
+    [3.2.](#step-2-observe-refinement-violations) ...implementing your own
           protocols ...you can test and modify any of the above example, as well as
           implement and verify your own protocols using our toolchains  
     [3.3.](#step-3-run-other-example-optional) ...debugging tips
@@ -50,10 +50,11 @@ paper using the artifact.
 ## <a name="getting-started"></a> 1. Getting Started 
 
 ---
-### 1.1 Run the Artifact (Docker Image)
+### <a name="run-the-artifact"></a> 1.1 Run the Artifact (Docker Image)
 
-For the OOPSLA'20 artifact evaluation, please use the **..docker file..**
-provided:
+For the OOPSLA'20 artifact evaluation, please use the docker image provided:
+
+**TODO: Replace with how to unzip the docker image and run.**
 
 0. [Install docker](https://docs.docker.com/engine/install/).
 1. Run the docker container:  ...**TODO**: update to use provided image
@@ -67,10 +68,9 @@ provided:
     where TOKEN.txt should contain your Github authentication token (see how to
     generate one
     [here](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)).
-2. The Docker image comes with a Vim installation.  ...**If you prefer to use your
-   own locally installed editor, you may try a [docker directory
-   mount](https://docs.docker.com/storage/bind-mounts/).**
-   - ...apt-get install...
+2. The Docker image comes with an installation of vim and nano for editing. 
+   If you wish to install additional software for editing or other purposes, you may obtain sudo
+   access with the password `sessionstar`.
 3. The instructions in this overview assume you are in the
    `/home/sessionstar/examples` directory.  ...**CHECKME**: e.g., next subsec
    - Note.  This document contains some folded paragraphs:
@@ -82,7 +82,7 @@ provided:
         </details>
 
 
-### 1.2. Artifact Layout
+### <a name="artifact-layout"></a> 1.2. Artifact Layout
 
 The artifact is clone of this [commit](...TODO:https://github.com/sessionstar/oopsla20-artifact...) in the sessionstar GitHub repository.  It contains the following.
 
@@ -101,16 +101,16 @@ The artifact is clone of this [commit](...TODO:https://github.com/sessionstar/oo
 
 
 ---
-### 1.3. Quick Test
+### <a name="quick-test"></a> 1.3. Quick Test
 
 We have provided several scripts that allow you to quickly run the main examples of the paper.
 
 A step by step explanation on how to verify the claims of the paper, how to use the toolchain, and how to test each example separately is deferred to later sections (&#167;2 and &#167;3) of this document.
 
-#### 1.3.1 Test that at all examples can be executed
+#### <a name="run-all-examples"></a> 1.3.1 Test that at all examples can be executed
 To verify and execute all implemented examples:
 
-```
+```bash
 cd examples
 make
 make run
@@ -118,10 +118,10 @@ make run
 &#167; 3.1 explains how to run each example separately.
 
 ---
-#### 1.3.2  Run the benchmarks for Table 1 (Sections 5.2 and 5.3).   
+#### <a name="run-table-1"></a> 1.3.2  Run the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper).   
 To execute the benchmark experiment once:
 
-```
+```bash
 python3 scripts/pingpong.py
 ```
 
@@ -132,7 +132,7 @@ The produced table corresponds (up to column renaming) to Table 1 from the paper
 &#167; 2.1 explains in details how to compare the produced results with the paper.
 
 ---
-#### 1.3.3 Run the benchmarks for Table 2 (Section 5.4).
+#### <a name="run-table-2"></a> 1.3.3 Run the benchmarks for Table 2 (Section 5.4 in the paper).
 
 To compile all applications implemented with **Session&#42;** (Table 2):
 
