@@ -22,34 +22,36 @@ For better usability, please use the [online](...TODO...) version of this docume
 This overview describes the steps to assess the practical claims of the
 paper using the artifact.
 
-1. **[Getting Started](#getting-started)**  
-    - [1.1](#run-the-artifact) Run the Artifact (Docker image)  
-    - [1.2](#artifact-layout) Artifact Layout  
-    - [1.3](#quick-test) Quick Test  
-        - [1.3.1](#run-all-examples) Run all examples  
-        - [1.3.2](#run-table-1) Run the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper).   
+1. **[Getting Started](#getting-started)**
+    - [1.1](#run-the-artifact) Run the Artifact (Docker image)
+    - [1.2](#artifact-layout) Artifact Layout
+    - [1.3](#quick-test) Quick Test
+        - [1.3.1](#run-all-examples) Run all examples
+        - [1.3.2](#run-table-1) Run the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper).
         - [1.3.3](#run-table-2) Run the benchmarks for Table 2 (Section 5.4 in the paper).
-2. **[Step-by-Step Instructions](#step-by-step)**  
-    - [2.1](#benchmark-table-1) Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper).  
-    - [2.2](#benchmark-table-2) Run and verify the example listed in Table 2 (Sections 5.4 in the paper).  
-    - [2.3](#main-example) Run the main example (HigherLower) of the paper (Section 2 in the paper).  
-    - [2.4](#modify-refinement) Modify examples and observe refinement violations  
+2. **[Step-by-Step Instructions](#step-by-step)**
+    - [2.1](#benchmark-table-1) Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper).
+    - [2.2](#benchmark-table-2) Run and verify the example listed in Table 2 (Sections 5.4 in the paper).
+    - [2.3](#main-example) Run the main example (HigherLower) of the paper (Section 2 in the paper).
+    - [2.4](#modify-refinement) Modify examples and observe refinement violations
     - [2.5](#other-examples) Run Through Other Examples (Optional)
-3. **[Additional Information](#additional-information)**  
-    - [3.1](#toolchain-overview) ...toolchain overview  
-        - [3.1.1](#discrepancy) ...discrepancies between the artifact and the paper  
-        - [3.1.2](#syntax) ...Syntax of Refined Scribble  
+3. **[Additional Information](#additional-information)**
+    - [3.1](#toolchain-overview) ...toolchain overview
+        - [3.1.1](#discrepancy) ...discrepancies between the artifact and the paper
+        - [3.1.2](#syntax) ...Syntax of Refined Scribble
     - [3.2](#step-2-observe-refinement-violations) ...implementing your own
           protocols ...you can test and modify any of the above example, as well as
-          implement and verify your own protocols using our toolchains  
+          implement and verify your own protocols using our toolchains
     - [3.3](#step-3-run-other-example-optional) ...debugging tips
 
 
----  
 ---
+---
+
 ## <a name="getting-started"></a> 1 Getting Started
 
 ---
+
 ### <a name="run-the-artifact"></a> 1.1 Run the Artifact (Docker Image)
 
 For the OOPSLA'20 artifact evaluation, please use the docker image provided:
@@ -92,7 +94,7 @@ For the OOPSLA'20 artifact evaluation, please use the docker image provided:
 ### <a name="artifact-layout"></a> 1.2 Artifact Layout
 
 The artifact is built from this [commit](...TODO:https://github.com/sessionstar/oopsla20-artifact...)
-in the sessionstar [GitHub](https://github.com/sessionstar/oopsla20-artifact) repository.  
+in the sessionstar [GitHub](https://github.com/sessionstar/oopsla20-artifact) repository.
 
 The artifact contains the following:
 * The directories `scribble-java` and `ScribbleCodeGenOCaml`
@@ -112,6 +114,7 @@ The artifact contains the following:
 
 
 ---
+
 ### <a name="quick-test"></a> 1.3 Quick Test
 
 We provide several scripts that allow you to quickly run the main examples of the paper.
@@ -130,7 +133,8 @@ make run
 &#167; 3.1 explains how to run each example separately.
 
 ---
-#### <a name="run-table-1"></a> 1.3.2  Run the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper).   
+
+#### <a name="run-table-1"></a> 1.3.2  Run the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper).
 To execute the benchmark experiment once:
 
 ```bash
@@ -144,6 +148,7 @@ The produced table corresponds (up to column renaming) to Table 1 from the paper
 &#167; 2.1 explains in details how to compare the produced results with the paper.
 
 ---
+
 #### <a name="run-table-2"></a> 1.3.3 Run the benchmarks for Table 2 (Section 5.4 in the paper).
 
 To compile all applications implemented with **Session&#42;** (Table 2):
@@ -156,7 +161,7 @@ The produced table corresponds (up to column renaming) to Table 2 from the paper
 
 &#167; 2.2 explains in details how to compare the produced results with the paper.
 
----  
+---
 ---
 
 ## <a name="step-by-step"></a> 2 Step-by-Step Instructions
@@ -174,7 +179,7 @@ as well as implement and verify your own protocols (&#167;[3.1](...TODO...)) usi
 922 4 cores, 8 threads), 16 GiB RAM, operating system Ubuntu 18.04.
 Depending on your test machine, the absolute values of the measurements produced in &#167;[2.1](#benchmark-table-1)
 and &#167;[2.2](#benchmark-table-2) may differ slightly from the paper.
-Nevertheless, the claims stated in the paper should be preserved.  
+Nevertheless, the claims stated in the paper should be preserved.
 
 #### <a name="benchmark-table-1"></a> 2.1  Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3).
 
@@ -202,7 +207,7 @@ The script runs the example 30 times and displays the average.
 
 (TODO: 1. explain the option to adjust n, 2. option to adjust how many times the example are run; 3.explain the option to run remotely)
 
-**Note:** The result in the paper run the experiments under a network of latency of 0.340ms (64 bytes ping), while the script runs the examples in the same docker container.  
+**Note:** The result in the paper run the experiments under a network of latency of 0.340ms (64 bytes ping), while the script runs the examples in the same docker container.
 
 
 ---
@@ -222,9 +227,10 @@ It contains the same columns as the table produces in &#167;[2.1](#benchmark-tab
 - the total generation time, which is a sum of the ```Gen Time (CFSM)``` and ```Gen Time (F*)``` from the produced table.
 - the total time checking time, which is a sum of ```TC Time (Gen.)``` and ```TC Time (Impl)``` from the produced table.
 
-The source code (protocols and implementations) for each of these examples is located in a separate folder. See &#167;[2.4](#modify-refinement) for details on how to run each of the examples.  
+The source code (protocols and implementations) for each of these examples is located in a separate folder. See &#167;[2.4](#modify-refinement) for details on how to run each of the examples.
 
 ---
+
 #### <a name="main-example"></a> 2.3  Run the main example (HigherLower) of the paper (Section 2).
 The purpose of this section is to give you a quick walk through of using the toolchains to implement and verify a protocol. We focus on the running example - [HigherLower.scr](/examples/HigherLower).
 For high-level overview of the toolchain refer to   &#167;[3.1](...TODO...)
@@ -235,7 +241,7 @@ The first step of our toolchain is the generation of callback signatures from Sc
  sessionstar HigherLower/HigherLower.scr HigherLower A
  ```
  The ```sessionstar``` command  (1) generates a CFSM and (2) produces the callback signatures in F*. It produces the corresponding files:
-   -  ```HigherLower_A.fsm``` - contains the CFSM for role A  
+   -  ```HigherLower_A.fsm``` - contains the CFSM for role A
    -  ```GeneratedHigherLowerA.fst``` - contains the generated API, as callback signatures, for role A.
 
 :two: **Implement and compile.**
@@ -265,6 +271,7 @@ HigherLower/A/main.ocaml.exe &
 
 
 ---
+
 #### <a name="modify-refinement"></a> 2.4  Observe Refinement Violations
 
 Next we highlight how protocol violations are ruled out by static refinement typing, which is ultimately the practical purpose of **Session&#42;**.
@@ -302,19 +309,20 @@ Suggested modifications:
     - Change [Line 23](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L23) by commenting ```n=x'``` (comment in Scribble is `//`)
     - Change [Line 30](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L30) from @'((n<x || n>x) && t=1)' to ```@'t=1'```
 
-   Since we changed the protocol, new callback signatures have to be generated. Generate new callback signatures and compile:     
+   Since we changed the protocol, new callback signatures have to be generated. Generate new callback signatures and compile:
  ```
  sessionstar HigherLower/HigherLower.scr HigherLower C
  mv GeneratedHigherLowerC.fst HigherLower/C
  make -C HigherLower/C main.ocaml.exe
  ```
 
-#### :exclamation:__Note__ on syntax discrepancies:
+#### ❗️__Note__ on syntax discrepancies:
 
 There are small syntax discrepancies between Scribble syntax and the paper. For details, see the [notes on Scribble syntax](#notes-on-scribble-syntax).
 
 
 ---
+
 #### <a name="other-examples"></a> 2.5 Run Through Other Examples (Optional)
 
 To build a selected example from Table 2:
@@ -328,7 +336,7 @@ You can run them using:
 make run-[name of the example]
 ```
 
-See the [Makefile](examples/Makefile) for more details.  
+See the [Makefile](examples/Makefile) for more details.
 
 Each examples is in a separate folder. The folder contains:
 - The protocol, specified in Scribble - a file with extension `.scr`
@@ -342,89 +350,83 @@ Each examples is in a separate folder. The folder contains:
 
 
 Below we briefly explain each example:
-<details>
-  <summary>Two Buyer</summary>
 
-- source folder:  [examples/TwoBuyer](examples/TwoBuyer)
-- explanation:Two Buyer is a canonical example for demonstrating business logic interactions. It specifies a negotiation between two buyers and a seller to purchase a book. The Seller S sends the price of the book to Buyer A and Buyer B. The refinement ensures that the seller quotes the same price to both buyers. A and B negotiate and buyer B accepts to buy the book only if A contributes more to the purchase.  
+* Two Buyer
 
-</details>
-<details>
-  <summary>Negotiation</summary>
+    - source folder:  [examples/TwoBuyer](examples/TwoBuyer)
+    - explanation:Two Buyer is a canonical example for demonstrating business logic interactions. It specifies a negotiation between two buyers and a seller to purchase a book. The Seller S sends the price of the book to Buyer A and Buyer B. The refinement ensures that the seller quotes the same price to both buyers. A and B negotiate and buyer B accepts to buy the book only if A contributes more to the purchase.
 
-- source folder:  [examples/Negotiation](examples/Negotiation)
-- explanation: This is a recursive protocol that describes a service agreement proposal between a producer P and a consumer C. The protocol starts by the producer P sending an initial proposal to C, the proposal contains the price of the service. Then C can either accept the proposal, or can send a counter proposal.
+* Negotiation
+
+    - source folder:  [examples/Negotiation](examples/Negotiation)
+    - explanation: This is a recursive protocol that describes a service agreement proposal between a producer P and a consumer C. The protocol starts by the producer P sending an initial proposal to C, the proposal contains the price of the service. Then C can either accept the proposal, or can send a counter proposal.
 The refinements ensure that when an offer is accepted the confirmed price and the offer price are the same.
 
-</details>
-<details>
-  <summary>Fibonacci</summary>
 
-- source folder:  [examples/Fibonacci](examples/Fibonacci)
-- explanation: The protocol specify a computation of a fibonacci sequence. The specified refinements ensure that each number (produced by role B) is the sum of two preceding numbers (provided by role A). Hence, the implementation is guaranteed to compute a fibonacci sequence.
 
-</details>
-<details>
-  <summary>Travel Agency</summary>
+* Fibonacci
 
-- source folder:  [examples/TravelAgency](examples/TravelAgency)
-- explanation: This is a W3C Choreographies use case, and the running example from [Hu et al. 2008](https://doi.org/10.1007/978-3-540-70592-5_22). The protocol depicts the interactions between a client (C), the travel agency (A)
+    - source folder:  [examples/Fibonacci](examples/Fibonacci)
+    - explanation: The protocol specify a computation of a fibonacci sequence. The specified refinements ensure that each number (produced by role B) is the sum of two preceding numbers (provided by role A). Hence, the implementation is guaranteed to compute a fibonacci sequence.
+
+* Travel Agency
+
+    - source folder:  [examples/TravelAgency](examples/TravelAgency)
+    - explanation: This is a W3C Choreographies use case, and the running example from [Hu et al. 2008](https://doi.org/10.1007/978-3-540-70592-5_22). The protocol depicts the interactions between a client (C), the travel agency (A)
 and a travel service (S). Customer requests and receives by the Agency the price for a desired journey. This exchange may be repeated an arbitrary
 number of times for different journeys under the initiative of Customer.
 Customer either accepts an offer from Agency or decides that none of the
 received quotes are satisfactory. If the offer is accepted, the
 Service handles the payment.
 
-</details>
-<details>
-  <summary>Calculator</summary>  
+* Calculator
 
-- source folder:  [examples/Calculator](examples/Calculator)
-- explanation: a distributed service for addition of two numbers. The recursive protocol allows a client to repeatedly send an operation request (e.g addition) with two numbers, and receive back the result (the sum of the two numbers).
+    - source folder:  [examples/Calculator](examples/Calculator)
+    - explanation: a distributed service for addition of two numbers. The recursive protocol allows a client to repeatedly send an operation request (e.g addition) with two numbers, and receive back the result (the sum of the two numbers).
 
-</details>
-<details>
-  <summary>SH</summary>
+* SH
 
-  - source folder:  [examples/SH](examples/SH)
-  - explanation:  SH is short for Sutherland-Hodgman algorithm. It is a 3-role protocol for polygon clipping. It takes a plane, and the vertices of a polygon as a series of points; and produces vertices for
+    - source folder:  [examples/SH](examples/SH)
+    - explanation:  SH is short for Sutherland-Hodgman algorithm. It is a 3-role protocol for polygon clipping. It takes a plane, and the vertices of a polygon as a series of points; and produces vertices for
 the polygon restricted to one side of the plane. This is the running example from [Neykova et al. 2018](https://doi.org/10.1145/3178372.3179495)
 
-</details>
-<details>
-  <summary>OnlineWallet</summary>
+* OnlineWallet
 
-- source folder:  [examples/Online Wallet](examples/OnlineWallet)
-- explanation: This is the running example from [Neykova et al. 2013](https://www.doc.ic.ac.uk/~rn710/spy/main.pdf).
-It represents an online payment application between client C, bank S, and an Authentication service A. In each iteration, S
-sends C the current account status,
-and C has the choice to make a payment (but only for an amount that
-would not overdraw the account) or end the session.
+    - source folder:  [examples/Online Wallet](examples/OnlineWallet)
+    - explanation: This is the running example from [Neykova et al.
+2013](https://www.doc.ic.ac.uk/~rn710/spy/main.pdf). It represents an
+online payment application between client C, bank S, and an
+Authentication service A. In each iteration, S sends C the current
+account status, and C has the choice to make a payment (but only for
+an amount that would not overdraw the account) or end the session.
 
-</details>
-<details>
-<summary>Ticket</summary>
+* Ticket
 
-- source folder:[examples/Ticket](examples/Ticket)
-- explanation: This is the running example from [Bocchi et al. 2013](http://mrg.doc.ic.ac.uk/publications/a-theory-of-design-by-contract-for-distributed-multiparty-interactions/concur.pdf), where a buyer negotiates with the seller and bank for buying a purchase.
-The refinements ensure that the buyer has to increase the price during
-negotiations until an agreement is reached. In addition, the value of the (last) offer and the payment must be equal.
+    - source folder:[examples/Ticket](examples/Ticket)
+    - explanation: This is the running example from [Bocchi et al.
+2013](http://mrg.doc.ic.ac.uk/publications/a-theory-of-design-by-contract-for-distributed-multiparty-interactions/concur.pdf),
+where a buyer negotiates with the seller and bank for buying a
+purchase. The refinements ensure that the buyer has to increase the
+price during negotiations until an agreement is reached. In addition,
+the value of the (last) offer and the payment must be equal.
 
-</details>
-<details>
-  <summary>HTTP</summary>
+* HTTP
 
-- source folder:  [examples/HTTP](examples/HTTP)
-- explanation: It is a minimal specification of the [Hypertext Transfer protocol](https://tools.ietf.org/html/rfc2616) protocol. The refinements ensure the validity of the status code that are used. We have  implemented an HTTP server in F*. The example can interoperate with HTTP clients, e.g Chrome, Firefox, etc.
+    - source folder:  [examples/HTTP](examples/HTTP)
+    - explanation: It is a minimal specification of the [Hypertext
+      Transfer protocol](https://tools.ietf.org/html/rfc2616)
+      protocol. The refinements ensure the validity of the status code
+      that are used. We have implemented an HTTP server in F*. The
+      example can interoperate with HTTP clients, e.g Chrome, Firefox,
+      etc.
 
-</details>  
-
-
----  
 ---
+---
+
 ## <a name="additional-information"></a> 3 Additional Information
 
 ---
+
 #### <a name="toolchain-overview"></a> 3.1 Toolchain Overview
 
 The following is a quick recap of the **Session&#42;** toolchain, as
@@ -446,28 +448,28 @@ endpoint program and its refinements to ensure that the program follows the
 protocol.
 
 The steps of the toolchain, as exercised in [2.1](...TODO...), are outlined
-below (the figure corresponds to Fig. 2 in the paper).  
+below (the figure corresponds to Fig. 2 in the paper).
 
-<img src="images/framework_overview.png" width=1000></img>
+<img src="images/framework_overview.png" width=1000/>
 
 The **Session&#42;** starts by writing the protocol in our extended Scribble:
 this artifact supplies the protocols for all the examples in the paper.
 This overview then runs through the following steps.
 
-- :one: **Generate** -- for each role in a given Scribble protocol, we generate
+- 1️⃣ **Generate** -- for each role in a given Scribble protocol, we generate
   an F* API for implementing that role (by way of a CSFM representation).
   This is done using the ```sessionstar``` command, which is available on the
-  command line path in the artifact conatiner and produces the following files.  
-  Outputs: (a dot file representation of the CFSM) and an F* API file.  
-- :two: **Implement and compile** -- the user supplies the application logic
+  command line path in the artifact conatiner and produces the following files.
+  Outputs: (a dot file representation of the CFSM) and an F* API file.
+- 2️⃣ **Implement and compile** -- the user supplies the application logic
   for each endpoint by implementing the I/O callback function types of the
-  generated API.  The implementation is verified by the F* compiler.  
+  generated API.  The implementation is verified by the F* compiler.
   Outputs: executable binaries.
-- :three: **Execute** -- with a well-typed endpoint program for each role, we
+- 3️⃣ **Execute** -- with a well-typed endpoint program for each role, we
   can execute the protocol.  For this artifact, we run all endpoints within the
   same container as separate processes communicating asynchronously via TCP
   localhost (i.e., with the same communication semantics as geographically
-  distributed TCP connections).  
+  distributed TCP connections).
   Outputs: safe execution of the refined multiparty protocol.
 
 <!---
@@ -582,6 +584,7 @@ aux global protocol MyProtoAux(role A, role B, role C)
 
 
 ---
+
 #### 3.2 Implementing your own protocols (Optional)
 
 The template folder contains an  initial setup for implementing your own programs. It contains some boilerplate files:
@@ -599,7 +602,7 @@ sessionstar mycalc Calculator C
   1. Create a new file CalcC_CallbackImpl.fst
   2. Import the generated F* file  (GeneratedCalculatorC.fst), and other relevant libraries you may need
   2. Implement the business logic for all callbacks. The easiest way is to copy all F* callback signatures from GeneratedCalculatorC.fst, and implement them.
-  We have given you a head start with the skeleton below.  
+  We have given you a head start with the skeleton below.
 
 ```
 module CalcC_CallbackImpl
@@ -644,6 +647,7 @@ Hint: the Calculator folder contains the full implementation, and you can use it
 make -C mycalc main.ocaml.exe
 ```
 ---
+
 #### 3.3 Additional information (Debugging tips)
 * If you have problems compiling the examples, try:
   ```
