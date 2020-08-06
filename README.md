@@ -12,7 +12,7 @@ This artifact submission contains the following:
 
 - An [overview](...TODO...) of the artifact (this document).
 - The main artifact, a [Docker image](...TODO...).
-- The [md5 hash](...TODO...) of the Docker image.
+- The md5 hash of the artifact file is TODO.
 
 For better usability, please use the [online](...TODO...) version of this document.
 
@@ -22,24 +22,24 @@ For better usability, please use the [online](...TODO...) version of this docume
 This overview describes the steps to assess the practical claims of the
 paper using the artifact.
 
-1. **Getting Started**  
-    [1.1.](...TODO...) Run the Artifact (Docker image)  
-    [1.2](...TODO...) Artifact Layout  
-    [1.2.](...TODO...) Quick Test  
-    &nbsp;&nbsp;&nbsp;&nbsp;[1.2.1](...TODO...) Run all examples  
-    &nbsp;&nbsp;&nbsp;&nbsp;[1.2.2](...TODO...) Run the benchmarks for Table 1 (Sections 5.2 and 5.3).   
-    &nbsp;&nbsp;&nbsp;&nbsp;[1.2.2](...TODO...) Run the benchmarks for Table 2 (Section 5.4).
+1. **[Getting Started](#getting-started)**  
+    - [1.1](#run-the-artifact) Run the Artifact (Docker image)  
+    - [1.2](#artifact-layout) Artifact Layout  
+    - [1.3](#quick-test) Quick Test  
+        - [1.3.1](#run-all-examples) Run all examples  
+        - [1.3.2](#run-table-1) Run the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper).   
+        - [1.3.2](#run-table-2) Run the benchmarks for Table 2 (Section 5.4 in the paper).
 2. **Step-by-Step Instructions**  
-    [2.1](...TODO...) Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3).  
-    [2.2](...TODO...) Run and verify the example listed in Table 2 (Sections 5.4).  
-    [2.3](...TODO...) Run the main example (HigherLower) of the paper (Section 2).  
+    [2.1](...TODO...) Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper).  
+    [2.2](...TODO...) Run and verify the example listed in Table 2 (Sections 5.4 in the paper).  
+    [2.3](...TODO...) Run the main example (HigherLower) of the paper (Section 2 in the paper).  
     [2.4](...TODO...) Modify examples and observe refinement violations  
-    [2.5](...TODO...) Run Through Other Examples (Optional)(optional)
+    [2.5](...TODO...) Run Through Other Examples (Optional)
 3. **Additional Information**  
     [3.1.](...TODO...) ...toolchain overview  
     &nbsp;&nbsp;&nbsp;&nbsp;[3.1.1.](...TODO...) ...discrepancies between the artifact and the paper  
     &nbsp;&nbsp;&nbsp;&nbsp;[3.1.2.](...TODO...) ...Syntax of Refined Scribble  
-    [3.2.](#s#step-2-observe-refinement-violations) ...implementing your own
+    [3.2.](#step-2-observe-refinement-violations) ...implementing your own
           protocols ...you can test and modify any of the above example, as well as
           implement and verify your own protocols using our toolchains  
     [3.3.](#step-3-run-other-example-optional) ...debugging tips
@@ -47,31 +47,38 @@ paper using the artifact.
 
 ---  
 ---
-## 1. Getting Started
+## <a name="getting-started"></a> 1. Getting Started 
 
 ---
-### 1.1 Run the Artifact (Docker Image)
+### <a name="run-the-artifact"></a> 1.1 Run the Artifact (Docker Image)
 
-For the OOPSLA'20 artifact evaluation, please use the **..docker file..**
-provided:
+For the OOPSLA'20 artifact evaluation, please use the docker image provided:
+
+**TODO: Replace with how to unzip the docker image and run.**
 
 0. [Install docker](https://docs.docker.com/engine/install/).
-1. Run the docker container:  ...**TODO**: update to use provided image
+1. Download the artifact file (assume the filename is `artifact.tar.gz`)
+2. Unzip the artifact file. 
+    ```bash
+    gunzip artifact.tar.gz
     ```
+3. You should see the tar file `artifact.tar` after last operation.
+4. Load the docker image
+    ```bash
+    docker load < artifact.tar
+    ```
+5. You should see in the end of the output after last operation: **TODO: Change the tag**
+    ```
+    Loaded image: docker.pkg.github.com/sessionstar/oopsla20-artifact/artifact:latest
+    ```
+6. Run the docker container:
+    ```bash
     docker run -it docker.pkg.github.com/sessionstar/oopsla20-artifact/artifact:latest
     ```
-    Note: if you get the error: no authentication, then login to docker:
-    ```
-    ~/TOKEN.txt | docker login https://docker.pkg.github.com -u USERNAME --password-stdin
-    ```
-    where TOKEN.txt should contain your Github authentication token (see how to
-    generate one
-    [here](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)).
-2. The Docker image comes with a Vim installation.  ...**If you prefer to use your
-   own locally installed editor, you may try a [docker directory
-   mount](https://docs.docker.com/storage/bind-mounts/).**
-   - ...apt-get install...
-3. The instructions in this overview assume you are in the
+7. The Docker image comes with an installation of vim and nano for editing. 
+   If you wish to install additional software for editing or other purposes, you may obtain sudo
+   access with the password `sessionstar`.
+8. The instructions in this overview assume you are in the
    `/home/sessionstar/examples` directory.  ...**CHECKME**: e.g., next subsec
    - Note.  This document contains some folded paragraphs:
         <details>
@@ -82,35 +89,40 @@ provided:
         </details>
 
 
-### 1.2. Artifact Layout
+### <a name="artifact-layout"></a> 1.2. Artifact Layout
 
-The artifact is clone of this [commit](...TODO:https://github.com/sessionstar/oopsla20-artifact...) in the sessionstar GitHub repository.  It contains the following.
+The artifact is built from this [commit](...TODO:https://github.com/sessionstar/oopsla20-artifact...) 
+in the sessionstar [GitHub](https://github.com/sessionstar/oopsla20-artifact) repository.  
 
-* [`/scribble-java`](...TODO...) and [`/ScribbleCodeGenOCaml`](...TODO...) --
-  these comprise the full source code of the toolchain.
+The artifact contains the following:
+* The directories `scribble-java` and `ScribbleCodeGenOCaml`
+  comprise the full source code of the toolchain.
     * The `sessionstar` command, available on the command line `$PATH`,
-      performs the Scribble protocol to F* API generation (e.g., the F*
+      performs the Scribble protocol to F* API generation (e.g. the F*
       callback signatures); see [Part II (Step I)](...TODO...).
-* [`/scripts`](examples/scripts) -- the scripts for executing the
-  benchmarks from Table 1 and Table 2.
-* [`/examples`](examples/) -- the source code for the various examples,
+* The directory `FStar` contains a checkout of the F* compiler, patched to 
+  enable `TCP_NODELAY` flag for benchmarking purposes.
+* The directory `examples` contains the source code for the various examples,
   including the HigherLower running example from the paper (Section 2) and
-  those listed in Table 2.
-* [`/template`](template/) -- template files to help you through writing
+  those listed in Table 2 in the paper.
+  * The sub-directory `scripts` contains scripts for executing the
+    benchmarks from Table 1 and Table 2 in the paper.
+* The directory `/template` contains template files to help you through writing
   and testing your own examples.
 
 
 ---
-### 1.3. Quick Test
+### <a name="quick-test"></a> 1.3. Quick Test
 
-We have provided several scripts that allow you to quickly run the main examples of the paper.
+We provide several scripts that allow you to quickly run the main examples of the paper.
 
-A step by step explanation on how to verify the claims of the paper, how to use the toolchain, and how to test each example separately is deferred to later sections (&#167;2 and &#167;3) of this document.
+A step by step explanation on how to verify the claims of the paper, how to use the toolchain, 
+and how to test each example separately is deferred to later sections (&#167;2 and &#167;3) of this document.
 
-#### 1.3.1 Test that at all examples can be executed
+#### <a name="run-all-examples"></a> 1.3.1 Test that at all examples can be executed
 To verify and execute all implemented examples:
 
-```
+```bash
 cd examples
 make
 make run
@@ -118,10 +130,10 @@ make run
 &#167; 3.1 explains how to run each example separately.
 
 ---
-#### 1.3.2  Run the benchmarks for Table 1 (Sections 5.2 and 5.3).   
+#### <a name="run-table-1"></a> 1.3.2  Run the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper).   
 To execute the benchmark experiment once:
 
-```
+```bash
 python3 scripts/pingpong.py
 ```
 
@@ -132,7 +144,7 @@ The produced table corresponds (up to column renaming) to Table 1 from the paper
 &#167; 2.1 explains in details how to compare the produced results with the paper.
 
 ---
-#### 1.3.3 Run the benchmarks for Table 2 (Section 5.4).
+#### <a name="run-table-2"></a> 1.3.3 Run the benchmarks for Table 2 (Section 5.4 in the paper).
 
 To compile all applications implemented with **Session&#42;** (Table 2):
 
@@ -472,8 +484,8 @@ programs with the following notes.
   effects, such as **..printing and refs..**  Alternatively, the APIs could be
   generated with stricter effect constraints (the strictest being `Tot`, for
   terminating expressions without side-effects).
-- The above point concerns progress.  **Regardless, our toolchain guarantees that
-  execution is free of communication errors and deadlocks**.  (Deadlock refers
+- The above point concerns progress.  **..Regardless, our toolchain guarantees that
+  execution is free of communication errors and deadlocks..**.  (Deadlock refers
   to the safety error of a wait-for cycle between two or more endpoints.)
 
 
@@ -494,9 +506,9 @@ Scribble in the artifact and that presented in the paper.
       aux global protocol Aux(role A, role B, role C)
                           @'B[n: int = 0, t: int = 1] (0<=n && n<100) && 0<t
       ```
-      Our implementation requires state variables to be declared with an
+      The syntax in our implementation declares state variables with a default
       initial expression (which happen to be irrelevant to the HigherLower
-      example), and the refinements of each variable to be written as a
+      example), and the refinements of each variable are written as a
       combined assertion following the declarations.
     - The code in the paper uses some compacted notation (e.g., &leq;, &wedge;)
       which the implementation requires in longer form (e.g., `<=`, `&&`).
@@ -510,12 +522,12 @@ Scribble in the artifact and that presented in the paper.
 Our extended Scribble is based on the global types of our Refined MPST as
 defined in the paper (Section 4).  The syntax and key features are already
 mostly demonstrated by the HigherLower example ([2.1](...TODO...)).
-The following summarises the syntax using a compact example.
+The following summarises the syntax using another compact example.
 
 ```
 module Foo;  // Corresponds to the file name, i.e., Foo.scr
 
-type <fstar> "..." from "..." as int;  // The "..." are irrelevant
+type <fstar> "..." from "..." as int;  // The "..." are currently irrelevant
 
 // A "main" protocol
 global protocol MyProto(role A, role B, role C) {
@@ -544,14 +556,28 @@ aux global protocol MyProtoAux(role A, role B, role C)
 }
 ```
 
-
-
-- correspond to formal syntax
-- directed choice?
-- do -- inlining -- allows recursion
-- tail recursive
-- merge
-- int only? -- depends on Z3
+- Usability warning:  Our current implementation is not very user friendly.
+  Many errors are reported with a full stack trace -- you may find a basic
+  error message at the top of the trace.
+- To match our RMPST in the paper, choices must be **directed**: this means the
+  initial messages inside each choice case must be sent from the choice subject
+  (the `at` role) to the *same* role in all cases.
+    - Our implementation expands slightly on the core theory presented in the
+      paper by allowing a so-called merge of "third-party" branch cases with
+      *distinct* labels in projection.  E.g., for the third-party `C`
+      ```
+      choice at A {
+          1() from A to B; 2() from A to C;
+      } or {
+          3() from A to B; 4() from A to C;
+      }
+      ```
+      This is a common extension in the
+      literature, e.g., [Yoshida et al.](https://link.springer.com/chapter/10.1007/978-3-642-12032-9_10)
+- Regarding refinements, ...**int only?**  The basic operations that we
+  currently support in refinements include: comparisons (`<`, `<=`, `=`, `>=`,
+  `>`), addition (`+`) and connectives (`&&`, `||`).  We can readily extend
+  with additional sorts and functions based on what Z3 supports.
 
 
 ---
