@@ -584,13 +584,65 @@ aux global protocol MyProtoAux(role A, role B, role C)
 ---
 #### 3.2 Implementing your own protocols (Optional)
 
-...**CHECKME**: maybe move to part 2
+The template folder contains an  initial setup for implementing your own programs. It contains some boilerplate files:
+* Makefile --to compile the program
+* payload.fst and network.fst -- for basic communication operations.
 
-Create a simple calculator protocol, following the short tutorial here.
+Below, we outline the main steps required to implement the client for a simple calculator protocol that supports addition:
+1. Copy the template directory and rename it to mycalc
+2. Inside the new directory create a Scribble protocol (you can copy the Calculator.scr protocol from the examples/Calculator)
+3. Generate an F* API  using ```sessionstar```. We assume you are in the  examples directory (the parent directory of mycalc)
+```
+sessionstar mycalc Calculator C
+```
+4. Implement the logic for all callbacks, generated in the previous step
+  1. Create a new file CalcC_CallbackImpl.fst
+  2. Import the generated F* file  (GeneratedCalculatorC.fst), and other relevant libraries you may need
+  2. Implement the business logic for all callbacks. The easiest way is to copy all F* callback signatures from GeneratedCalculatorC.fst, and implement them.
+  We have given you a head start with the skeleton below.  
 
-Hint: If you are struggling, the Calculator folder contains the full implementation, and you can use it for reference.
+```
+module CalcC_CallbackImpl
 
+open GeneratedCalcC
+open FStar.All
 
+// these are some local variables that you can use
+let x : ref int = alloc 0
+let y : ref int = alloc 1
+
+(* implement the callback record *)
+let callbacks : callbacksC = {
+
+ (*state20Onsend : (st: state20) -> ML (state20Choice st);*)
+ state20Onsend = (fun _ ->
+    (* this is a choice state so you need to return either
+      ...maybe you need an if statement ... *)
+  );
+
+  (*state22OnsendSum2 : (st: state22) -> ML (int);*)
+  state22OnsendSum2 = (fun _ r1 ->
+    ...you need to return a number, it can be any number
+  );
+
+  (*state23OnreceiveResult : (st: state23) -> (r1: int{((r1) = ((Mkstate23?.x1 st) + (Mkstate23?.y1 st)))}) -> ML (unit);*)
+ state23OnreceiveResult = (fun _ r1 ->
+   the value that is receivbed is r1, here you can decide what to do with it,
+   ...you can either return unit (), you can print the receive result,
+   or you can save it.
+  );
+
+  (*state24OnreceiveTerminate : (st: state24) -> (_dummy: unit) -> ML (unit);*)
+  state24OnreceiveTerminate = (fun _ _ -> ()) // this is the terminating state
+}
+```
+
+Hint: the Calculator folder contains the full implementation, and you can use it for reference.
+5. Check that your implementation is correct. Below command assumes that you are in the examples folder (the parent directory of the mycalc folder)
+
+```
+make -C mycalc main.ocaml.exe
+```
 ---
 #### 3.3 Additional information (Debugging tips)
 * If you have problems compiling the examples, try:
