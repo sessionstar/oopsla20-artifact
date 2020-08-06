@@ -35,10 +35,10 @@ paper using the artifact.
     - [2.3](#main-example) Run the main example (HigherLower) of the paper (Section 2 in the paper).  
     - [2.4](#modify-refinement) Modify examples and observe refinement violations  
     - [2.5](#other-examples) Run Through Other Examples (Optional)
-3. **Additional Information**  
-    - [3.1](...TODO...) ...toolchain overview  
-        - [3.1.1](...TODO...) ...discrepancies between the artifact and the paper  
-        - [3.1.2](...TODO...) ...Syntax of Refined Scribble  
+3. **[Additional Information](#additional-information)**  
+    - [3.1](#toolchain-overview) ...toolchain overview  
+        - [3.1.1](#discrepancy) ...discrepancies between the artifact and the paper  
+        - [3.1.2](#syntax) ...Syntax of Refined Scribble  
     - [3.2](#step-2-observe-refinement-violations) ...implementing your own
           protocols ...you can test and modify any of the above example, as well as
           implement and verify your own protocols using our toolchains  
@@ -163,15 +163,18 @@ The produced table corresponds (up to column renaming) to Table 2 from the paper
 
 The purpose of this section is to describe in details the steps required to assess the artifact associated with our paper. We would like you to be able to:
 
-* reproduce our benchmarks from Table 1, Section 5.2 and 5.3. For that purpose, complete &#167;[2.1](...TODO...) of this document.
-* compile the examples, reported in Table 2, Section 5.4. For that purpose, complete &#167;[2.2](...TODO...) of this document.
-* test the running example (HigherLower) from the paper, described in Section 2. For that purpose, complete &#167;[2.3](...TODO...) of this document.
+* reproduce our benchmarks from Table 1, Section 5.2 and 5.3. For that purpose, complete &#167;[2.1](#benchmark-table-1) of this document.
+* compile the examples, reported in Table 2, Section 5.4. For that purpose, complete &#167;[2.2](#benchmark-table-2) of this document.
+* test the running example (HigherLower) from the paper, described in Section 2. For that purpose, complete &#167;[2.3](#main-example) of this document.
 
-Additionally, you can test and modify any of the examples we have implemented (&#167;[2.4](...TODO...)), as well as implement and verify your own protocols (&#167;[3.1](...TODO...)) using our toolchain.
+Additionally, you can test and modify any of the examples we have implemented (&#167;[2.4](#modify-refinement)),
+as well as implement and verify your own protocols (&#167;[3.1](...TODO...)) using our toolchain.
 
 **Note on performance:** Measurements in the paper are taken using a machine with Intel i7-7700K CPU (4.20 GHz,
 922 4 cores, 8 threads), 16 GiB RAM, operating system Ubuntu 18.04.
-Depending on your test machine, the absolute values of the measurements produced in &#167;[2.1](...TODO...) and &#167;[2.2](...TODO...) may differ slightly from the paper. Nevertheless, the claims stated in the paper should be preserved.  
+Depending on your test machine, the absolute values of the measurements produced in &#167;[2.1](#benchmark-table-1) 
+and &#167;[2.2](#benchmark-table-2) may differ slightly from the paper. 
+Nevertheless, the claims stated in the paper should be preserved.  
 
 #### <a name="benchmark-table-1"></a> 2.1  Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3).
 
@@ -215,11 +218,11 @@ python3 scripts/examples.py
 Compare the results with the results reported in Table 2, taking into account that the absolute values may differ.
 
 The produced table corresponds to Table 2 from the paper.
-It contains the same columns as the table produces in &#167;[2.1](...TODO...) Note that Table 2 from the paper reports:
+It contains the same columns as the table produces in &#167;[2.1](#benchmark-table-1) Note that Table 2 from the paper reports:
 - the total generation time, which is a sum of the ```Gen Time (CFSM)``` and ```Gen Time (F*)``` from the produced table.
 - the total time checking time, which is a sum of ```TC Time (Gen.)``` and ```TC Time (Impl)``` from the produced table.
 
-The source code (protocols and implementations) for each of these examples is located in a separate folder. See &#167;[2.4](...TODO...) for details on how to run each of the examples.  
+The source code (protocols and implementations) for each of these examples is located in a separate folder. See &#167;[2.4](#modify-refinement) for details on how to run each of the examples.  
 
 ---
 #### <a name="main-example"></a> 2.3  Run the main example (HigherLower) of the paper (Section 2).
@@ -312,7 +315,7 @@ There are small syntax discrepancies between Scribble syntax and the paper.
 
 TODO: A quick explanation on the main differences...
 
-For details, see the [notes on Scribble syntax](README.md#notes-on-scribble-syntax).
+For details, see the [notes on Scribble syntax](#notes-on-scribble-syntax).
 
 
 ---
@@ -423,10 +426,10 @@ negotiations until an agreement is reached. In addition, the value of the (last)
 
 ---  
 ---
-## 3 Additional Information
+## <a name="additional-information"></a> 3 Additional Information
 
 ---
-#### 3.1 Toolchain Overview
+#### <a name="toolchain-overview"></a> 3.1 Toolchain Overview
 
 The following is a quick recap of the **Session&#42;** toolchain, as
 presented in the paper.
@@ -489,7 +492,7 @@ programs with the following notes.
   to the safety error of a wait-for cycle between two or more endpoints.)
 
 
-#### 3.1.1  Discrepancies between the Paper and the Artifact
+#### <a name="discrepancy"></a> 3.1.1  Discrepancies between the Paper and the Artifact
 
 There are a few discrepancies between the implementation of our extended
 Scribble in the artifact and that presented in the paper.
@@ -517,7 +520,7 @@ Scribble in the artifact and that presented in the paper.
   bonus, and is not required to support the properties described above...**
 
 
-##### 3.1.2 Syntax of Refined Scribble
+#### <a name="syntax"></a>  3.1.2 Syntax of Refined Scribble
 
 Our extended Scribble is based on the global types of our Refined MPST as
 defined in the paper (Section 4).  The syntax and key features are already
@@ -598,5 +601,4 @@ Hint: If you are struggling, the Calculator folder contains the full implementat
   make clean-[example-name]
   ```
 * A socket error ECONNREFUSED:
-  * the error indicates that you have not started the roles in the expected order, you should always start the server role first.
-<!-- P.S The (current) readme is here https://github.com/fangyi-zhou/FluidSession -->
+  * the error indicates that you have not started the roles in the expected order, you should always start the "server" role (the role that listens for connections) first.
