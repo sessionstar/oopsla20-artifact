@@ -468,8 +468,8 @@ programs with the following notes.
   effects, such as **..printing and refs..**  Alternatively, the APIs could be
   generated with stricter effect constraints (the strictest being `Tot`, for
   terminating expressions without side-effects).
-- The above point concerns progress.  **Regardless, our toolchain guarantees that
-  execution is free of communication errors and deadlocks**.  (Deadlock refers
+- The above point concerns progress.  **..Regardless, our toolchain guarantees that
+  execution is free of communication errors and deadlocks..**.  (Deadlock refers
   to the safety error of a wait-for cycle between two or more endpoints.)
 
 
