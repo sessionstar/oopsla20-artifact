@@ -6,6 +6,7 @@ RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime \
     curl \
     default-jdk \
     gcc \
+    gcc-multilib \
     git \
     libgmp-dev \
     libgomp1 \
