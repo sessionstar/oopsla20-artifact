@@ -474,6 +474,7 @@ This overview then runs through the following steps.
   distributed TCP connections).  
   Outputs: safe execution of the refined multiparty protocol.
 
+<!---
 **Properties of the toolchain.**
 The paper (Section 4) establishes Trace Equivalence (Theorem 4.8) between
 global protocols and endpoint projections, and Preservation of Well-Formedness
@@ -490,6 +491,7 @@ programs with the following notes.
 - The above point concerns progress.  **..Regardless, our toolchain guarantees that
   execution is free of communication errors and deadlocks..**.  (Deadlock refers
   to the safety error of a wait-for cycle between two or more endpoints.)
+--->
 
 
 #### <a name="discrepancy"></a> 3.1.1  Discrepancies between the Paper and the Artifact
@@ -516,8 +518,9 @@ Scribble in the artifact and that presented in the paper.
     - The code in the paper uses some compacted notation (e.g., &leq;, &wedge;)
       which the implementation requires in longer form (e.g., `<=`, `&&`).
 - Our implementation of Scribble includes an additional protocol validation
-  step prior to the F* API generation. **..This validation is an optional
-  bonus, and is not required to support the properties described above...**
+  step prior to the F* API generation.  This validation is an optional bonus,
+  and the toolchain as presented in the paper does not depend on it.
+  <!---and is not required to support the properties described above.--->
 
 
 #### <a name="syntax"></a>  3.1.2 Syntax of Refined Scribble
@@ -559,9 +562,8 @@ aux global protocol MyProtoAux(role A, role B, role C)
 }
 ```
 
-- Usability warning:  Our current implementation is not very user friendly.
-  Many errors are reported with a full stack trace -- you may find a basic
-  error message at the top of the trace.
+- Usability warning:  Some user errors are reported with a full stack trace --
+  you may find a basic error message at the top of the trace.
 - To match our RMPST in the paper, choices must be **directed**: this means the
   initial messages inside each choice case must be sent from the choice subject
   (the `at` role) to the *same* role in all cases.
@@ -577,10 +579,10 @@ aux global protocol MyProtoAux(role A, role B, role C)
       ```
       This is a common extension in the
       literature, e.g., [Yoshida et al.](https://link.springer.com/chapter/10.1007/978-3-642-12032-9_10)
-- Regarding refinements, ...**int only?**  The basic operations that we
-  currently support in refinements include: comparisons (`<`, `<=`, `=`, `>=`,
-  `>`), addition (`+`) and connectives (`&&`, `||`).  We can readily extend
-  with additional sorts and functions based on what Z3 supports.
+- Regarding refinements, our current implementation supports `int` variables
+  only, with operations for comparisons (`<`, `<=`, `=`, `>=`, `>`), addition
+  (`+`) and connectives (`&&`, `||`).  We can readily extend with additional
+  sorts and functions based on what Z3 supports.
 
 
 ---
