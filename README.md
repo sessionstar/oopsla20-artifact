@@ -91,28 +91,33 @@ For the OOPSLA'20 artifact evaluation, please use the docker image provided:
 
 ### <a name="artifact-layout"></a> 1.2. Artifact Layout
 
-The artifact is clone of this [commit](...TODO:https://github.com/sessionstar/oopsla20-artifact...) in the sessionstar GitHub repository.  It contains the following.
+The artifact is built from this [commit](...TODO:https://github.com/sessionstar/oopsla20-artifact...) 
+in the sessionstar [GitHub](https://github.com/sessionstar/oopsla20-artifact) repository.  
 
-* [`/scribble-java`](...TODO...) and [`/ScribbleCodeGenOCaml`](...TODO...) --
-  these comprise the full source code of the toolchain.
+The artifact contains the following:
+* The directories `scribble-java` and `ScribbleCodeGenOCaml`
+  comprise the full source code of the toolchain.
     * The `sessionstar` command, available on the command line `$PATH`,
-      performs the Scribble protocol to F* API generation (e.g., the F*
+      performs the Scribble protocol to F* API generation (e.g. the F*
       callback signatures); see [Part II (Step I)](...TODO...).
-* [`/scripts`](examples/scripts) -- the scripts for executing the
-  benchmarks from Table 1 and Table 2.
-* [`/examples`](examples/) -- the source code for the various examples,
+* The directory `FStar` contains a checkout of the F* compiler, patched to 
+  enable `TCP_NODELAY` flag for benchmarking purposes.
+* The directory `examples` contains the source code for the various examples,
   including the HigherLower running example from the paper (Section 2) and
-  those listed in Table 2.
-* [`/template`](template/) -- template files to help you through writing
+  those listed in Table 2 in the paper.
+  * The sub-directory `scripts` contains scripts for executing the
+    benchmarks from Table 1 and Table 2 in the paper.
+* The directory `/template` contains template files to help you through writing
   and testing your own examples.
 
 
 ---
 ### <a name="quick-test"></a> 1.3. Quick Test
 
-We have provided several scripts that allow you to quickly run the main examples of the paper.
+We provide several scripts that allow you to quickly run the main examples of the paper.
 
-A step by step explanation on how to verify the claims of the paper, how to use the toolchain, and how to test each example separately is deferred to later sections (&#167;2 and &#167;3) of this document.
+A step by step explanation on how to verify the claims of the paper, how to use the toolchain, 
+and how to test each example separately is deferred to later sections (&#167;2 and &#167;3) of this document.
 
 #### <a name="run-all-examples"></a> 1.3.1 Test that at all examples can be executed
 To verify and execute all implemented examples:
