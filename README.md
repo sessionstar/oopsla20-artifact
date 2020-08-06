@@ -50,7 +50,7 @@ paper using the artifact.
 ## 1. Getting Started
 
 ---
-#### 1.1 Run the Artifact (Docker Image)
+### 1.1 Run the Artifact (Docker Image)
 
 For the OOPSLA'20 artifact evaluation, please use the **..docker file..**
 provided:
@@ -82,7 +82,7 @@ provided:
         </details>
 
 
-#### 1.2. Artifact Layout
+### 1.2. Artifact Layout
 
 The artifact is clone of this [commit](...TODO:https://github.com/sessionstar/oopsla20-artifact...) in the sessionstar GitHub repository.  It contains the following.
 
@@ -101,7 +101,7 @@ The artifact is clone of this [commit](...TODO:https://github.com/sessionstar/oo
 
 
 ---
-#### 1.3. Quick Test
+### 1.3. Quick Test
 
 We have provided several scripts that allow you to quickly run the main examples of the paper.
 
@@ -118,7 +118,7 @@ make run
 &#167; 3.1 explains how to run each example separately.
 
 ---
-#### 1.2.2  Run the microbenchamarks (Table 1, Section 5.2 and 5.3)
+#### 1.2.2  Run the benchmarks for Table 1 (Sections 5.2 and 5.3).   
 To execute the benchmark experiment once:
 
 ```
@@ -132,9 +132,10 @@ The produced table corresponds (up to column renaming) to Table 1 from the paper
 &#167; 2.1 explains in details how to compare the produced results with the paper.
 
 ---
-#### 1.2.3 Compile applications implemented with **Session&#42;** (Table 2, Section 5.4)
+#### 1.2.3 Run the benchmarks for Table 2 (Section 5.4).
 
-To run all examples:
+To compile all applications implemented with **Session&#42;** (Table 2):
+
 ```
 python3 scripts/examples.py
 ```
@@ -160,7 +161,7 @@ Additionally, you can test and modify any of the examples we have implemented (&
 922 4 cores, 8 threads), 16 GiB RAM, operating system Ubuntu 18.04.
 Depending on your test machine, the absolute values of the measurements produced in &#167;[2.1](...TODO...) and &#167;[2.2](...TODO...) may differ slightly from the paper. Nevertheless, the claims stated in the paper should be preserved.  
 
-#### 2.1.  Run the microbenchamarks (Table 1, Section 5.2 and 5.3)
+#### 2.1.  Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3).
 
 The purpose of this set of benchmarks is to demonstrate the scalabilty of our tool on protocols of increasing length (as explained in Section 5.2). We also measure the execution overhead of our implementation by comparing it against an implementation without session types or refinement types, which we call bare implementation (as explained in Section 5.3).
 
@@ -190,7 +191,7 @@ The script runs the example 30 times and displays the average.
 
 
 ---
-#### 2.2. Compile applications implemented with **Session&#42;** (Table 2, Section 5.4)
+#### 2.2. Run and verify the example listed in Table 2 (Sections 5.4).
 
 The purpose of these set of benchmarks is to show the expressivity of our toolchain. We have taken examples
 from the session type literature, and have added refinements to encode data dependencies in the protocols (as explained in Section 5.4).
@@ -209,7 +210,7 @@ It contains the same columns as the table produces in &#167;[2.1](...TODO...) No
 The source code (protocols and implementations) for each of these examples is located in a separate folder. See &#167;[2.4](...TODO...) for details on how to run each of the examples.  
 
 ---
-#### 2.3.  Execute the Running Example
+#### 2.3.  Run the main example (HigherLower) of the paper (Section 2).
 The purpose of this section is to give you a quick walk through of using the toolchains to implement and verify a protocol. We focus on the running example - [HigherLower.scr](/examples/HigherLower).
 For high-level overview of the toolchain refer to   &#167;[3.1](...TODO...)
 
