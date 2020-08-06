@@ -369,7 +369,7 @@ The refinements ensure that when an offer is accepted the confirmed price and th
   <summary>Travel Agency</summary>
 
 - source folder:  [examples/TravelAgency](examples/TravelAgency)
-- explanation: This is a W3C Choreographies use case, and the running example from [Hu et al. 2008](https://doi.org/10.1007/978-3-540-70592-5_22)]. It a client (C), the travel agency (A)
+- explanation: This is a W3C Choreographies use case, and the running example from [Hu et al. 2008](https://doi.org/10.1007/978-3-540-70592-5_22). The protocol depicts the interactions between a client (C), the travel agency (A)
 and a travel service (S). Customer requests and receives by the Agency the price for a desired journey. This exchange may be repeated an arbitrary
 number of times for different journeys under the initiative of Customer.
 Customer either accepts an offer from Agency or decides that none of the
