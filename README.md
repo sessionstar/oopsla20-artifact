@@ -57,21 +57,28 @@ For the OOPSLA'20 artifact evaluation, please use the docker image provided:
 **TODO: Replace with how to unzip the docker image and run.**
 
 0. [Install docker](https://docs.docker.com/engine/install/).
-1. Run the docker container:  ...**TODO**: update to use provided image
+1. Download the artifact file (assume the filename is `artifact.tar.gz`)
+2. Unzip the artifact file. 
+    ```bash
+    gunzip artifact.tar.gz
     ```
+3. You should see the tar file `artifact.tar` after last operation.
+4. Load the docker image
+    ```bash
+    docker load < artifact.tar
+    ```
+5. You should see in the end of the output after last operation: **TODO: Change the tag**
+    ```
+    Loaded image: docker.pkg.github.com/sessionstar/oopsla20-artifact/artifact:latest
+    ```
+6. Run the docker container:
+    ```bash
     docker run -it docker.pkg.github.com/sessionstar/oopsla20-artifact/artifact:latest
     ```
-    Note: if you get the error: no authentication, then login to docker:
-    ```
-    ~/TOKEN.txt | docker login https://docker.pkg.github.com -u USERNAME --password-stdin
-    ```
-    where TOKEN.txt should contain your Github authentication token (see how to
-    generate one
-    [here](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)).
-2. The Docker image comes with an installation of vim and nano for editing. 
+7. The Docker image comes with an installation of vim and nano for editing. 
    If you wish to install additional software for editing or other purposes, you may obtain sudo
    access with the password `sessionstar`.
-3. The instructions in this overview assume you are in the
+8. The instructions in this overview assume you are in the
    `/home/sessionstar/examples` directory.  ...**CHECKME**: e.g., next subsec
    - Note.  This document contains some folded paragraphs:
         <details>
