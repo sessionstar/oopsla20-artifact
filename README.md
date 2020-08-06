@@ -4,33 +4,47 @@
 >
 > Fangyi Zhou, Francisco Ferreira, Raymond Hu, Rumyana Neykova and Nobuko Yoshida
 
-This artifact submission contains the following:
-
-1. An [overview](...TODO...) of the artifact (this document).
-2. The main artifact as a [Docker image](...TODO...).
-3. The [md5 hash](...TODO...) of the Docker image.
-
-The above [paper](...TODO...) presents **Session&#42;**, a toolchain for
+Our [paper](...TODO...) presents **Session&#42;**, a toolchain for
 specifying message passing protocols using **Refined Multiparty Session Types**
 and safely implementing the distributed endpoint programs in **F&#42;**.
 
+This artifact submission contains the following:
+
+1. An [overview](...TODO...) of the artifact (this document).
+2. The main artifact, a [Docker image](...TODO...).
+3. The [md5 hash](...TODO...) of the Docker image.
+
 This overview describes the steps to assess the practical claims of the
-paper using the artifact:
-* [Part I (Step 1)](#step-1-run-the-microbenchamarks-table-1-section-52-and-53)
-  reproduces our benchmark methodology for Table 1 (Sections 5.2 and 5.3).
-* [Part I (Step
-  2)](#step-2-compile-applications-implemented-with-session-table-2-section-54)
-  compiles **..and runs..** the examples listed in Table 2 (Section 5.4).
-* [Part II (Step 1)](#step-1-execute-the-runnign-example) runs through the main
-  example (HigherLower) of the paper (Section 2).
+paper using the artifact.
 
-Additionally, you can test and modify any of the above examples ([Part II, Step
-2](#s#step-2-observe-refinement-violations)), as well as implement and verify
-your own protocols using our toolchain ([Part II, Step
-3](#step-3-run-other-example-optional)).
+1. Getting Started  
+    [1.1.](...TODO...) Run the Artifact (Docker image)  
+    [1.2.](...TODO...) Artifact Layout  
+    [1.3.](...TODO...) Quick Test: Examples  
+    [1.4.](#step-1-run-the-microbenchamarks-table-1-section-52-and-53)
+          ...reproduces our benchmark methodology for Table 1 (Sections 5.2 and 5.3).  
+    [1.5.](#step-2-compile-applications-implemented-with-session-table-2-section-54)
+          ...compiles **..and runs..** the examples listed in Table 2 (Section 5.4).
+2. Step-by-Step Instructions  
+    [2.1](#step-1-execute-the-runnign-example)
+         ...runs through the main example (HigherLower) of the paper (Section 2).  
+    [2.2](...TODO...) ...observe refinement violations  
+    [2.3](...TODO...) ...run other examples
+3. Additional Information  
+    [3.1.](...TODO...) ...toolchain overview  
+    [3.2.](...TODO...) ...discrepancies between the artifact and the paper  
+    [3.3.](#s#step-2-observe-refinement-violations) ...implementing your own
+          protocols ...you can test and modify any of the above example, as well as
+          implement and verify your own protocols using our toolchains  
+    [3.4.](#step-3-run-other-example-optional) ...debugging tips
 
 
-### Getting Started
+---  
+---
+## 1. Getting Started
+
+---
+#### 1.1 Run the Artifact (Docker Image)
 
 For the OOPSLA'20 artifact evaluation, please use the **..docker file..**
 provided:
@@ -61,8 +75,8 @@ provided:
         ...and see the details.
         </details>
 
-
-### Artifact Layout
+---
+#### 1.2 Artifact Layout
 
 The artifact contains the full source code of the toolchain -- it is clone of
 this [commit](...TODO:https://github.com/sessionstar/oopsla20-artifact...) in
@@ -79,12 +93,10 @@ the sessionstar GitHub repository.  The artifact also contains the following.
 
 
 ---
+#### 1.3: Test that all examples can be executed
 
-## Part I: Quick start
 We have provided several scripts that allow you to quickly test the main claims of the paper.
 A step by step explanation on how to use the toolchain, and how to test each example separately is deferred to Part II of this document.
-
-#### Step **..0..**: Test that all examples can be executed
 
 ```
 cd examples
@@ -93,7 +105,9 @@ make run
 ```
 The above script verifies and executes all implemented examples.  
 
-#### Step 1: Run the microbenchamarks (Table 1, Section 5.2 and 5.3)
+
+---
+#### 1.4.  Run the microbenchamarks (Table 1, Section 5.2 and 5.3)
 
 The purpose of this set of benchmarks is to demonstrate the scalabilty of our tool on protocols of increasing length (as explained in Section 5.2). We also measure the execution overhead of our implementation by comparing it against an implementation without session types or refinement types, which we call bare implementation (as explained in Section 5.3).
 
@@ -115,7 +129,8 @@ The script runs the example 30 times and displays the average.
 **Note:** The result in the paper run the experiments under a network of latency of 0.340ms (64 bytes ping), while the script runs the examples in the same docker container.  
 
 
-#### Step 2: Compile applications implemented with Session* (Table 2, Section 5.4)
+---
+#### 1.5. Compile applications implemented with Session* (Table 2, Section 5.4)
 
 The purpose of these set of benchmarks is to show the expressivity of our toolchain. We have taken examples
 from the session type literature, and have added refinements to encode data dependencies in the protocols (as explained in Section 5.4).
@@ -132,132 +147,15 @@ It contains the same columns as the table produces in Step 1. Note that Table 2 
 The source code (protocols and implementations) for each of these examples is located in a separate folder.
 
 
+---  
 ---
 
 ## Part 2: A walk-through tutorial
 
-#### Framework Overview
-
-<details>
-<summary>
-<b>Click</b> here for a quick recap of the <b>Session&#42;</b> toolchain, as
-presented in the paper.  ...<b>CHECKME</b>: move to an "appendix"? (long)
-</summary>
-
-**In a nutshell.**
-The toolchain allows users to specify, implement and verify <em>refined</em>
-multiparty protocols and programs.  Protocol specifications are based on our
-Refined Multiparty Session Types (RMPST), which express data dependent
-protocols via refinement types on interactions and message payloads, i.e.,
-protocols with logical constraints on message value and control-flow.
-
-**How.**
-Users write protocol specifications in our extension of the
-[Scribble](scribble.org) protocol description language, and implement the
-endpoint programs in [F*](fstar.org) using refinement-typed APIs generated from
-the protocol by the toolchain.  The F* compiler statically verifies that each
-endpoint program and its refinements, ensuring the program follows the
-protocol.
-<--and is free from communication errors ...**and deadlocks**.-->
-
-The steps of the toolchain are outlined below (the figure corresponds to Fig. 2
-in the paper).  ![](images/framework_overview.png)
-
-The **Session&#42;** starts by writing the protocol in our extended Scribble:
-this artifact supplies the protocols for all the examples in the paper.
-This overview then runs through the following steps.
-
-- :one: **Generate** for each role in a given Scribble protocol, an F* API for
-  implementing that role (by way of a CSFM representation).
-  This is done using the ```sessionstar``` command, which is available on the
-  command line path in the artifact conatiner and produces the following files.  
-  Outputs: a CFSM file (in dot format) and an F* API file.  
-- :two: **Implement and compile** -- the user supplies the application logic
-  for each endpoint by implementing the I/O callback function types of the
-  generated API.  The implementation is verified by the F* compiler.  
-  Outputs: executable binaries.
-- :three: **Execute** -- with a well-typed endpoint program for each role, we
-  can execute the protocol.  For this artifact, we run all endpoints within the
-  same container as separate processes communicating asynchronously via TCP
-  localhost (i.e., with the same communication semantics as geographically
-  distributed TCP connections).  
-  Outputs: safe execution of the refined multiparty protocol.
-
-**Properties of the toolchain.**
-The paper (Section 4) establishes Trace Equivalence (Theorem 4.8) between
-global protocols and endpoint projections, and Preservation of Well-Formedness
-(Theorem 4.10) and Progress (Theorem 4.11) for well-formed global protocols.
-Our toolchain confers these properties to a system of well-typed endpoint
-programs with the following notes.
-- By default, the APIs generated by our toolchain permit the arbitrary `ML`
-  effect of F* in I/O callbacks.  Technically, this allows an endpoint program
-  to feature, e.g., exceptions, which might impact the progress of its peer
-  programs.  Nevertheless, there are useful and "non-harmful" effects, such as
-  **..printing and refs..**  Alternatively, the APIs could be generated with
-  stricter effect constraints (the strictest being `Tot`, for terminating
-  expressions without side-effects).
-- The above point concerns progress.  **Regardless, our toolchain guarantees that
-  execution is free of communication errors and deadlocks**.
-
-**Discrepancies between the paper and the artifact regarding our extension of Scribble.**  
-- There are small syntactic differences.
-    - Refined state variable declarations were written in the paper, e.g., (Fig. 3)
-      ```
-      aux global protocol Aux(role A, role B, role C) @'B[n: int{0<=n<100}, t: int{0<t}]
-      ```
-      whereas the implementation in the artifact requires
-      ```
-      aux global protocol Aux(role A, role B, role C) @'B[n: int = 0, t: int = 1] (0<=n && n<100) && 0<t
-      ```
-
-      i.e., state variables are declared with an initial expression (which
-      happen to be irrelevant to the HigherLower example), and the refinements
-      of each variable are written as a combined assertion.
-    - The code in the paper uses some compacted notation (e.g., &leq;, &wedge;)
-      which the implementation requires in longer form (e.g., `<=`, `&&`).
-- The implementation of Scribble in the artifact includes a bonus protocol
-  validation step prior to the F* API generation. This validation is an
-  optional bonus, and is **not** required to support the properties described
-  above.
-
-**Syntax of refined Scribble global protocols.**
-
-...by example best?
-
-```
-module Foo;  // Foo.scr
-
-type "int";
-
-// CHECKME: top-level state vars and init exprs in F* API?
-global protocol MyProto(role A, role B, role C) @'A[xA]' {
-    1(x1: int) from A to B;  @'...'
-    2(x2: int) from A to C;  @'y=x'
-    do MyProtoAux(A, B, C); 
-}
-
-aux global protocol MyProtoAux(role A, role B, role C) @'A[x2] B[x3]' {
-    1(x: int) from A to B;  @'...'
-    choice at A {
-        2() from B to C;
-    } or {
-        3() from B to C;
-        do MyProtoAux(A, B, C);
-    }
-}
-```
-
-- correspond to formal syntax
-- directed choice?
-- do -- inlining -- allows recursion
-- tail recursive
-- merge
-- int only? -- depends on Z3
-
-</details>
 
 
-#### Step 1: Execute the running example
+---
+#### 2.1: Execute the running example
 The purpose of this section is to give you a quick walk through of using the toolchains to implement and verify a protocol. We focus on the running example - [HigherLower.scr](/examples/HigherLower)
 
 :one: **Generate.**
@@ -294,7 +192,9 @@ HigherLower/A/main.ocaml.exe &
 ```
  The above command runs the three endpoins, i.e A, B and C.
 
-#### Step 2: Observe refinement violations
+
+---
+#### 2.2: Observe refinement violations
 
 Next we highlight how protocol violations are ruled out by static refinement typing, which is ultimately the practical purpose of Session*.
 
@@ -346,7 +246,9 @@ TODO: A quick explanation on the main differences...
 
 For details, see the [notes on Scribble syntax](README.md#notes-on-scribble-syntax).
 
-#### Step 3: Run other examples (Optional)
+
+---
+#### 2.3: Run other examples (Optional)
 
 To build a selected example from Table 2:
 ```
@@ -439,14 +341,145 @@ It represents an online payment application.
 
 </details>  
 
-#### Step 2: Implementing your own protocols (Optional)
+
+---  
+---
+## 3. Additional Information
+
+---
+#### 3.1. Toolchain Overview
+
+<details>
+<summary>
+<b>Click</b> here for a quick recap of the <b>Session&#42;</b> toolchain, as
+presented in the paper.  ...<b>CHECKME</b>: move to an "appendix"? (long)
+</summary>
+
+**In a nutshell.**
+The toolchain allows users to specify, implement and verify <em>refined</em>
+multiparty protocols and programs.  Protocol specifications are based on our
+Refined Multiparty Session Types (RMPST), which express data dependent
+protocols via refinement types on interactions and message payloads, i.e.,
+protocols with logical constraints on message value and control-flow.
+
+**How.**
+Users write protocol specifications in our extension of the
+[Scribble](scribble.org) protocol description language, and implement the
+endpoint programs in [F*](fstar.org) using refinement-typed APIs generated from
+the protocol by the toolchain.  The F* compiler statically verifies that each
+endpoint program and its refinements, ensuring the program follows the
+protocol.
+<--and is free from communication errors ...**and deadlocks**.-->
+
+The steps of the toolchain are outlined below (the figure corresponds to Fig. 2
+in the paper).  ![](images/framework_overview.png)
+
+The **Session&#42;** starts by writing the protocol in our extended Scribble:
+this artifact supplies the protocols for all the examples in the paper.
+This overview then runs through the following steps.
+
+- :one: **Generate** for each role in a given Scribble protocol, an F* API for
+  implementing that role (by way of a CSFM representation).
+  This is done using the ```sessionstar``` command, which is available on the
+  command line path in the artifact conatiner and produces the following files.  
+  Outputs: a CFSM file (in dot format) and an F* API file.  
+- :two: **Implement and compile** -- the user supplies the application logic
+  for each endpoint by implementing the I/O callback function types of the
+  generated API.  The implementation is verified by the F* compiler.  
+  Outputs: executable binaries.
+- :three: **Execute** -- with a well-typed endpoint program for each role, we
+  can execute the protocol.  For this artifact, we run all endpoints within the
+  same container as separate processes communicating asynchronously via TCP
+  localhost (i.e., with the same communication semantics as geographically
+  distributed TCP connections).  
+  Outputs: safe execution of the refined multiparty protocol.
+
+**Properties of the toolchain.**
+The paper (Section 4) establishes Trace Equivalence (Theorem 4.8) between
+global protocols and endpoint projections, and Preservation of Well-Formedness
+(Theorem 4.10) and Progress (Theorem 4.11) for well-formed global protocols.
+Our toolchain confers these properties to a system of well-typed endpoint
+programs with the following notes.
+- By default, the APIs generated by our toolchain permit the arbitrary `ML`
+  effect of F* in I/O callbacks.  Technically, this allows an endpoint program
+  to feature, e.g., exceptions, which might impact the progress of its peer
+  programs.  Nevertheless, there are useful and "non-harmful" effects, such as
+  **..printing and refs..**  Alternatively, the APIs could be generated with
+  stricter effect constraints (the strictest being `Tot`, for terminating
+  expressions without side-effects).
+- The above point concerns progress.  **Regardless, our toolchain guarantees that
+  execution is free of communication errors and deadlocks**.
+</details>
+
+
+---
+#### 3.2.  Discrepancies between the paper and the artifact regarding our extension of Scribble.
+
+- There are small syntactic differences.
+    - Refined state variable declarations were written in the paper, e.g., (Fig. 3)
+      ```
+      aux global protocol Aux(role A, role B, role C) @'B[n: int{0<=n<100}, t: int{0<t}]
+      ```
+      whereas the implementation in the artifact requires
+      ```
+      aux global protocol Aux(role A, role B, role C) @'B[n: int = 0, t: int = 1] (0<=n && n<100) && 0<t
+      ```
+
+      i.e., state variables are declared with an initial expression (which
+      happen to be irrelevant to the HigherLower example), and the refinements
+      of each variable are written as a combined assertion.
+    - The code in the paper uses some compacted notation (e.g., &leq;, &wedge;)
+      which the implementation requires in longer form (e.g., `<=`, `&&`).
+- The implementation of Scribble in the artifact includes a bonus protocol
+  validation step prior to the F* API generation. This validation is an
+  optional bonus, and is **not** required to support the properties described
+  above.
+
+**Syntax of refined Scribble global protocols.**
+
+...by example best?
+
+```
+module Foo;  // Foo.scr
+
+type "int";
+
+// CHECKME: top-level state vars and init exprs in F* API?
+global protocol MyProto(role A, role B, role C) @'A[xA]' {
+    1(x1: int) from A to B;  @'...'
+    2(x2: int) from A to C;  @'y=x'
+    do MyProtoAux(A, B, C); 
+}
+
+aux global protocol MyProtoAux(role A, role B, role C) @'A[x2] B[x3]' {
+    1(x: int) from A to B;  @'...'
+    choice at A {
+        2() from B to C;
+    } or {
+        3() from B to C;
+        do MyProtoAux(A, B, C);
+    }
+}
+```
+
+- correspond to formal syntax
+- directed choice?
+- do -- inlining -- allows recursion
+- tail recursive
+- merge
+- int only? -- depends on Z3
+
+
+---
+#### 3.3. Implementing your own protocols (Optional)
 
 Create a simple calculator protocol, following the short tutorial here.
 
 Hint: If you are struggling, the Calculator folder contains the full implementation, and you can use it for reference.
 
 
-####  Additional information (Debugging tips)
+---
+#### 3.4. Additional information (Debugging tips)
 * If you have problems compiling the examples, try:
   * rm .depend;
   * make clean-[example-name]
