@@ -13,40 +13,51 @@ let print_int (i:int) =
 
 let next : ref int = alloc 101
 
-let callbacks : callbacksA = {
-
-  (*state27OnreceiveNo : (st: state27) -> (_dummy: unit) -> ML (unit);*)
-  state27OnreceiveNo = (fun _ _ -> FStar.IO.print_string "A: Received No:\n");
-
-  (*state27OnreceiveYes : (st: state27) -> (_dummy: unit) -> ML (unit);*)
-  state27OnreceiveYes = (fun _ _ -> FStar.IO.print_string "A: Received Yes:\n");
-
-  (*state27OnreceiveQuery : (st: state27) -> (query: string) -> ML (unit);*)
-  state27OnreceiveQuery = (fun _ q ->
+let recvQuery = (fun _ q ->
     FStar.IO.print_string "A: Received Query:";
-    FStar.IO.print_string q;
+    print_int q;
     FStar.IO.print_string "A: \n"
-  );
+  )
 
-  (*state29OnsendQuote : (st: state29) -> ML (int);*)
-  state29OnsendQuote = (fun _ ->
+let sendQuote = (fun _ ->
     let n = !next in
     next := n - 1;
     n
-  );
+  )
 
-  (*state30OnsendDummy : (st: state30) -> ML (unit);*)
-  state30OnsendDummy = (fun _ -> ());
+let callbacks : callbacksA = {
 
-  (*state31OnsendYes : (st: state31) -> ML (unit);*)
-  state31OnsendYes = (fun _ -> ());
+  (*state83OnreceiveNo : (st: state83) -> (_dummy: unit) -> ML (unit);*)
+  state83OnreceiveNo = (fun _ _ -> FStar.IO.print_string "A: Received No:\n");
 
-  (*state32OnreceiveBye : (st: state32) -> (_dummy: unit) -> ML (unit);*)
-  state32OnreceiveBye = (fun _ _ -> ());
+  (*state83OnreceiveYes : (st: state83) -> (_dummy: unit) -> ML (unit);*)
+  state83OnreceiveYes = (fun _ _ -> FStar.IO.print_string "A: Received Yes:\n");
 
-  (*state33OnsendNo : (st: state33) -> ML (unit);*)
-  state33OnsendNo = (fun _ -> ());
+  (*state80OnreceiveQuery : (st: state80) -> (x: int) -> ML (unit);*)
+  state80OnreceiveQuery = recvQuery;
 
-  (*state34OnreceiveBye : (st: state34) -> (_dummy: unit) -> ML (unit);*)
-  state34OnreceiveBye = (fun _ _ -> ())
+  (*state83OnreceiveQuery : (st: state83) -> (y: int) -> ML (unit);*)
+  state83OnreceiveQuery = recvQuery;
+
+  (*state82OnsendQuote : (st: state82) -> ML (int);*)
+  state82OnsendQuote = sendQuote;
+
+  (*state84OnsendQuote : (st: state84) -> ML (int);*)
+  state84OnsendQuote = sendQuote;
+
+  (*state85OnsendDummy : (st: state85) -> ML (unit);*)
+  state85OnsendDummy = (fun _ -> ());
+
+  (*state86OnsendYes : (st: state86) -> ML (unit);*)
+  state86OnsendYes = (fun _ -> ());
+
+  (*state87OnreceiveBye : (st: state87) -> (_dummy: unit) -> ML (unit);*)
+  state87OnreceiveBye = (fun _ _ -> ());
+
+  (*state88OnsendNo : (st: state88) -> ML (unit);*)
+  state88OnsendNo = (fun _ -> ());
+
+  (*state89OnreceiveBye : (st: state89) -> (_dummy: unit) -> ML (unit);*)
+  state89OnreceiveBye = (fun _ _ -> ())
 }
+

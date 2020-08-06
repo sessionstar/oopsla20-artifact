@@ -3,23 +3,30 @@
 
 module TravelAgency;
 
-type <fstar> "string" from "" as string;
+//type <fstar> "string" from "" as string;
 type <fstar> "int" from "" as int;
 
 global protocol Booking(role C, role A, role S)
 {
+  Query(x: int) from C to A;
+  Quote(quot: int) from A to C;  // "quote" clash
+  do BookingAux(C, A, S);  @'C[quot]'
+}
+
+aux global protocol BookingAux(role C, role A, role S)  @'C[q: int = 0]'
+{
   choice at C
   {
-    Query(query: string) from C to A;
-    Quote(quot: int) from A to C;  // "quote" clash
+    Query(y: int) from C to A;
+    Quote(q1: int) from A to C;  // "quote" clash
     Dummy() from A to S;
-    do Booking(C, A, S);
+    do BookingAux(C, A, S);  @'C[q1]'
   }
   or
   {
     Yes() from C to A;  // no query/quote data flow here
     Yes() from A to S;
-    Payment(payment: string) from C to S;
+    Payment(pay: int) from C to S;  @'pay=q'
     Ack() from S to C;
     Bye() from C to A;
   }

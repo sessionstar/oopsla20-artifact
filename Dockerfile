@@ -2,10 +2,11 @@ FROM ubuntu:focal
 
 RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime \
   && apt-get update \
-  && apt-get install -y \
+  && apt-get install -y --no-install-recommends \
     curl \
     default-jdk \
     gcc \
+    gcc-multilib \
     git \
     libgmp-dev \
     libgomp1 \
@@ -23,7 +24,7 @@ RUN useradd sessionstar \
   && echo "sessionstar:sessionstar" | chpasswd \
   && adduser sessionstar sudo \
   && mkdir /home/sessionstar \
-  && chown sessionstar /home/sessionstar
+  && chown sessionstar:sessionstar /home/sessionstar
 
 RUN echo '[ ! -z "$TERM" -a -r /etc/welcome ] && cat /etc/welcome' \
     >> /etc/bash.bashrc \
@@ -77,7 +78,8 @@ RUN mkdir bin \
 RUN mkdir z3 \
   && curl https://github.com/Z3Prover/z3/releases/download/Z3-4.8.5/z3-4.8.5-x64-ubuntu-16.04.zip -L -o z3.zip \
   && unzip z3.zip \
-  && cp z3-4.8.5-x64-ubuntu-16.04/bin/z3 ~/bin
+  && cp z3-4.8.5-x64-ubuntu-16.04/bin/z3 ~/bin \
+  && rm -rf z3-4.8.5-x64-ubuntu-16.04 z3.zip
 
 RUN cd scribble-java \
   && ./mvnw -Dlicense.skip install \
@@ -99,3 +101,5 @@ COPY --chown=sessionstar:sessionstar sessionstar /home/sessionstar/bin
 
 COPY --chown=sessionstar:sessionstar \
   examples /home/sessionstar/examples/
+
+EXPOSE 3000/tcp

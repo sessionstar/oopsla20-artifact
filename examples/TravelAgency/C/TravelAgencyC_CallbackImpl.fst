@@ -12,39 +12,46 @@ let print_int (i:int) =
   FStar.IO.print_string i
 
 let count : ref (c:int{1<=c&&c<=4}) = alloc 1
-let prev : ref int = alloc 9999
 
-let callbacks : callbacksC = {
-
-  (*state9Onsend : (st: state9) -> ML (state9Choice st);*)
-  state9Onsend = (fun _ -> 
-    let c = !count in
-    if !prev < 100 then
-      Choice9Yes ()
-    else if c < 4 then (
-      count := c + 1;
-      Choice9Query (string_of_int c))
-    else
-      Choice9No ()
-  );
-
-  (*state11OnreceiveQuote : (st: state11) -> (quot: int) -> ML (unit);*)
-  state11OnreceiveQuote = (fun _ q ->
-    prev := q;
+let recvQuote = (fun _ q ->
     FStar.IO.print_string "C: Received quote: ";
     print_int q;
     FStar.IO.print_string "\n"
+  )
+
+let callbacks : callbacksC = {
+
+  (*state61Onsend : (st: state61) -> ML (state61Choice st);*)
+  state61Onsend = (fun st -> 
+    let c = !count in
+    if (Mkstate61?.q st) < 100 then
+      Choice61Yes ()
+    else if c < 4 then (
+      count := c + 1;
+      Choice61Query 42)
+    else
+      Choice61No ()
   );
 
-  (*state12OnsendPayment : (st: state12) -> ML (string);*)
-  state12OnsendPayment = (fun _ -> "payment");
+  (*state58OnsendQuery : (st: state58) -> ML (int);*)
+  state58OnsendQuery = (fun _ -> 42);
 
-  (*state13OnreceiveAck : (st: state13) -> (_dummy: unit) -> ML (unit);*)
-  state13OnreceiveAck = (fun _ _ -> ());
+  (*state60OnreceiveQuote : (st: state60) -> (quot: int) -> ML (unit);*)
+  state60OnreceiveQuote = recvQuote;
 
-  (*state14OnsendBye : (st: state14) -> ML (unit);*)
-  state14OnsendBye = (fun _ -> ());
+  (*state62OnreceiveQuote : (st: state62) -> (q1: int) -> ML (unit);*)
+  state62OnreceiveQuote = recvQuote;
 
-  (*state15OnsendBye : (st: state15) -> ML (unit);*)
-  state15OnsendBye = (fun _ -> ())
+  (*state63OnsendPayment : (st: state63) -> ML (pay:int{((pay) = (Mkstate63?.q st))});*)
+  state63OnsendPayment = (fun st -> (Mkstate63?.q st));
+
+  (*state64OnreceiveAck : (st: state64) -> (_dummy: unit) -> ML (unit);*)
+  state64OnreceiveAck = (fun _ _ -> ());
+
+  (*state65OnsendBye : (st: state65) -> ML (unit);*)
+  state65OnsendBye = (fun _ -> ());
+
+  (*state66OnsendBye : (st: state66) -> ML (unit);*)
+  state66OnsendBye = (fun _ -> ())
 }
+
