@@ -433,9 +433,9 @@ Scribble in the artifact and that presented in the paper.
       aux global protocol Aux(role A, role B, role C)
                           @'B[n: int = 0, t: int = 1] (0<=n && n<100) && 0<t
       ```
-      Our implementation requires state variables to be declared with an
+      The syntax in our implementation declares state variables with a default
       initial expression (which happen to be irrelevant to the HigherLower
-      example), and the refinements of each variable to be written as a
+      example), and the refinements of each variable are written as a
       combined assertion following the declarations.
     - The code in the paper uses some compacted notation (e.g., &leq;, &wedge;)
       which the implementation requires in longer form (e.g., `<=`, `&&`).
@@ -449,7 +449,7 @@ Scribble in the artifact and that presented in the paper.
 Our extended Scribble is based on the global types of our Refined MPST as
 defined in the paper (Section 4).  The syntax and key features are already
 mostly demonstrated by the HigherLower example ([2.1](...TODO...)).
-The following summarises the syntax using a compact example.
+The following summarises the syntax using another compact example.
 
 ```
 module Foo;  // Corresponds to the file name, i.e., Foo.scr
@@ -483,14 +483,25 @@ aux global protocol MyProtoAux(role A, role B, role C)
 }
 ```
 
-
-
-- correspond to formal syntax
-- directed choice?
-- do -- inlining -- allows recursion
-- tail recursive
-- merge
-- int only? -- depends on Z3
+- Usability warning:  Our current implementation is not very user friendly.
+  Many errors are reported with a full stack trace -- you may find a basic
+  error message at the top of the trace.
+- To match our RMPST in the paper, choices must be **directed**: this means the
+  initial messages inside each choice case must be sent from the choice subject
+  (the `at` role) to the *same* role in all cases.
+    - Our implementation expands slightly on the core theory presented in the
+      paper by allowing a so-called merge of "third-party" branch cases with
+      *distinct* labels in projection.  E.g., for the third-party `C`
+      ```
+      choice at A {
+          1() from A to B; 2() from A to C;
+      } or {
+          3() from A to B; 4() from A to C;
+      }
+      ```
+      This is a common extension in the
+      literature, e.g., [Yoshida et al.](https://link.springer.com/chapter/10.1007/978-3-642-12032-9_10)
+- ...**int only? -- ultimately depends on Z3**
 
 
 ---
