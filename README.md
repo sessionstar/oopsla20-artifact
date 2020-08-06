@@ -1,9 +1,3 @@
-<style>
-pre {
-    background-color: F6F8FA;
-    }
-</style>
-
 # OOPSLA '20 Artifacts #11 - README.md
 
 > *Statically Verified Refinements for Multiparty Protocols*
