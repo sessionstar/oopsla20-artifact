@@ -443,33 +443,47 @@ Scribble in the artifact and that presented in the paper.
   step prior to the F* API generation. **..This validation is an optional
   bonus, and is not required to support the properties described above...**
 
+
 ##### 3.1.2. Syntax of Refined Scribble
 
-The following introduces the syntax of our Refined Scribble extension by
-example.
+Our extended Scribble is based on the global types of our Refined MPST as
+defined in the paper (Section 4).  The syntax and key features are already
+mostly demonstrated by the HigherLower example ([2.1](...TODO...)).
+The following summarises the syntax using a compact example.
 
 ```
-module Foo;  // Foo.scr
+module Foo;  // Corresponds to the file name, i.e., Foo.scr
 
-type "int";
+type <fstar> "..." from "..." as int;  // The "..." are irrelevant
 
-// CHECKME: top-level state vars and init exprs in F* API?
-global protocol MyProto(role A, role B, role C) @'A[xA]' {
-    1(x1: int) from A to B;  @'...'
-    2(x2: int) from A to C;  @'y=x'
-    do MyProtoAux(A, B, C); 
+// A "main" protocol
+global protocol MyProto(role A, role B, role C) {
+    // Interaction sequences -- with payload variables and refinements
+    1(x1: int) from A to B;        @'x1>0'
+    2(x2: int) from A to C;        @'x2=x1'
+    // A subprotocol -- essentially inlined
+    do MyProtoAux(A, B, C);        @'B[x1] C[x2]'  // State variable arguments
 }
 
-aux global protocol MyProtoAux(role A, role B, role C) @'A[x2] B[x3]' {
-    1(x: int) from A to B;  @'...'
-    choice at A {
-        2() from B to C;
+// "aux" protocols are used as subprotocols from main protocols
+aux global protocol MyProtoAux(role A, role B, role C) 
+                                   // State variable declarations and assertion
+                                   @'B[xB: int = 0] C[xC: int = 0] xB>=0' {
+    // "Directed" choice -- refinements specify control flow as well as message values
+    choice at B {
+        2(curr: int) from B to C;  @'xB>0 && curr=xB'
+        3(orig: int) from C to A;  @'orig=xC'
+        // A (tail) recursive subprotocol -- translated: \mu X ... X
+        do MyProtoAux(A, B, C);    @'B[xB-1] C[xC]'
     } or {
-        3() from B to C;
-        do MyProtoAux(A, B, C);
+        Bye() from B to C;         @'xB=0'
+        Bye() from C to A;
+        // End of protocol
     }
 }
 ```
+
+
 
 - correspond to formal syntax
 - directed choice?
@@ -481,6 +495,8 @@ aux global protocol MyProtoAux(role A, role B, role C) @'A[x2] B[x3]' {
 
 ---
 #### 3.2. Implementing your own protocols (Optional)
+
+...**CHECKME**: maybe move to part 2
 
 Create a simple calculator protocol, following the short tutorial here.
 
