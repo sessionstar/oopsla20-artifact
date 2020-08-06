@@ -12,7 +12,7 @@ This artifact submission contains the following:
 
 - An [overview](...TODO...) of the artifact (this document).
 - The main artifact, a [Docker image](...TODO...).
-- The [md5 hash](...TODO...) of the Docker image.
+- The md5 hash of the artifact file is 3f3de4314a0dee94f56f69eb68717324.
 
 For better usability, please use the [online](...TODO...) version of this document.
 
@@ -22,13 +22,13 @@ For better usability, please use the [online](...TODO...) version of this docume
 This overview describes the steps to assess the practical claims of the
 paper using the artifact.
 
-1. **Getting Started**  
-    [1.1.](...TODO...) Run the Artifact (Docker image)  
+1. **[Getting Started](#getting-started)**  
+    [1.1](...TODO...) Run the Artifact (Docker image)  
     [1.2](...TODO...) Artifact Layout  
-    [1.2.](...TODO...) Quick Test  
-    &nbsp;&nbsp;&nbsp;&nbsp;[1.2.1](...TODO...) Run all examples  
-    &nbsp;&nbsp;&nbsp;&nbsp;[1.2.2](...TODO...) Run the benchmarks for Table 1 (Sections 5.2 and 5.3).   
-    &nbsp;&nbsp;&nbsp;&nbsp;[1.2.2](...TODO...) Run the benchmarks for Table 2 (Section 5.4).
+    [1.3](...TODO...) Quick Test  
+    &nbsp;&nbsp;&nbsp;&nbsp;[1.3.1](...TODO...) Run all examples  
+    &nbsp;&nbsp;&nbsp;&nbsp;[1.3.2](...TODO...) Run the benchmarks for Table 1 (Sections 5.2 and 5.3).   
+    &nbsp;&nbsp;&nbsp;&nbsp;[1.3.2](...TODO...) Run the benchmarks for Table 2 (Section 5.4).
 2. **Step-by-Step Instructions**  
     [2.1](...TODO...) Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3).  
     [2.2](...TODO...) Run and verify the example listed in Table 2 (Sections 5.4).  
@@ -47,7 +47,7 @@ paper using the artifact.
 
 ---  
 ---
-## 1. Getting Started
+## <a name="getting-started"></a> 1. Getting Started 
 
 ---
 ### 1.1 Run the Artifact (Docker Image)
