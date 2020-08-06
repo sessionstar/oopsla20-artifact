@@ -29,7 +29,7 @@ paper using the artifact.
     [2.1](#step-1-execute-the-runnign-example)
          ...runs through the main example (HigherLower) of the paper (Section 2).  
     [2.2](...TODO...) ...observe refinement violations  
-    [2.3](...TODO...) ...run other examples
+    [2.3](...TODO...) ...run through other examples (optional)
 3. **Additional Information**  
     [3.1.](...TODO...) ...toolchain overview  
     &nbsp;&nbsp;&nbsp;&nbsp;[3.1.1.](...TODO...) ...discrepancies between the artifact and the paper  
@@ -155,12 +155,13 @@ The source code (protocols and implementations) for each of these examples is lo
 ---  
 ---
 
-## Part 2: A walk-through tutorial
+## Step-by-Step Instructions
 
+...A walk-through tutorial
 
 
 ---
-#### 2.1: Execute the running example
+#### 2.1.  Execute the Running Example
 The purpose of this section is to give you a quick walk through of using the toolchains to implement and verify a protocol. We focus on the running example - [HigherLower.scr](/examples/HigherLower)
 
 :one: **Generate.**
@@ -199,7 +200,7 @@ HigherLower/A/main.ocaml.exe &
 
 
 ---
-#### 2.2: Observe refinement violations
+#### 2.2.  Observe Refinement Violations
 
 Next we highlight how protocol violations are ruled out by static refinement typing, which is ultimately the practical purpose of **Session&#42;**.
 
@@ -253,7 +254,7 @@ For details, see the [notes on Scribble syntax](README.md#notes-on-scribble-synt
 
 
 ---
-#### 2.3: Run other examples (Optional)
+#### 2.3. Run Through Other Examples (Optional)
 
 To build a selected example from Table 2:
 ```
