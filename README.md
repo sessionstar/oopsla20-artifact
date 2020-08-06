@@ -616,7 +616,7 @@ let callbacks : callbacksC = {
 
  (*state20Onsend : (st: state20) -> ML (state20Choice st);*)
  state20Onsend = (fun _ ->
-    (* this is a choice state so you need to return either
+    (* this is a choice state so you need to return either Choice20Sum1 or Choice20Quit
       ...maybe you need an if statement ... *)
   );
 
