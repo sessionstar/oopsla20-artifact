@@ -10,14 +10,14 @@ and safely implementing the distributed endpoint programs in **F&#42;**.
 
 This artifact submission contains the following:
 
-1. An [overview](...TODO...) of the artifact (this document).
-2. The main artifact, a [Docker image](...TODO...).
-3. The [md5 hash](...TODO...) of the Docker image.
+- An [overview](...TODO...) of the artifact (this document).
+- The main artifact, a [Docker image](...TODO...).
+- The [md5 hash](...TODO...) of the Docker image.
 
 This overview describes the steps to assess the practical claims of the
 paper using the artifact.
 
-1. Getting Started  
+1. **Getting Started**  
     [1.1.](...TODO...) Run the Artifact (Docker image)  
     &nbsp;&nbsp;&nbsp;&nbsp;[1.1.1.](...TODO...) Artifact Layout  
     [1.2.](...TODO...) Quick Test: Examples  
@@ -25,14 +25,15 @@ paper using the artifact.
           ...reproduces our benchmark methodology for Table 1 (Sections 5.2 and 5.3).  
     [1.4.](#step-2-compile-applications-implemented-with-session-table-2-section-54)
           ...compiles **..and runs..** the examples listed in Table 2 (Section 5.4).
-2. Step-by-Step Instructions  
+2. **Step-by-Step Instructions**  
     [2.1](#step-1-execute-the-runnign-example)
          ...runs through the main example (HigherLower) of the paper (Section 2).  
     [2.2](...TODO...) ...observe refinement violations  
     [2.3](...TODO...) ...run other examples
-3. Additional Information  
+3. **Additional Information**  
     [3.1.](...TODO...) ...toolchain overview  
     &nbsp;&nbsp;&nbsp;&nbsp;[3.1.1.](...TODO...) ...discrepancies between the artifact and the paper  
+    &nbsp;&nbsp;&nbsp;&nbsp;[3.1.2.](...TODO...) ...Syntax of Refined Scribble  
     [3.2.](#s#step-2-observe-refinement-violations) ...implementing your own
           protocols ...you can test and modify any of the above example, as well as
           implement and verify your own protocols using our toolchains  
@@ -95,7 +96,7 @@ The artifact is clone of this [commit](...TODO:https://github.com/sessionstar/oo
 
 
 ---
-#### 1.2: Test that all examples can be executed
+#### 1.2. Test that all examples can be executed
 
 We have provided several scripts that allow you to quickly test the main claims
 of the paper.
@@ -353,11 +354,8 @@ It represents an online payment application.
 ---
 #### 3.1. Toolchain Overview
 
-<details>
-<summary>
-<b>Click</b> here for a quick recap of the <b>Session&#42;</b> toolchain, as
-presented in the paper.  ...<b>CHECKME</b>: move to an "appendix"? (long)
-</summary>
+The following is a quick recap of the **Session&#42;** toolchain, as
+presented in the paper.
 
 **In a nutshell.**
 The toolchain allows users to specify, implement and verify <em>refined</em>
@@ -413,10 +411,9 @@ programs with the following notes.
   expressions without side-effects).
 - The above point concerns progress.  **Regardless, our toolchain guarantees that
   execution is free of communication errors and deadlocks**.
-</details>
 
 
-#### 3.1.1.  Discrepancies between the paper and the artifact regarding our extension of Scribble.
+#### 3.1.1.  Discrepancies between the paper and the artifact regarding our extension of Scribble
 
 - There are small syntactic differences.
     - Refined state variable declarations were written in the paper, e.g., (Fig. 3)
@@ -438,9 +435,10 @@ programs with the following notes.
   optional bonus, and is **not** required to support the properties described
   above.
 
-**Syntax of refined Scribble global protocols.**
+##### 3.1.2. Syntax of Refined Scribble
 
-...by example best?
+The following introduces the syntax of our Refined Scribble extension by
+example.
 
 ```
 module Foo;  // Foo.scr
