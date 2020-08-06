@@ -28,21 +28,21 @@ paper using the artifact.
     - [1.3](#quick-test) Quick Test  
         - [1.3.1](#run-all-examples) Run all examples  
         - [1.3.2](#run-table-1) Run the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper).   
-        - [1.3.2](#run-table-2) Run the benchmarks for Table 2 (Section 5.4 in the paper).
-2. **Step-by-Step Instructions**  
-    [2.1](...TODO...) Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper).  
-    [2.2](...TODO...) Run and verify the example listed in Table 2 (Sections 5.4 in the paper).  
-    [2.3](...TODO...) Run the main example (HigherLower) of the paper (Section 2 in the paper).  
-    [2.4](...TODO...) Modify examples and observe refinement violations  
-    [2.5](...TODO...) Run Through Other Examples (Optional)
+        - [1.3.3](#run-table-2) Run the benchmarks for Table 2 (Section 5.4 in the paper).
+2. **[Step-by-Step Instructions](#step-by-step)**  
+    - [2.1](#benchmark-table-1) Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper).  
+    - [2.2](#benchmark-table-2) Run and verify the example listed in Table 2 (Sections 5.4 in the paper).  
+    - [2.3](#main-example) Run the main example (HigherLower) of the paper (Section 2 in the paper).  
+    - [2.4](#modify-refinement) Modify examples and observe refinement violations  
+    - [2.5](#other-examples) Run Through Other Examples (Optional)
 3. **Additional Information**  
-    [3.1.](...TODO...) ...toolchain overview  
-    &nbsp;&nbsp;&nbsp;&nbsp;[3.1.1.](...TODO...) ...discrepancies between the artifact and the paper  
-    &nbsp;&nbsp;&nbsp;&nbsp;[3.1.2.](...TODO...) ...Syntax of Refined Scribble  
-    [3.2.](#step-2-observe-refinement-violations) ...implementing your own
+    - [3.1](...TODO...) ...toolchain overview  
+        - [3.1.1](...TODO...) ...discrepancies between the artifact and the paper  
+        - [3.1.2](...TODO...) ...Syntax of Refined Scribble  
+    - [3.2](#step-2-observe-refinement-violations) ...implementing your own
           protocols ...you can test and modify any of the above example, as well as
           implement and verify your own protocols using our toolchains  
-    [3.3.](#step-3-run-other-example-optional) ...debugging tips
+    - [3.3](#step-3-run-other-example-optional) ...debugging tips
 
 
 ---  
@@ -107,7 +107,7 @@ The artifact contains the following:
   those listed in Table 2 in the paper.
   * The sub-directory `scripts` contains scripts for executing the
     benchmarks from Table 1 and Table 2 in the paper.
-* The directory `/template` contains template files to help you through writing
+* The directory `template` contains template files to help you through writing
   and testing your own examples.
 
 
@@ -159,7 +159,7 @@ The produced table corresponds (up to column renaming) to Table 2 from the paper
 ---  
 ---
 
-## 2. Step-by-Step Instructions
+## <a name="step-by-step"></a> 2. Step-by-Step Instructions
 
 The purpose of this section is to describe in details the steps required to assess the artifact associated with our paper. We would like you to be able to:
 
@@ -173,7 +173,7 @@ Additionally, you can test and modify any of the examples we have implemented (&
 922 4 cores, 8 threads), 16 GiB RAM, operating system Ubuntu 18.04.
 Depending on your test machine, the absolute values of the measurements produced in &#167;[2.1](...TODO...) and &#167;[2.2](...TODO...) may differ slightly from the paper. Nevertheless, the claims stated in the paper should be preserved.  
 
-#### 2.1.  Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3).
+#### <a name="benchmark-table-1"></a> 2.1.  Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3).
 
 The purpose of this set of benchmarks is to demonstrate the scalabilty of our tool on protocols of increasing length (as explained in Section 5.2). We also measure the execution overhead of our implementation by comparing it against an implementation without session types or refinement types, which we call bare implementation (as explained in Section 5.3).
 
@@ -189,7 +189,7 @@ Compare the results with the results reported in Table 1, taking into account th
 
 The produced table contains the following columns. In brackets we give the name of the corresponding columns from Table 1.
 * ```Gen Time (CFSM)``` - the time taken for Scribble to generate the CFSM (```CFSM```)
-* ```Gen Time (F\*)``` - the time taken for the code generation tool to convert the CFSM to F\*. (```F\* APIs```)
+* ```Gen Time (F*)``` - the time taken for the code generation tool to convert the CFSM to F\*. (```F* APIs```)
 * ```TC Time (Gen.)``` - the time taken for the generated APIs to type-check in F\⋆(```Gen. Code```)
 * ```TC Time (Impl)``` - the time taken to time check the implementation (```Callbacks```)
 
@@ -203,7 +203,7 @@ The script runs the example 30 times and displays the average.
 
 
 ---
-#### 2.2. Run and verify the example listed in Table 2 (Sections 5.4).
+#### <a name="benchmark-table-2"></a> 2.2. Run and verify the example listed in Table 2 (Sections 5.4).
 
 The purpose of these set of benchmarks is to show the expressivity of our toolchain. We have taken examples
 from the session type literature, and have added refinements to encode data dependencies in the protocols (as explained in Section 5.4).
@@ -222,7 +222,7 @@ It contains the same columns as the table produces in &#167;[2.1](...TODO...) No
 The source code (protocols and implementations) for each of these examples is located in a separate folder. See &#167;[2.4](...TODO...) for details on how to run each of the examples.  
 
 ---
-#### 2.3.  Run the main example (HigherLower) of the paper (Section 2).
+#### <a name="main-example"></a> 2.3.  Run the main example (HigherLower) of the paper (Section 2).
 The purpose of this section is to give you a quick walk through of using the toolchains to implement and verify a protocol. We focus on the running example - [HigherLower.scr](/examples/HigherLower).
 For high-level overview of the toolchain refer to   &#167;[3.1](...TODO...)
 
@@ -262,7 +262,7 @@ HigherLower/A/main.ocaml.exe &
 
 
 ---
-#### 2.3.  Observe Refinement Violations
+#### <a name="modify-refinement"></a> 2.3.  Observe Refinement Violations
 
 Next we highlight how protocol violations are ruled out by static refinement typing, which is ultimately the practical purpose of **Session&#42;**.
 
@@ -296,7 +296,7 @@ Suggested modifications:
 
   - Modify the protocol by removing all constraints for x that depend on n.
     - Change [Line 19](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L19) from ```@'n>x && t>1'``` to ```@'t>1'```
-    - Change [Line 23](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L23) by commenting ```n=x'``` (comment in Scribble is \\\ )
+    - Change [Line 23](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L23) by commenting ```n=x'``` (comment in Scribble is `//`)
     - Change [Line 30](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L30) from @'((n<x || n>x) && t=1)' to ```@'t=1'```
 
    Since we changed the protocol, new callback signatures have to be generated. Generate new callback signatures and compile:     
@@ -316,7 +316,7 @@ For details, see the [notes on Scribble syntax](README.md#notes-on-scribble-synt
 
 
 ---
-#### 2.4. Run Through Other Examples (Optional)
+#### <a name="other-examples"></a> 2.4. Run Through Other Examples (Optional)
 
 To build a selected example from Table 2:
 ```
@@ -532,8 +532,8 @@ type <fstar> "..." from "..." as int;  // The "..." are currently irrelevant
 // A "main" protocol
 global protocol MyProto(role A, role B, role C) {
     // Interaction sequences -- with payload variables and refinements
-    1(x1: int) from A to B;        @'x1>0'
-    2(x2: int) from A to C;        @'x2=x1'
+    One(x1: int) from A to B;        @'x1>0'
+    Two(x2: int) from A to C;        @'x2=x1'
     // A subprotocol -- essentially inlined
     do MyProtoAux(A, B, C);        @'B[x1] C[x2]'  // State variable arguments
 }
@@ -544,8 +544,8 @@ aux global protocol MyProtoAux(role A, role B, role C)
                                    @'B[xB: int = 0] C[xC: int = 0] xB>=0' {
     // "Directed" choice -- refinements specify control flow as well as message values
     choice at B {
-        2(curr: int) from B to C;  @'xB>0 && curr=xB'
-        3(orig: int) from C to A;  @'orig=xC'
+        Two(curr: int) from B to C;    @'xB>0 && curr=xB'
+        Three(orig: int) from C to A;  @'orig=xC'
         // A (tail) recursive subprotocol -- translated: \mu X ... X
         do MyProtoAux(A, B, C);    @'B[xB-1] C[xC]'
     } or {
@@ -567,9 +567,9 @@ aux global protocol MyProtoAux(role A, role B, role C)
       *distinct* labels in projection.  E.g., for the third-party `C`
       ```
       choice at A {
-          1() from A to B; 2() from A to C;
+          One() from A to B; Two() from A to C;
       } or {
-          3() from A to B; 4() from A to C;
+          Three() from A to B; Four() from A to C;
       }
       ```
       This is a common extension in the
@@ -593,8 +593,10 @@ Hint: If you are struggling, the Calculator folder contains the full implementat
 ---
 #### 3.3. Additional information (Debugging tips)
 * If you have problems compiling the examples, try:
-  * rm .depend;
-  * make clean-[example-name]
+  ```
+  rm .depend;
+  make clean-[example-name]
+  ```
 * A socket error ECONNREFUSED:
   * the error indicates that you have not started the roles in the expected order, you should always start the server role first.
 <!-- P.S The (current) readme is here https://github.com/fangyi-zhou/FluidSession -->
