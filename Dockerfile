@@ -77,7 +77,7 @@ RUN mkdir bin \
 RUN mkdir z3 \
   && curl https://github.com/Z3Prover/z3/releases/download/Z3-4.8.5/z3-4.8.5-x64-ubuntu-16.04.zip -L -o z3.zip \
   && unzip z3.zip \
-  && cp z3-4.8.5-x64-ubuntu-16.04/bin/z3 ~/bin
+  && cp z3-4.8.5-x64-ubuntu-16.04/bin/z3 ~/bin \
   && rm -rf z3-4.8.5-x64-ubuntu-16.04 z3.zip
 
 RUN cd scribble-java \
