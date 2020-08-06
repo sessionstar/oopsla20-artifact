@@ -13,23 +13,23 @@ let print_int (i:int) =
 
 let callbacks : callbacksS = {
 
-  (*state42OnreceiveYes : (st: state42) -> (_dummy: unit) -> ML (unit);*)
-  state42OnreceiveYes = (fun _ _ -> FStar.IO.print_string "S: Received Yes.\n");
+  (*state97OnreceiveYes : (st: state97) -> (_dummy: unit) -> ML (unit);*)
+  state97OnreceiveYes = (fun _ _ -> FStar.IO.print_string "S: Received Yes.\n");
 
-  (*state42OnreceiveNo : (st: state42) -> (_dummy: unit) -> ML (unit);*)
-  state42OnreceiveNo = (fun _ _ -> FStar.IO.print_string "S: Received No.\n");
+  (*state97OnreceiveNo : (st: state97) -> (_dummy: unit) -> ML (unit);*)
+  state97OnreceiveNo = (fun _ _ -> FStar.IO.print_string "S: Received No.\n");
 
-  (*state42OnreceiveDummy : (st: state42) -> (_dummy: unit) -> ML (unit);*)
-  state42OnreceiveDummy = (fun _ _ -> ());
+  (*state97OnreceiveDummy : (st: state97) -> (_dummy: unit) -> ML (unit);*)
+  state97OnreceiveDummy = (fun _ _ -> ());
 
-  (*state44OnreceivePayment : (st: state44) -> (payment: string) -> ML (unit);*)
-  state44OnreceivePayment = (fun _ p ->
+  (*state99OnreceivePayment : (st: state99) -> (pay: int{((pay) = reveal ((Mkstate99?.q st)))}) -> ML (unit);*)
+  state99OnreceivePayment = (fun _ p ->
     FStar.IO.print_string "S: Received Payment: ";
-    FStar.IO.print_string p;
+    print_int p;
     FStar.IO.print_string "\n"
   );
 
-  (*state45OnsendAck : (st: state45) -> ML (unit);*)
-  state45OnsendAck = (fun _ -> ())
+  (*state100OnsendAck : (st: state100) -> ML (unit);*)
+  state100OnsendAck = (fun _ -> ())
 }
 
