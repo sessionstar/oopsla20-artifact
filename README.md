@@ -172,8 +172,8 @@ as well as implement and verify your own protocols (&#167;[3.1](...TODO...)) usi
 
 **Note on performance:** Measurements in the paper are taken using a machine with Intel i7-7700K CPU (4.20 GHz,
 922 4 cores, 8 threads), 16 GiB RAM, operating system Ubuntu 18.04.
-Depending on your test machine, the absolute values of the measurements produced in &#167;[2.1](#benchmark-table-1) 
-and &#167;[2.2](#benchmark-table-2) may differ slightly from the paper. 
+Depending on your test machine, the absolute values of the measurements produced in &#167;[2.1](#benchmark-table-1)
+and &#167;[2.2](#benchmark-table-2) may differ slightly from the paper.
 Nevertheless, the claims stated in the paper should be preserved.  
 
 #### <a name="benchmark-table-1"></a> 2.1  Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3).
@@ -270,13 +270,13 @@ HigherLower/A/main.ocaml.exe &
 Next we highlight how protocol violations are ruled out by static refinement typing, which is ultimately the practical purpose of **Session&#42;**.
 
 (a) **Refinement violations:** Change the implementation for role B.
-Below we suggest two modifications.
+Below we suggest two modifications to the [HigherLower/B/HigherLowerB_CallbackImpl.fst](examples/HigherLower/B/HigherLowerB_CallbackImpl.fst) file.
 
- First, ensure that the current implementation is correct:
+ First, ensure that the current implementation for B is correct :
 ```
-sessionstar HigherLower/HigherLower.scr HigherLower C
-mv GeneratedHigherLowerC.fst HigherLower/C
-make -C HigherLower/C main.ocaml.exe
+sessionstar HigherLower/HigherLower.scr HigherLower B
+mv GeneratedHigherLowerC.fst HigherLower/B
+make -C HigherLower/B main.ocaml.exe
 ```
   After each modification, compile and observe that an error is reported. Note that since we are not changing the protocol, you do not need to run sessionstar again, it is enough to run the F* type checker using ```make -C HigherLower/C main.ocaml.exe```
 
@@ -295,9 +295,9 @@ mv GeneratedHigherLowerC.fst HigherLower/C
 make -C HigherLower/C main.ocaml.exe
 ```
 Suggested modifications:
-  - Modify the implementation such that the higher case sends a variable that is lower than the current one. For example change Line [34](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/C/HigherLowerC_CallbackImpl.fst#L34) from ```next := (Mkstate72?.x st) + 1)``` to ```next := (Mkstate72?.x st) - 1)```. Compile the endpoint (```make -C HigherLower/C main.ocaml.exe```) to observer an error.
+  - Modify the implementation ([HigherLower/C/HigherLowerC_CallbackImpl.fst](examples/HigherLower/C/HigherLowerC_CallbackImpl.fst) file) such that the higher case sends a variable that is lower than the current one. For example change Line [34](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/C/HigherLowerC_CallbackImpl.fst#L34) from ```next := (Mkstate72?.x st) + 1)``` to ```next := (Mkstate72?.x st) - 1)```. Compile the endpoint (```make -C HigherLower/C main.ocaml.exe```) to observer an error.
 
-  - Modify the protocol by removing all constraints for x that depend on n.
+  - Modify the protocol ([HigherLower.scr](examples/HigherLower/HigherLower.scr)) by removing all constraints for x that depend on n.
     - Change [Line 19](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L19) from ```@'n>x && t>1'``` to ```@'t>1'```
     - Change [Line 23](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L23) by commenting ```n=x'``` (comment in Scribble is `//`)
     - Change [Line 30](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L30) from @'((n<x || n>x) && t=1)' to ```@'t=1'```
