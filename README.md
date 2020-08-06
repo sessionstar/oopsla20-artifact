@@ -47,7 +47,7 @@ paper using the artifact.
 
 ---  
 ---
-## <a name="getting-started"></a> 1. Getting Started 
+## <a name="getting-started"></a> 1. Getting Started
 
 ---
 ### <a name="run-the-artifact"></a> 1.1 Run the Artifact (Docker Image)
@@ -58,7 +58,7 @@ For the OOPSLA'20 artifact evaluation, please use the docker image provided:
 
 0. [Install docker](https://docs.docker.com/engine/install/).
 1. Download the artifact file (assume the filename is `artifact.tar.gz`)
-2. Unzip the artifact file. 
+2. Unzip the artifact file.
     ```bash
     gunzip artifact.tar.gz
     ```
@@ -75,7 +75,7 @@ For the OOPSLA'20 artifact evaluation, please use the docker image provided:
     ```bash
     docker run -it docker.pkg.github.com/sessionstar/oopsla20-artifact/artifact:latest
     ```
-7. The Docker image comes with an installation of vim and nano for editing. 
+7. The Docker image comes with an installation of vim and nano for editing.
    If you wish to install additional software for editing or other purposes, you may obtain sudo
    access with the password `sessionstar`.
 8. The instructions in this overview assume you are in the
@@ -91,7 +91,7 @@ For the OOPSLA'20 artifact evaluation, please use the docker image provided:
 
 ### <a name="artifact-layout"></a> 1.2. Artifact Layout
 
-The artifact is built from this [commit](...TODO:https://github.com/sessionstar/oopsla20-artifact...) 
+The artifact is built from this [commit](...TODO:https://github.com/sessionstar/oopsla20-artifact...)
 in the sessionstar [GitHub](https://github.com/sessionstar/oopsla20-artifact) repository.  
 
 The artifact contains the following:
@@ -100,7 +100,7 @@ The artifact contains the following:
     * The `sessionstar` command, available on the command line `$PATH`,
       performs the Scribble protocol to F* API generation (e.g. the F*
       callback signatures); see [Part II (Step I)](...TODO...).
-* The directory `FStar` contains a checkout of the F* compiler, patched to 
+* The directory `FStar` contains a checkout of the F* compiler, patched to
   enable `TCP_NODELAY` flag for benchmarking purposes.
 * The directory `examples` contains the source code for the various examples,
   including the HigherLower running example from the paper (Section 2) and
@@ -116,7 +116,7 @@ The artifact contains the following:
 
 We provide several scripts that allow you to quickly run the main examples of the paper.
 
-A step by step explanation on how to verify the claims of the paper, how to use the toolchain, 
+A step by step explanation on how to verify the claims of the paper, how to use the toolchain,
 and how to test each example separately is deferred to later sections (&#167;2 and &#167;3) of this document.
 
 #### <a name="run-all-examples"></a> 1.3.1 Test that at all examples can be executed
@@ -347,7 +347,7 @@ Below we briefly explain each example:
   <summary>Two Buyer</summary>
 
 - source folder:  [examples/TwoBuyer](examples/TwoBuyer)
-- explanation:Two Buyer is a canonical example for demonstrating business logic interactions. It specifies a negotiation between two buyers and a seller to purchase a book. The Seller S sends the price of the book to Buyer A and Buyer B. The refinement ensures that the seller quotes the same price to both buyers. A and B negotiate and buyer B accepts to buy the book only if A contributed more to the purchase.  
+- explanation:Two Buyer is a canonical example for demonstrating business logic interactions. It specifies a negotiation between two buyers and a seller to purchase a book. The Seller S sends the price of the book to Buyer A and Buyer B. The refinement ensures that the seller quotes the same price to both buyers. A and B negotiate and buyer B accepts to buy the book only if A contributes more to the purchase.  
 
 </details>
 <details>
@@ -374,7 +374,7 @@ and a travel service (S). Customer requests and receives by the Agency the price
 number of times for different journeys under the initiative of Customer.
 Customer either accepts an offer from Agency or decides that none of the
 received quotes are satisfactory. If the offer is accepted, the
-Service handles the payment. 
+Service handles the payment.
 
 </details>
 <details>
@@ -389,14 +389,14 @@ Service handles the payment.
 
   - source folder:  [examples/SH](examples/SH)
   - explanation:  SH is short for Sutherland-Hodgman algorithm. It is a 3-role protocol for polygon clipping. It takes a plane, and the vertices of a polygon as a series of points; and produces vertices for
-the polygon restricted to one side of the plane. This is the running example from [Neykova et al. 2018](http://mrg.doc.ic.ac.uk/publications/a-session-type-provider/paper.pdf)
+the polygon restricted to one side of the plane. This is the running example from [Neykova et al. 2018](https://doi.org/10.1145/3178372.3179495)
 
 </details>
 <details>
   <summary>OnlineWallet</summary>
 
 - source folder:  [examples/Online Wallet](examples/OnlineWallet)
-- explanation: This is the running example from [Neykova et al. 2013] (https://www.doc.ic.ac.uk/~rn710/spy/main.pdf).
+- explanation: This is the running example from [Neykova et al. 2013](https://www.doc.ic.ac.uk/~rn710/spy/main.pdf).
 It represents an online payment application between client C, bank S, and an Authentication service A. In each iteration, S
 sends C the current account status,
 and C has the choice to make a payment (but only for an amount that
@@ -416,7 +416,7 @@ negotiations until an agreement is reached. In addition, the value of the (last)
   <summary>HTTP</summary>
 
 - source folder:  [examples/HTTP](examples/HTTP)
-- explanation: It is minimal specification of the [Hypertext Transfer protocol](https://tools.ietf.org/html/rfc2616) protocol. The refinements ensure the validity of the status code that are used. We have  implemented an HTTP server in F*. The example can interoperate with HTTP clients, e.g Chrome, Firefox, etc.
+- explanation: It is a minimal specification of the [Hypertext Transfer protocol](https://tools.ietf.org/html/rfc2616) protocol. The refinements ensure the validity of the status code that are used. We have  implemented an HTTP server in F*. The example can interoperate with HTTP clients, e.g Chrome, Firefox, etc.
 
 </details>  
 
