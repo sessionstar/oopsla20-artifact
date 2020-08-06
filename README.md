@@ -335,36 +335,41 @@ Below we briefly explain each example:
   <summary>Two Buyer</summary>
 
 - source folder:  [examples/TwoBuyer](examples/TwoBuyer)
-- explanation:Two Buyer is a canonical example for demonstrating business logic interactions. It specifies a negotiation between two buyers and
-a seller  to  purchase a book;
+- explanation:Two Buyer is a canonical example for demonstrating business logic interactions. It specifies a negotiation between two buyers and a seller to purchase a book. The Seller S sends the price of the book to Buyer A and Buyer B. The refinement ensures that the seller quotes the same price to both buyers. A and B negotiate and buyer B accepts to buy the book only if A contributed more to the purchase.  
 
 </details>
 <details>
   <summary>Negotiation</summary>
 
 - source folder:  [examples/Negotiation](examples/Negotiation)
-- explanation: This is a Service Agreement Proposal protocol.
+- explanation: This is a recursive protocol that describes a service agreement proposal between a producer P and a consumer C. The protocol starts by the producer P sending an initial proposal to C, the proposal contains the price of the service. Then C can either accept the proposal, or can send a counter proposal.
+The refinements ensure that when an offer is accepted the confirmed price and the offer price are the same.
 
 </details>
 <details>
   <summary>Fibonacci</summary>
 
 - source folder:  [examples/Fibonacci](examples/Fibonacci)
-- explanation: It computes a fibonacci number requested by a client.
+- explanation: The protocol specify a computation of a fibonacci sequence. The specified refinements ensure that each number (produced by role B) is the sum of two preceding numbers (provided by role A). Hence, the implementation is guaranteed to compute a fibonacci sequence.
 
 </details>
 <details>
   <summary>Travel Agency</summary>
 
 - source folder:  [examples/TravelAgency](examples/TravelAgency)
-- explanation: Travel Agency is from a W3C Choreographies use case.
+- explanation: This is a W3C Choreographies use case, and the running example from [Hu et al. 2008](https://doi.org/10.1007/978-3-540-70592-5_22)]. It a client (C), the travel agency (A)
+and a travel service (S). Customer requests and receives by the Agency the price for a desired journey. This exchange may be repeated an arbitrary
+number of times for different journeys under the initiative of Customer.
+Customer either accepts an offer from Agency or decides that none of the
+received quotes are satisfactory. If the offer is accepted, the
+Service handles the payment. 
 
 </details>
 <details>
   <summary>Calculator</summary>  
 
 - source folder:  [examples/Calculator](examples/Calculator)
-- explanation: a distributed service for arithmetic operations (+, -). The recursive protocol allows a client to repeatedly send an operation request with two numbers, and receive back the result.
+- explanation: a distributed service for addition of two numbers. The recursive protocol allows a client to repeatedly send an operation request (e.g addition) with two numbers, and receive back the result (the sum of the two numbers).
 
 </details>
 <details>
@@ -372,28 +377,34 @@ a seller  to  purchase a book;
 
   - source folder:  [examples/SH](examples/SH)
   - explanation:  SH is short for Sutherland-Hodgman algorithm. It is a 3-role protocol for polygon clipping. It takes a plane, and the vertices of a polygon as a series of points; and produces vertices for
-the polygon restricted to one side of the plane.
+the polygon restricted to one side of the plane. This is the running example from [Neykova et al. 2018](http://mrg.doc.ic.ac.uk/publications/a-session-type-provider/paper.pdf)
+
 </details>
 <details>
   <summary>OnlineWallet</summary>
 
 - source folder:  [examples/Online Wallet](examples/OnlineWallet)
-- explanation: This is the running example from [Neykova et al. 2013].
-It represents an online payment application.
+- explanation: This is the running example from [Neykova et al. 2013] (https://www.doc.ic.ac.uk/~rn710/spy/main.pdf).
+It represents an online payment application between client C, bank S, and an Authentication service A. In each iteration, S
+sends C the current account status,
+and C has the choice to make a payment (but only for an amount that
+would not overdraw the account) or end the session.
 
 </details>
 <details>
 <summary>Ticket</summary>
 
 - source folder:[examples/Ticket](examples/Ticket)
-- explanation: This is the running example from [Bocchi et al. 2013], where a customer negotiates with teh bank for buying a ticket. The protocol is recursive.
+- explanation: This is the running example from [Bocchi et al. 2013](http://mrg.doc.ic.ac.uk/publications/a-theory-of-design-by-contract-for-distributed-multiparty-interactions/concur.pdf), where a buyer negotiates with the seller and bank for buying a purchase.
+The refinements ensure that the buyer has to increase the price during
+negotiations until an agreement is reached. In addition, the value of the (last) offer and the payment must be equal.
 
 </details>
 <details>
   <summary>HTTP</summary>
 
 - source folder:  [examples/HTTP](examples/HTTP)
-- explanation: It is minimal specification of the [Hypertext Transfer protocol](https://tools.ietf.org/html/rfc2616) protocol. We have  implemented an HTTP server in F*. The example can interoperate with HTTP clients, e.g Chrome, Firefox, etc.
+- explanation: It is minimal specification of the [Hypertext Transfer protocol](https://tools.ietf.org/html/rfc2616) protocol. The refinements ensure the validity of the status code that are used. We have  implemented an HTTP server in F*. The example can interoperate with HTTP clients, e.g Chrome, Firefox, etc.
 
 </details>  
 
