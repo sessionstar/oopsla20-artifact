@@ -4,6 +4,7 @@
 #sudo gem install kramdown-parser-gfm
 
 require 'kramdown'
+require 'kramdown-parser-gfm'
 
 ARGV.each {|fn|
   file = File.open(fn)

@@ -1,23 +1,20 @@
-# OOPSLA '20 Artifacts #11 - README.md
+# OOPSLA '20 Artifacts #11 Overview
 
 > *Statically Verified Refinements for Multiparty Protocols*
 >
 > Fangyi Zhou, Francisco Ferreira, Raymond Hu, Rumyana Neykova and Nobuko Yoshida
 
-Our [paper](...TODO...) presents **Session&#42;**, a toolchain for
+Our paper presents **Session&#42;**, a toolchain for
 specifying message passing protocols using **Refined Multiparty Session Types**
 and safely implementing the distributed endpoint programs in **F&#42;**.
 
 This artifact submission contains the following:
 
-- An [overview](...TODO...) of the artifact (this document).
-- The main artifact, a [Docker image](...TODO...).
-- The md5 hash of the artifact file is TODO.
+- An [overview]() **TODO** of the artifact (this document).
+- The main artifact, a [Docker image]() **TODO**.
+- The md5 hash of the artifact file is **TODO**.
 
-For better usability, please use the [online](...TODO...) version of this document.
-
-# Artifact Overview
-
+For better usability, please use the [online]() **TODO** version of this document.
 
 This overview describes the steps to assess the practical claims of the
 paper using the artifact.
@@ -31,19 +28,10 @@ paper using the artifact.
         - [1.3.3](#run-table-2) Run the benchmarks for Table 2 (Section 5.4 in the paper).
 2. **[Step-by-Step Instructions](#step-by-step)**
     - [2.1](#benchmark-table-1) Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper).
-    - [2.2](#benchmark-table-2) Run and verify the example listed in Table 2 (Sections 5.4 in the paper).
+    - [2.2](#benchmark-table-2) Run and verify the example listed in Table 2 (Section 5.4 in the paper).
     - [2.3](#main-example) Run the main example (HigherLower) of the paper (Section 2 in the paper).
     - [2.4](#modify-refinement) Modify examples and observe refinement violations
     - [2.5](#other-examples) Run Through Other Examples (Optional)
-3. **[Additional Information](#additional-information)**
-    - [3.1](#toolchain-overview) ...toolchain overview
-        - [3.1.1](#discrepancy) ...discrepancies between the artifact and the paper
-        - [3.1.2](#syntax) ...Syntax of Refined Scribble
-    - [3.2](#step-2-observe-refinement-violations) ...implementing your own
-          protocols ...you can test and modify any of the above example, as well as
-          implement and verify your own protocols using our toolchains
-    - [3.3](#step-3-run-other-example-optional) ...debugging tips
-
 
 ---
 ---
@@ -81,19 +69,12 @@ For the OOPSLA'20 artifact evaluation, please use the docker image provided:
    If you wish to install additional software for editing or other purposes, you may obtain sudo
    access with the password `sessionstar`.
 8. The instructions in this overview assume you are in the
-   `/home/sessionstar/examples` directory.  ...**CHECKME**: e.g., next subsec
-   - Note.  This document contains some folded paragraphs:
-        <details>
-        <summary>
-           <b>Click</b> to unfold...
-        </summary>
-        ...and see the details.
-        </details>
+   `/home/sessionstar/examples` directory.
 
 
 ### <a name="artifact-layout"></a> 1.2 Artifact Layout
 
-The artifact is built from this [commit](...TODO:https://github.com/sessionstar/oopsla20-artifact...)
+The artifact is built from this [commit]() **TODO**
 in the sessionstar [GitHub](https://github.com/sessionstar/oopsla20-artifact) repository.
 
 The artifact contains the following:
@@ -101,7 +82,7 @@ The artifact contains the following:
   comprise the full source code of the toolchain.
     * The `sessionstar` command, available on the command line `$PATH`,
       performs the Scribble protocol to F* API generation (e.g. the F*
-      callback signatures); see [Part II (Step I)](...TODO...).
+      callback signatures)
 * The directory `FStar` contains a checkout of the F* compiler, patched to
   enable `TCP_NODELAY` flag for benchmarking purposes.
 * The directory `examples` contains the source code for the various examples,
@@ -166,14 +147,19 @@ The produced table corresponds (up to column renaming) to Table 2 from the paper
 
 ## <a name="step-by-step"></a> 2 Step-by-Step Instructions
 
-The purpose of this section is to describe in details the steps required to assess the artifact associated with our paper. We would like you to be able to:
+The purpose of this section is to describe in details the steps required to
+assess the artifact associated with our paper. We would like you to be able to:
 
-* reproduce our benchmarks from Table 1, Section 5.2 and 5.3. For that purpose, complete &#167;[2.1](#benchmark-table-1) of this document.
-* compile the examples, reported in Table 2, Section 5.4. For that purpose, complete &#167;[2.2](#benchmark-table-2) of this document.
-* test the running example (HigherLower) from the paper, described in Section 2. For that purpose, complete &#167;[2.3](#main-example) of this document.
+* reproduce our benchmarks from Table 1, Section 5.2 and 5.3. For that purpose,
+  complete &#167;[2.1](#benchmark-table-1) of this document.
+* compile the examples, reported in Table 2, Section 5.4. For that purpose,
+  complete &#167;[2.2](#benchmark-table-2) of this document.
+* test the running example (HigherLower) from the paper, described in Section 2.
+  For that purpose, complete &#167;[2.3](#main-example) of this document.
 
-Additionally, you can test and modify any of the examples we have implemented (&#167;[2.4](#modify-refinement)),
-as well as implement and verify your own protocols (&#167;[3.1](...TODO...)) using our toolchain.
+Additionally, you can test and modify any of the examples we have implemented
+(&#167;[2.4](#modify-refinement)), as well as implement and verify your own
+protocols using our toolchain.
 
 **Note on performance:** Measurements in the paper are taken using a machine with Intel i7-7700K CPU (4.20 GHz,
 922 4 cores, 8 threads), 16 GiB RAM, operating system Ubuntu 18.04.
@@ -197,8 +183,8 @@ Compare the results with the results reported in Table 1, taking into account th
 
 The produced table contains the following columns. In brackets we give the name of the corresponding columns from Table 1.
 * ```Gen Time (CFSM)``` - the time taken for Scribble to generate the CFSM (```CFSM```)
-* ```Gen Time (F*)``` - the time taken for the code generation tool to convert the CFSM to F\*. (```F* APIs```)
-* ```TC Time (Gen.)``` - the time taken for the generated APIs to type-check in F\⋆(```Gen. Code```)
+* ```Gen Time (F*)``` - the time taken for the code generation tool to convert the CFSM to F\* (```F* APIs```)
+* ```TC Time (Gen.)``` - the time taken for the generated APIs to type-check in F\* (```Gen. Code```)
 * ```TC Time (Impl)``` - the time taken to time check the implementation (```Callbacks```)
 
 
@@ -211,7 +197,7 @@ The script runs the example 30 times and displays the average.
 
 
 ---
-#### <a name="benchmark-table-2"></a> 2.2 Run and verify the example listed in Table 2 (Sections 5.4).
+#### <a name="benchmark-table-2"></a> 2.2 Run and verify the example listed in Table 2 (Section 5.4).
 
 The purpose of these set of benchmarks is to show the expressivity of our toolchain. We have taken examples
 from the session type literature, and have added refinements to encode data dependencies in the protocols (as explained in Section 5.4).
@@ -233,7 +219,8 @@ The source code (protocols and implementations) for each of these examples is lo
 
 #### <a name="main-example"></a> 2.3  Run the main example (HigherLower) of the paper (Section 2).
 The purpose of this section is to give you a quick walk through of using the toolchains to implement and verify a protocol. We focus on the running example - [HigherLower.scr](/examples/HigherLower).
-For high-level overview of the toolchain refer to   &#167;[3.1](...TODO...)
+For high-level overview of the toolchain refer to
+&#167;[A.1](#toolchain-overview)
 
 :one: **Generate.**
 The first step of our toolchain is the generation of callback signatures from Scribble protocols. The ```sessionstar``` command takes a file name, a protocol name and a role. To generate the callback file for role A for the HigherLower protocol, i.e ```HigherLower/HigherLower.scr```:
@@ -423,11 +410,11 @@ the value of the (last) offer and the payment must be equal.
 ---
 ---
 
-## <a name="additional-information"></a> 3 Additional Information
+## <a name="additional-information"></a> Appendix (Additional Information)
 
 ---
 
-#### <a name="toolchain-overview"></a> 3.1 Toolchain Overview
+#### <a name="toolchain-overview"></a> A.1 Toolchain Overview
 
 The following is a quick recap of the **Session&#42;** toolchain, as
 presented in the paper.
@@ -447,7 +434,7 @@ the protocol by the toolchain.  The F* compiler statically verifies each
 endpoint program and its refinements to ensure that the program follows the
 protocol.
 
-The steps of the toolchain, as exercised in [2.1](...TODO...), are outlined
+The steps of the toolchain, as exercised in [2.3](#main-example), are outlined
 below (the figure corresponds to Fig. 2 in the paper).
 
 <img src="images/framework_overview.png" width=1000/>
@@ -492,7 +479,7 @@ programs with the following notes.
 --->
 
 
-#### <a name="discrepancy"></a> 3.1.1  Discrepancies between the Paper and the Artifact
+#### <a name="discrepancy"></a> A.1.1  Discrepancies between the Paper and the Artifact
 
 There are a few discrepancies between the implementation of our extended
 Scribble in the artifact and that presented in the paper.
@@ -521,11 +508,11 @@ Scribble in the artifact and that presented in the paper.
   <!---and is not required to support the properties described above.--->
 
 
-#### <a name="syntax"></a>  3.1.2 Syntax of Refined Scribble
+#### <a name="syntax"></a>  A.1.2 Syntax of Refined Scribble
 
 Our extended Scribble is based on the global types of our Refined MPST as
 defined in the paper (Section 4).  The syntax and key features are already
-mostly demonstrated by the HigherLower example ([2.1](...TODO...)).
+mostly demonstrated by the HigherLower example ([2.3](#main-example)).
 The following summarises the syntax using another compact example.
 
 ```
@@ -585,7 +572,7 @@ aux global protocol MyProtoAux(role A, role B, role C)
 
 ---
 
-#### 3.2 Implementing your own protocols (Optional)
+#### A.2 Implementing your own protocols
 
 The template folder contains an  initial setup for implementing your own programs. It contains some boilerplate files:
 * Makefile --to compile the program
@@ -648,11 +635,13 @@ make -C mycalc main.ocaml.exe
 ```
 ---
 
-#### 3.3 Additional information (Debugging tips)
+#### A.3 Debugging tips
 * If you have problems compiling the examples, try:
-  ```
+  ```bash
   rm .depend;
   make clean-[example-name]
   ```
-* A socket error ECONNREFUSED:
-  * the error indicates that you have not started the roles in the expected order, you should always start the "server" role (the role that listens for connections) first.
+* A socket error `ECONNREFUSED`:
+  * the error indicates that you have not started the roles in the expected
+    order, you should always start the "server" role (the role that listens for
+    connections) first.

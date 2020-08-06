@@ -1,1 +1,1 @@
-ruby examples/scripts/mdtohtml.rb README.md > README.html
+ruby mdtohtml.rb README.md > README.html
