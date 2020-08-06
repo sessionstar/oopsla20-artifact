@@ -14,22 +14,27 @@ This artifact submission contains the following:
 - The main artifact, a [Docker image](...TODO...).
 - The [md5 hash](...TODO...) of the Docker image.
 
+For better usability, please use the [online](...TODO...) version of this document.
+
+# Artifact Overview
+
+
 This overview describes the steps to assess the practical claims of the
 paper using the artifact.
 
 1. **Getting Started**  
     [1.1.](...TODO...) Run the Artifact (Docker image)  
-    &nbsp;&nbsp;&nbsp;&nbsp;[1.1.1.](...TODO...) Artifact Layout  
-    [1.2.](...TODO...) Quick Test: Examples  
-    [1.3.](#step-1-run-the-microbenchamarks-table-1-section-52-and-53)
-          ...reproduces our benchmark methodology for Table 1 (Sections 5.2 and 5.3).  
-    [1.4.](#step-2-compile-applications-implemented-with-session-table-2-section-54)
-          ...compiles **..and runs..** the examples listed in Table 2 (Section 5.4).
+    [1.2](...TODO...) Artifact Layout  
+    [1.2.](...TODO...) Quick Test  
+    &nbsp;&nbsp;&nbsp;&nbsp;[1.2.1](...TODO...) Run all examples  
+    &nbsp;&nbsp;&nbsp;&nbsp;[1.2.2](...TODO...) Run the benchmarks for Table 1 (Sections 5.2 and 5.3).   
+    &nbsp;&nbsp;&nbsp;&nbsp;[1.2.2](...TODO...) Run the benchmarks for Table 2 (Section 5.4).
 2. **Step-by-Step Instructions**  
-    [2.1](#step-1-execute-the-runnign-example)
-         ...runs through the main example (HigherLower) of the paper (Section 2).  
-    [2.2](...TODO...) ...observe refinement violations  
-    [2.3](...TODO...) ...run through other examples (optional)
+    [2.1](...TODO...) Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3).  
+    [2.2](...TODO...) Run and verify the example listed in Table 2 (Sections 5.4).  
+    [2.3](...TODO...) Run the main example (HigherLower) of the paper (Section 2).  
+    [2.4](...TODO...) Modify examples and observe refinement violations  
+    [2.5](...TODO...) Experiment with other examples (optional)
 3. **Additional Information**  
     [3.1.](...TODO...) ...toolchain overview  
     &nbsp;&nbsp;&nbsp;&nbsp;[3.1.1.](...TODO...) ...discrepancies between the artifact and the paper  
@@ -77,7 +82,7 @@ provided:
         </details>
 
 
-#### 1.1.1. Artifact Layout
+#### 1.2. Artifact Layout
 
 The artifact is clone of this [commit](...TODO:https://github.com/sessionstar/oopsla20-artifact...) in the sessionstar GitHub repository.  It contains the following.
 
@@ -96,46 +101,96 @@ The artifact is clone of this [commit](...TODO:https://github.com/sessionstar/oo
 
 
 ---
-#### 1.2. Test that all examples can be executed
+#### 1.3. Quick Test
 
-We have provided several scripts that allow you to quickly test the main claims
-of the paper.
-A step by step explanation on how to use the toolchain, and how to test each
-example separately is deferred to [Part II](...TODO...) of this document.
+We have provided several scripts that allow you to quickly run the main examples of the paper.
+
+A step by step explanation on how to verify the claims of the paper, how to use the toolchain, and how to test each example separately is deferred to later sections (&#167;2 and &#167;3) of this document.
+
+#### 1.2.1 Test that at all examples can be executed
+To verify and execute all implemented examples:
 
 ```
 cd examples
 make
 make run
 ```
-The above script verifies and executes all implemented examples.  
-
+&#167; 3.1 explains how to run each example separately.
 
 ---
-#### 1.3.  Run the microbenchamarks (Table 1, Section 5.2 and 5.3)
-
-The purpose of this set of benchmarks is to demonstrate the scalabilty of our tool on protocols of increasing length (as explained in Section 5.2). We also measure the execution overhead of our implementation by comparing it against an implementation without session types or refinement types, which we call bare implementation (as explained in Section 5.3).
-
-To execute the benchmarks run:
+#### 1.2.2  Run the microbenchamarks (Table 1, Section 5.2 and 5.3)
+To execute the benchmark experiment once:
 
 ```
 python3 scripts/pingpong.py
 ```
 
-The produced table (which corresponds to Table 1 from the paper) contains the following columns. In brackets we give the name of the corresponding columns from Table 1.
+The produced table corresponds (up to column renaming) to Table 1 from the paper.
+
+(**TODO:** explain the script arguments: 1. explain the option to adjust n, 2. option to adjust how many times the example are run; 3.explain the option to run remotely)
+
+&#167; 2.1 explains in details how to compare the produced results with the paper.
+
+---
+#### 1.2.3 Compile applications implemented with **Session&#42;** (Table 2, Section 5.4)
+
+To run all examples:
+```
+python3 scripts/examples.py
+```
+
+The produced table corresponds (up to column renaming) to Table 2 from the paper.
+
+&#167; 2.2 explains in details how to compare the produced results with the paper.
+
+---  
+---
+
+## 2. Step-by-Step Instructions
+
+The purpose of this section is to describe in details the steps required to assess the artifact associated with our paper. We would like you to be able to:
+
+* reproduce our benchmarks from Table 1, Section 5.2 and 5.3. For that purpose, complete &#167;[2.1](...TODO...) of this document.
+* compile the examples, reported in Table 2, Section 5.4. For that purpose, complete &#167;[2.2](...TODO...) of this document.
+* test the running example (HigherLower) from the paper, described in Section 2. For that purpose, complete &#167;[2.3](...TODO...) of this document.
+
+Additionally, you can test and modify any of the examples we have implemented (&#167;[2.4](...TODO...)), as well as implement and verify your own protocols (&#167;[3.1](...TODO...)) using our toolchain.
+
+**Note on performance:** Measurements in the paper are taken using a machine with Intel i7-7700K CPU (4.20 GHz,
+922 4 cores, 8 threads), 16 GiB RAM, operating system Ubuntu 18.04.
+Depending on your test machine, the absolute values of the measurements produced in &#167;[2.1](...TODO...) and &#167;[2.2](...TODO...) may differ slightly from the paper. Nevertheless, the claims stated in the paper should be preserved.  
+
+#### 2.3.  Run the microbenchamarks (Table 1, Section 5.2 and 5.3)
+
+The purpose of this set of benchmarks is to demonstrate the scalabilty of our tool on protocols of increasing length (as explained in Section 5.2). We also measure the execution overhead of our implementation by comparing it against an implementation without session types or refinement types, which we call bare implementation (as explained in Section 5.3).
+
+To reproduce the benchmarks reported in the paper run the script with an argument of 30 (**TODO: (verify the argument and what it means**). Note that the script will take a considerable time to complete **TODO: (how much approx: XXX)**:
+
+```
+python3 scripts/pingpong.py 30
+```
+
+Compare the results with the results reported in Table 1, taking into account that the absolute values may differ. Verify the associated claim (Section 5.3, line 971-972):
+
+> Despite the different protocol lengths, there are no significant changes in execution time
+
+The produced table contains the following columns. In brackets we give the name of the corresponding columns from Table 1.
 * ```Gen Time (CFSM)``` - the time taken for Scribble to generate the CFSM (```CFSM```)
 * ```Gen Time (F\*)``` - the time taken for the code generation tool to convert the CFSM to F\*. (```F\* APIs```)
 * ```TC Time (Gen.)``` - the time taken for the generated APIs to type-check in F\⋆(```Gen. Code```)
 * ```TC Time (Impl)``` - the time taken to time check the implementation (```Callbacks```)
 
+
+
 The script runs the example 30 times and displays the average.
+
 (TODO: 1. explain the option to adjust n, 2. option to adjust how many times the example are run; 3.explain the option to run remotely)
 
 **Note:** The result in the paper run the experiments under a network of latency of 0.340ms (64 bytes ping), while the script runs the examples in the same docker container.  
 
 
 ---
-#### 1.4. Compile applications implemented with **Session&#42;** (Table 2, Section 5.4)
+#### 2.2. Compile applications implemented with **Session&#42;** (Table 2, Section 5.4)
 
 The purpose of these set of benchmarks is to show the expressivity of our toolchain. We have taken examples
 from the session type literature, and have added refinements to encode data dependencies in the protocols (as explained in Section 5.4).
@@ -144,25 +199,19 @@ To run all examples at once:
 ```
 python3 scripts/examples.py
 ```
+Compare the results with the results reported in Table 2, taking into account that the absolute values may differ.
+
 The produced table corresponds to Table 2 from the paper.
-It contains the same columns as the table produces in Step 1. Note that Table 2 from the paper reports:
+It contains the same columns as the table produces in &#167;[2.1](...TODO...) Note that Table 2 from the paper reports:
 - the total generation time, which is a sum of the ```Gen Time (CFSM)``` and ```Gen Time (F*)``` from the produced table.
 - the total time checking time, which is a sum of ```TC Time (Gen.)``` and ```TC Time (Impl)``` from the produced table.
 
-The source code (protocols and implementations) for each of these examples is located in a separate folder.
-
-
----  
----
-
-## Step-by-Step Instructions
-
-...A walk-through tutorial
-
+The source code (protocols and implementations) for each of these examples is located in a separate folder. See &#167;[2.4](...TODO...) for details on how to run each of the examples.  
 
 ---
-#### 2.1.  Execute the Running Example
-The purpose of this section is to give you a quick walk through of using the toolchains to implement and verify a protocol. We focus on the running example - [HigherLower.scr](/examples/HigherLower)
+#### 2.3.  Execute the Running Example
+The purpose of this section is to give you a quick walk through of using the toolchains to implement and verify a protocol. We focus on the running example - [HigherLower.scr](/examples/HigherLower).
+For high-level overview of the toolchain refer to   &#167;[3.1](...TODO...)
 
 :one: **Generate.**
 The first step of our toolchain is the generation of callback signatures from Scribble protocols. The ```sessionstar``` command takes a file name, a protocol name and a role. To generate the callback file for role A for the HigherLower protocol, i.e ```HigherLower/HigherLower.scr```:
@@ -450,7 +499,7 @@ type "int";
 global protocol MyProto(role A, role B, role C) @'A[xA]' {
     1(x1: int) from A to B;  @'...'
     2(x2: int) from A to C;  @'y=x'
-    do MyProtoAux(A, B, C); 
+    do MyProtoAux(A, B, C);
 }
 
 aux global protocol MyProtoAux(role A, role B, role C) @'A[x2] B[x3]' {
