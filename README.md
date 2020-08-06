@@ -47,7 +47,7 @@ paper using the artifact.
 
 ---  
 ---
-## <a name="getting-started"></a> 1. Getting Started
+## <a name="getting-started"></a> 1 Getting Started
 
 ---
 ### <a name="run-the-artifact"></a> 1.1 Run the Artifact (Docker Image)
@@ -89,7 +89,7 @@ For the OOPSLA'20 artifact evaluation, please use the docker image provided:
         </details>
 
 
-### <a name="artifact-layout"></a> 1.2. Artifact Layout
+### <a name="artifact-layout"></a> 1.2 Artifact Layout
 
 The artifact is built from this [commit](...TODO:https://github.com/sessionstar/oopsla20-artifact...)
 in the sessionstar [GitHub](https://github.com/sessionstar/oopsla20-artifact) repository.  
@@ -112,7 +112,7 @@ The artifact contains the following:
 
 
 ---
-### <a name="quick-test"></a> 1.3. Quick Test
+### <a name="quick-test"></a> 1.3 Quick Test
 
 We provide several scripts that allow you to quickly run the main examples of the paper.
 
@@ -159,7 +159,7 @@ The produced table corresponds (up to column renaming) to Table 2 from the paper
 ---  
 ---
 
-## <a name="step-by-step"></a> 2. Step-by-Step Instructions
+## <a name="step-by-step"></a> 2 Step-by-Step Instructions
 
 The purpose of this section is to describe in details the steps required to assess the artifact associated with our paper. We would like you to be able to:
 
@@ -173,7 +173,7 @@ Additionally, you can test and modify any of the examples we have implemented (&
 922 4 cores, 8 threads), 16 GiB RAM, operating system Ubuntu 18.04.
 Depending on your test machine, the absolute values of the measurements produced in &#167;[2.1](...TODO...) and &#167;[2.2](...TODO...) may differ slightly from the paper. Nevertheless, the claims stated in the paper should be preserved.  
 
-#### <a name="benchmark-table-1"></a> 2.1.  Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3).
+#### <a name="benchmark-table-1"></a> 2.1  Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3).
 
 The purpose of this set of benchmarks is to demonstrate the scalabilty of our tool on protocols of increasing length (as explained in Section 5.2). We also measure the execution overhead of our implementation by comparing it against an implementation without session types or refinement types, which we call bare implementation (as explained in Section 5.3).
 
@@ -203,7 +203,7 @@ The script runs the example 30 times and displays the average.
 
 
 ---
-#### <a name="benchmark-table-2"></a> 2.2. Run and verify the example listed in Table 2 (Sections 5.4).
+#### <a name="benchmark-table-2"></a> 2.2 Run and verify the example listed in Table 2 (Sections 5.4).
 
 The purpose of these set of benchmarks is to show the expressivity of our toolchain. We have taken examples
 from the session type literature, and have added refinements to encode data dependencies in the protocols (as explained in Section 5.4).
@@ -222,7 +222,7 @@ It contains the same columns as the table produces in &#167;[2.1](...TODO...) No
 The source code (protocols and implementations) for each of these examples is located in a separate folder. See &#167;[2.4](...TODO...) for details on how to run each of the examples.  
 
 ---
-#### <a name="main-example"></a> 2.3.  Run the main example (HigherLower) of the paper (Section 2).
+#### <a name="main-example"></a> 2.3  Run the main example (HigherLower) of the paper (Section 2).
 The purpose of this section is to give you a quick walk through of using the toolchains to implement and verify a protocol. We focus on the running example - [HigherLower.scr](/examples/HigherLower).
 For high-level overview of the toolchain refer to   &#167;[3.1](...TODO...)
 
@@ -262,7 +262,7 @@ HigherLower/A/main.ocaml.exe &
 
 
 ---
-#### <a name="modify-refinement"></a> 2.3.  Observe Refinement Violations
+#### <a name="modify-refinement"></a> 2.4  Observe Refinement Violations
 
 Next we highlight how protocol violations are ruled out by static refinement typing, which is ultimately the practical purpose of **Session&#42;**.
 
@@ -316,7 +316,7 @@ For details, see the [notes on Scribble syntax](README.md#notes-on-scribble-synt
 
 
 ---
-#### <a name="other-examples"></a> 2.4. Run Through Other Examples (Optional)
+#### <a name="other-examples"></a> 2.5 Run Through Other Examples (Optional)
 
 To build a selected example from Table 2:
 ```
@@ -423,10 +423,10 @@ negotiations until an agreement is reached. In addition, the value of the (last)
 
 ---  
 ---
-## 3. Additional Information
+## 3 Additional Information
 
 ---
-#### 3.1. Toolchain Overview
+#### 3.1 Toolchain Overview
 
 The following is a quick recap of the **Session&#42;** toolchain, as
 presented in the paper.
@@ -489,7 +489,7 @@ programs with the following notes.
   to the safety error of a wait-for cycle between two or more endpoints.)
 
 
-#### 3.1.1.  Discrepancies between the Paper and the Artifact
+#### 3.1.1  Discrepancies between the Paper and the Artifact
 
 There are a few discrepancies between the implementation of our extended
 Scribble in the artifact and that presented in the paper.
@@ -517,7 +517,7 @@ Scribble in the artifact and that presented in the paper.
   bonus, and is not required to support the properties described above...**
 
 
-##### 3.1.2. Syntax of Refined Scribble
+##### 3.1.2 Syntax of Refined Scribble
 
 Our extended Scribble is based on the global types of our Refined MPST as
 defined in the paper (Section 4).  The syntax and key features are already
@@ -581,7 +581,7 @@ aux global protocol MyProtoAux(role A, role B, role C)
 
 
 ---
-#### 3.2. Implementing your own protocols (Optional)
+#### 3.2 Implementing your own protocols (Optional)
 
 ...**CHECKME**: maybe move to part 2
 
@@ -591,7 +591,7 @@ Hint: If you are struggling, the Calculator folder contains the full implementat
 
 
 ---
-#### 3.3. Additional information (Debugging tips)
+#### 3.3 Additional information (Debugging tips)
 * If you have problems compiling the examples, try:
   ```
   rm .depend;
