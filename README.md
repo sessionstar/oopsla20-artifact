@@ -1,8 +1,9 @@
 # OOPSLA '20 Artifacts #11 Overview
 
-> *Statically Verified Refinements for Multiparty Protocols*
+> # *Statically Verified Refinements for Multiparty Protocols*
 >
-> Fangyi Zhou, Francisco Ferreira, Raymond Hu, Rumyana Neykova and Nobuko Yoshida
+> #### Fangyi Zhou, Francisco Ferreira, Raymond Hu, Rumyana Neykova and Nobuko Yoshida
+
 
 Our paper presents **Session&#42;**, a toolchain for
 specifying message passing protocols using **Refined Multiparty Session Types**
@@ -111,7 +112,7 @@ cd examples
 make
 make run
 ```
-&#167; 3.1 explains how to run each example separately.
+&#167; [2.5](#other-examples) explains how to run each example separately.
 
 ---
 
@@ -126,7 +127,7 @@ The produced table corresponds (up to column renaming) to Table 1 from the paper
 
 (**TODO:** explain the script arguments: 1. explain the option to adjust n, 2. option to adjust how many times the example are run; 3.explain the option to run remotely)
 
-&#167; 2.1 explains in details how to compare the produced results with the paper.
+&#167; [2.1](#benchmark-table-1) explains in details how to compare the produced results with the paper.
 
 ---
 
@@ -134,13 +135,13 @@ The produced table corresponds (up to column renaming) to Table 1 from the paper
 
 To compile all applications implemented with **Session&#42;** (Table 2):
 
-```
+```bash
 python3 scripts/examples.py
 ```
 
 The produced table corresponds (up to column renaming) to Table 2 from the paper.
 
-&#167; 2.2 explains in details how to compare the produced results with the paper.
+&#167; [2.2](#benchmark-table-2) explains in details how to compare the produced results with the paper.
 
 ---
 ---
@@ -173,7 +174,7 @@ The purpose of this set of benchmarks is to demonstrate the scalabilty of our to
 
 To reproduce the benchmarks reported in the paper run the script with an argument of 30 (**TODO: (verify the argument and what it means**). Note that the script will take a considerable time to complete **TODO: (how much approx: XXX)**:
 
-```
+```bash
 python3 scripts/pingpong.py 30
 ```
 
@@ -203,7 +204,7 @@ The purpose of these set of benchmarks is to show the expressivity of our toolch
 from the session type literature, and have added refinements to encode data dependencies in the protocols (as explained in Section 5.4).
 
 To run all examples at once:
-```
+```bash
 python3 scripts/examples.py
 ```
 Compare the results with the results reported in Table 2, taking into account that the absolute values may differ.
@@ -224,7 +225,7 @@ For high-level overview of the toolchain refer to
 
 :one: **Generate.**
 The first step of our toolchain is the generation of callback signatures from Scribble protocols. The ```sessionstar``` command takes a file name, a protocol name and a role. To generate the callback file for role A for the HigherLower protocol, i.e ```HigherLower/HigherLower.scr```:
- ```
+ ```bash
  sessionstar HigherLower/HigherLower.scr HigherLower A
  ```
  The ```sessionstar``` command  (1) generates a CFSM and (2) produces the callback signatures in F*. It produces the corresponding files:
@@ -239,7 +240,7 @@ A user has to implement the program logic for each callback from the generated A
 After we implement the program logic for role A  using the callback signatures produced in the previous step, we can verify that the implementation is correct by running the F* type checker.
 
  A sample implementation of role A is given in ```HigherLower/A/HigherLowerA_CallbackImpl.fst```. To compile this implementation for endpoint A, we first move the generated file to the correct folder, and then we build the endpoint using the F* compiler:
-```
+```bash
 mv GeneratedHigherLowerA.fst HigherLower/A
 make -C HigherLower/A main.ocaml.exe
 ```
@@ -249,7 +250,7 @@ make -C HigherLower/A main.ocaml.exe
 :three: **Execute.**
 Repeat the above steps (generation and compilation for role B and C). After all endpoints have been implemented and their binaries have been generated, we can run them.
  To run all endpoins issue all the commands:
-```
+```bash
 HigherLower/B/main.ocaml.exe &
 HigherLower/C/main.ocaml.exe &
 HigherLower/A/main.ocaml.exe &
@@ -267,37 +268,36 @@ Next we highlight how protocol violations are ruled out by static refinement typ
 Below we suggest two modifications to the [HigherLower/B/HigherLowerB_CallbackImpl.fst](examples/HigherLower/B/HigherLowerB_CallbackImpl.fst) file.
 
  First, ensure that the current implementation for B is correct :
-```
+```bash
 sessionstar HigherLower/HigherLower.scr HigherLower B
-mv GeneratedHigherLowerC.fst HigherLower/B
+mv GeneratedHigherLowerB.fst HigherLower/B
 make -C HigherLower/B main.ocaml.exe
 ```
-  After each modification, compile and observe that an error is reported. Note that since we are not changing the protocol, you do not need to run sessionstar again, it is enough to run the F* type checker using ```make -C HigherLower/C main.ocaml.exe```
+  After each modification, compile and observe that an error is reported. Note that since we are not changing the protocol, you do not need to run sessionstar again, it is enough to run the F* type checker using ```make -C HigherLower/B main.ocaml.exe```
 
  Suggested modifications:
- - Modify the condition for the lose case ([Line 32](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/B/HigherLowerB_CallbackImpl.fst#L32)) from ```t=1``` to ```t=0```
-
- - Comment the lose case ([Line 32-33](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/B/HigherLowerB_CallbackImpl.fst#L32)).
+ - Option 1: Modify the condition for the lose case ([Line 32](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/B/HigherLowerB_CallbackImpl.fst#L32)) from ```t=1``` to ```t=0```  
+ - Option 2: Comment the lose case ([Line 32-33](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/B/HigherLowerB_CallbackImpl.fst#L32)).
 Note: the syntax for comments in F* is (* commented code *).
 
 (b) **Use of proof-irrelevant variables:** To demonstrate how our toolchain uses reasoning with latent information, we will modify the protocol HigherLower, and we will compile the  implementation for role C.
 
 First, we verify that the implementation of C is correct:
-```
+```bash
 sessionstar HigherLower/HigherLower.scr HigherLower C
 mv GeneratedHigherLowerC.fst HigherLower/C
 make -C HigherLower/C main.ocaml.exe
 ```
 Suggested modifications:
-  - Modify the implementation ([HigherLower/C/HigherLowerC_CallbackImpl.fst](examples/HigherLower/C/HigherLowerC_CallbackImpl.fst) file) such that the higher case sends a variable that is lower than the current one. For example change Line [34](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/C/HigherLowerC_CallbackImpl.fst#L34) from ```next := (Mkstate72?.x st) + 1)``` to ```next := (Mkstate72?.x st) - 1)```. Compile the endpoint (```make -C HigherLower/C main.ocaml.exe```) to observer an error.
+  - Option 1: Modify the implementation ([HigherLower/C/HigherLowerC_CallbackImpl.fst](examples/HigherLower/C/HigherLowerC_CallbackImpl.fst) file) such that the higher case sends a variable that is lower than the current one. For example change Line [34](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/C/HigherLowerC_CallbackImpl.fst#L34) from ```next := (Mkstate72?.x st) + 1)``` to ```next := (Mkstate72?.x st) - 1)```. Compile the endpoint (```make -C HigherLower/C main.ocaml.exe```) to observer an error.  
 
-  - Modify the protocol ([HigherLower.scr](examples/HigherLower/HigherLower.scr)) by removing all constraints for x that depend on n.
-    - Change [Line 19](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L19) from ```@'n>x && t>1'``` to ```@'t>1'```
-    - Change [Line 23](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L23) by commenting ```n=x'``` (comment in Scribble is `//`)
-    - Change [Line 30](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L30) from @'((n<x || n>x) && t=1)' to ```@'t=1'```
+  - Option 2: Modify the protocol ([HigherLower.scr](examples/HigherLower/HigherLower.scr)) by removing all constraints for x that depend on n.
+    - Change [Line 19](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L19) from ```@'n>x && t>1'``` to ```@'t>1```, and
+    - Change [Line 23](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L23) by commenting ```n=x'``` (comment in Scribble is `//`), and
+    - Change [Line 31](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L31) from @'((n<x || n>x) && t=1)' to ```@'t=1'```
 
    Since we changed the protocol, new callback signatures have to be generated. Generate new callback signatures and compile:
- ```
+ ```bash
  sessionstar HigherLower/HigherLower.scr HigherLower C
  mv GeneratedHigherLowerC.fst HigherLower/C
  make -C HigherLower/C main.ocaml.exe
@@ -313,13 +313,13 @@ There are small syntax discrepancies between Scribble syntax and the paper. For 
 #### <a name="other-examples"></a> 2.5 Run Through Other Examples (Optional)
 
 To build a selected example from Table 2:
-```
+```bash
 make build-[name of the example]
 ```
 
 To run a selected example from Table 2:
 You can run them using:
-```
+```bash
 make run-[name of the example]
 ```
 
@@ -379,7 +379,7 @@ the polygon restricted to one side of the plane. This is the running example fro
 
 * OnlineWallet
 
-    - source folder:  [examples/Online Wallet](examples/OnlineWallet)
+    - source folder:  [examples/OnlineWallet](examples/OnlineWallet)
     - explanation: This is the running example from [Neykova et al.
 2013](https://www.doc.ic.ac.uk/~rn710/spy/main.pdf). It represents an
 online payment application between client C, bank S, and an
@@ -586,9 +586,9 @@ Below, we outline the main steps required to implement the client for a simple c
 sessionstar mycalc Calculator C
 ```
 4. Implement the logic for all callbacks, generated in the previous step
-  1. Create a new file CalcC_CallbackImpl.fst
-  2. Import the generated F* file  (GeneratedCalculatorC.fst), and other relevant libraries you may need
-  2. Implement the business logic for all callbacks. The easiest way is to copy all F* callback signatures from GeneratedCalculatorC.fst, and implement them.
+  - Create a new file CalcC_CallbackImpl.fst
+  - Import the generated F* file  (GeneratedCalculatorC.fst), and other relevant libraries you may need
+  - Implement the business logic for all callbacks. The easiest way is to copy all F* callback signatures from GeneratedCalculatorC.fst, and implement them.
   We have given you a head start with the skeleton below.
 
 ```
