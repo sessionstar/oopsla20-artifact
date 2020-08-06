@@ -19,11 +19,11 @@ paper using the artifact.
 
 1. Getting Started  
     [1.1.](...TODO...) Run the Artifact (Docker image)  
-    [1.2.](...TODO...) Artifact Layout  
-    [1.3.](...TODO...) Quick Test: Examples  
-    [1.4.](#step-1-run-the-microbenchamarks-table-1-section-52-and-53)
+    &nbsp;&nbsp;&nbsp;&nbsp;[1.1.1.](...TODO...) Artifact Layout  
+    [1.2.](...TODO...) Quick Test: Examples  
+    [1.3.](#step-1-run-the-microbenchamarks-table-1-section-52-and-53)
           ...reproduces our benchmark methodology for Table 1 (Sections 5.2 and 5.3).  
-    [1.5.](#step-2-compile-applications-implemented-with-session-table-2-section-54)
+    [1.4.](#step-2-compile-applications-implemented-with-session-table-2-section-54)
           ...compiles **..and runs..** the examples listed in Table 2 (Section 5.4).
 2. Step-by-Step Instructions  
     [2.1](#step-1-execute-the-runnign-example)
@@ -32,11 +32,11 @@ paper using the artifact.
     [2.3](...TODO...) ...run other examples
 3. Additional Information  
     [3.1.](...TODO...) ...toolchain overview  
-    [3.2.](...TODO...) ...discrepancies between the artifact and the paper  
-    [3.3.](#s#step-2-observe-refinement-violations) ...implementing your own
+    &nbsp;&nbsp;&nbsp;&nbsp;[3.1.1.](...TODO...) ...discrepancies between the artifact and the paper  
+    [3.2.](#s#step-2-observe-refinement-violations) ...implementing your own
           protocols ...you can test and modify any of the above example, as well as
           implement and verify your own protocols using our toolchains  
-    [3.4.](#step-3-run-other-example-optional) ...debugging tips
+    [3.3.](#step-3-run-other-example-optional) ...debugging tips
 
 
 ---  
@@ -75,28 +75,32 @@ provided:
         ...and see the details.
         </details>
 
----
-#### 1.2 Artifact Layout
 
-The artifact contains the full source code of the toolchain -- it is clone of
-this [commit](...TODO:https://github.com/sessionstar/oopsla20-artifact...) in
-the sessionstar GitHub repository.  The artifact also contains the following.
-* The ```sessionstar``` command: it performs the Scribble protocol to F* API
-  generation (e.g., the F* callback signatures); see Part II (Step I).
-* A [scripts](examples/scripts) directory: the scripts for executing the
+#### 1.1.1. Artifact Layout
+
+The artifact is clone of this [commit](...TODO:https://github.com/sessionstar/oopsla20-artifact...) in the sessionstar GitHub repository.  It contains the following.
+
+* [`/scribble-java`](...TODO...) and [`/ScribbleCodeGenOCaml`](...TODO...) --
+  these comprise the full source code of the toolchain.
+    * The `sessionstar` command, available on the command line `$PATH`,
+      performs the Scribble protocol to F* API generation (e.g., the F*
+      callback signatures); see [Part II (Step I)](...TODO...).
+* [`/scripts`](examples/scripts) -- the scripts for executing the
   benchmarks from Table 1 and Table 2.
-* An [examples](examples/) directory: the source code for the various examples,
+* [`/examples`](examples/) -- the source code for the various examples,
   including the HigherLower running example from the paper (Section 2) and
   those listed in Table 2.
-* A [template](template/) directory: template files to help you through writing
+* [`/template`](template/) -- template files to help you through writing
   and testing your own examples.
 
 
 ---
-#### 1.3: Test that all examples can be executed
+#### 1.2: Test that all examples can be executed
 
-We have provided several scripts that allow you to quickly test the main claims of the paper.
-A step by step explanation on how to use the toolchain, and how to test each example separately is deferred to Part II of this document.
+We have provided several scripts that allow you to quickly test the main claims
+of the paper.
+A step by step explanation on how to use the toolchain, and how to test each
+example separately is deferred to [Part II](...TODO...) of this document.
 
 ```
 cd examples
@@ -107,7 +111,7 @@ The above script verifies and executes all implemented examples.
 
 
 ---
-#### 1.4.  Run the microbenchamarks (Table 1, Section 5.2 and 5.3)
+#### 1.3.  Run the microbenchamarks (Table 1, Section 5.2 and 5.3)
 
 The purpose of this set of benchmarks is to demonstrate the scalabilty of our tool on protocols of increasing length (as explained in Section 5.2). We also measure the execution overhead of our implementation by comparing it against an implementation without session types or refinement types, which we call bare implementation (as explained in Section 5.3).
 
@@ -130,7 +134,7 @@ The script runs the example 30 times and displays the average.
 
 
 ---
-#### 1.5. Compile applications implemented with Session* (Table 2, Section 5.4)
+#### 1.4. Compile applications implemented with **Session&#42;** (Table 2, Section 5.4)
 
 The purpose of these set of benchmarks is to show the expressivity of our toolchain. We have taken examples
 from the session type literature, and have added refinements to encode data dependencies in the protocols (as explained in Section 5.4).
@@ -196,7 +200,7 @@ HigherLower/A/main.ocaml.exe &
 ---
 #### 2.2: Observe refinement violations
 
-Next we highlight how protocol violations are ruled out by static refinement typing, which is ultimately the practical purpose of Session*.
+Next we highlight how protocol violations are ruled out by static refinement typing, which is ultimately the practical purpose of **Session&#42;**.
 
 (a) **Refinement violations:** Change the implementation for role B.
 Below we suggest two modifications.
@@ -412,8 +416,7 @@ programs with the following notes.
 </details>
 
 
----
-#### 3.2.  Discrepancies between the paper and the artifact regarding our extension of Scribble.
+#### 3.1.1.  Discrepancies between the paper and the artifact regarding our extension of Scribble.
 
 - There are small syntactic differences.
     - Refined state variable declarations were written in the paper, e.g., (Fig. 3)
@@ -471,7 +474,7 @@ aux global protocol MyProtoAux(role A, role B, role C) @'A[x2] B[x3]' {
 
 
 ---
-#### 3.3. Implementing your own protocols (Optional)
+#### 3.2. Implementing your own protocols (Optional)
 
 Create a simple calculator protocol, following the short tutorial here.
 
@@ -479,7 +482,7 @@ Hint: If you are struggling, the Calculator folder contains the full implementat
 
 
 ---
-#### 3.4. Additional information (Debugging tips)
+#### 3.3. Additional information (Debugging tips)
 * If you have problems compiling the examples, try:
   * rm .depend;
   * make clean-[example-name]
