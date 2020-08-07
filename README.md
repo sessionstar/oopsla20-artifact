@@ -413,6 +413,8 @@ programs with the following notes.
 
 #### <a name="discrepancy"></a> A.1.1  Discrepancies between the Paper and the Artifact
 
+**Scribble syntax**
+
 There are a few discrepancies between the implementation of our extended
 Scribble in the artifact and that presented in the paper.
 
@@ -433,6 +435,11 @@ Scribble in the artifact and that presented in the paper.
   and the toolchain as presented in the paper does not depend on it.
   <!---and is not required to support the properties described above.--->
 
+**F\* syntax**
+- The paper uses the dot notation to refer to state variables (e.g st.x). In practice, F* requires state variables to be extracted explicitly from the state record. Given the type of ```st``` is ```State1```, x can be extracted as follows:
+```ocaml
+len x = (Mkstate1?.x st)
+```
 
 #### <a name="syntax"></a>  A.1.2 Syntax of Refined Scribble
 
@@ -586,8 +593,15 @@ sessionstar mycalc Calculator C
 4. Implement the logic for all callbacks, generated in the previous step
   - Create a new file CalcC_CallbackImpl.fst
   - Import the generated F* file  (GeneratedCalculatorC.fst), and other relevant libraries you may need
-  - Implement the business logic for all callbacks. The easiest way is to copy all F* callback signatures from GeneratedCalculatorC.fst, and implement them.
-  We have given you a head start with the skeleton below.
+  - Implement the business logic for all callbacks. The easiest way is to copy all F* callback signatures from GeneratedCalculatorC.fst, and implement them:
+  ``` ocaml
+  (*state20Onsend : (st: state20) -> ML (state20Choice st);*)
+  (*state22OnsendSum2 : (st: state22) -> ML (int);*)
+  (*state22OnsendSum2 : (st: state22) -> ML (int);*)
+  (*state23OnreceiveResult : (st: state23) -> (r1: int{((r1) = ((Mkstate23?.x1 st) + (Mkstate23?.y1 st)))}) -> ML (unit);*)
+  (*state24OnreceiveTerminate : (st: state24) -> (_dummy: unit) -> ML (unit);*)
+  ```
+  We have given you a head start with the skeleton below.  
 
 ```ocaml
 module CalcC_CallbackImpl
