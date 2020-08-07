@@ -297,9 +297,8 @@ Suggested modifications:
   - Option 2: Modify the protocol ([HigherLower.scr](examples/HigherLower/HigherLower.scr)) by removing all constraints for x that depend on n.
     - Change [Line 19](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L19) from ```@'n>x && t>1'``` to ```@'t>1```, and
     - Change [Line 23](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L23) by commenting ```n=x'``` (comment in Scribble is `//`), and
-    - Change [Line 31](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L31) from @'((n<x || n>x) && t=1)' to ```@'t=1'```
-
-   Since we changed the protocol, new callback signatures have to be generated. Generate new callback signatures and compile:
+    - Change [Line 31](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L31) from @'((n<x || n>x) && t=1)' to ```@'t=1'```. 
+    Since we changed the protocol, new callback signatures have to be generated. Generate new callback signatures and compile:
  ```bash
  sessionstar HigherLower/HigherLower.scr HigherLower C
  mv GeneratedHigherLowerC.fst HigherLower/C
