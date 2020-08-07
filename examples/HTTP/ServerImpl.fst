@@ -1,6 +1,6 @@
 module ServerImpl
 
-open Server
+open GeneratedHttpS
 
 (*
 noeq type callbacksS = {
