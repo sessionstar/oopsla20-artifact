@@ -24,3 +24,4 @@ jobs:
         registry: docker.pkg.github.com
         repository: sessionstar/oopsla20-artifact/artifact
         tags: latest
+        cache_froms: docker.pkg.github.com/sessionstar/oopsla20-artifact/artifact:latest 
