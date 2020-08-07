@@ -678,3 +678,5 @@ make -C mycalc main.ocaml.exe
   * the error indicates that you have not started the roles in the expected
     order, you should always start the "server" role (the role that listens for
     connections) first.
+* `Fatal error: exception Unix.Unix_error(Unix.EADDRINUSE, "bind", "")`:
+  * the error indicates that port is being used by another program. The simplest way to solve this is `pkill main.ocaml.exe` to kill any running program.
