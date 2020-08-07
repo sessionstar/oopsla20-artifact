@@ -319,7 +319,6 @@ make build-[name of the example]
 ```
 
 To run a selected example from Table 2:
-You can run them using:
 ```bash
 make run-[name of the example]
 ```
