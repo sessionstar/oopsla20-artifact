@@ -45,8 +45,6 @@ paper using the artifact.
 
 For the OOPSLA'20 artifact evaluation, please use the docker image provided:
 
-**TODO: Replace with how to unzip the docker image and run.**
-
 0. [Install docker](https://docs.docker.com/engine/install/).
 1. Download the artifact file (assume the filename is `artifact.tar.gz`)
 2. Unzip the artifact file.
