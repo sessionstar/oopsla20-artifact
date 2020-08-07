@@ -125,8 +125,6 @@ python3 scripts/pingpong.py
 
 The produced table corresponds (up to column renaming) to Table 1 from the paper.
 
-(**TODO:** explain the script arguments: 1. explain the option to adjust n, 2. option to adjust how many times the example are run; 3.explain the option to run remotely)
-
 &#167;[2.1](#benchmark-table-1) explains in details how to compare the produced results with the paper.
 
 ---
@@ -170,7 +168,7 @@ Nevertheless, the claims stated in the paper should be preserved.
 
 #### <a name="benchmark-table-1"></a> 2.1  Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3).
 
-The purpose of this set of benchmarks is to demonstrate the scalabilty of our tool on protocols of increasing length (as explained in Section 5.2). We also measure the execution overhead of our implementation by comparing it against an implementation without session types or refinement types, which we call bare implementation (as explained in Section 5.3).
+The purpose of this set of benchmarks is to demonstrate the scalability of our tool on protocols of increasing length (as explained in Section 5.2). We also measure the execution overhead of our implementation by comparing it against an implementation without session types or refinement types, which we call bare implementation (as explained in Section 5.3).
 
 To reproduce the benchmarks reported in the paper run the script with an argument of 30 (**TODO: (verify the argument and what it means**). Note that the script will take a considerable time to complete **TODO: (how much approx: XXX)**:
 
@@ -189,11 +187,17 @@ Compare the results with the results reported in Table 1, taking into account th
 
 > Despite the different protocol lengths, there are no significant changes in execution time
 
-The script runs the example 30 times and displays the average.
+By default, the script reproduces the table and runs the experiment **once**.
+Optionally, you may add a parameter to repeat the experiment, i.e. `python3
+scripts/pingpong.py 10` for 10 repetitions.
 
-(TODO: 1. explain the option to adjust n, 2. option to adjust how many times the example are run; 3.explain the option to run remotely)
+You should be able to observe a similar pattern of increase in compilation
+times as the protocol length increases, and no significant changes in the
+execution times.
 
 **Note:** The result in the paper run the experiments under a network of latency of 0.340ms (64 bytes ping), while the script runs the examples in the same docker container.
+
+**TODO: Running remotely**
 
 
 ---
