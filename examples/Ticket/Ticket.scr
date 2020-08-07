@@ -14,6 +14,5 @@ global protocol Ticket(role S, role C)
     do Ticket(S, C); @"C[creditC-x] S[creditS+x, count+1]"
   } or {
     Ko() from S to C;
-    do Ticket(S, C); @"C[creditC] S[creditS, count]"
   }
 }
