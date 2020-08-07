@@ -309,7 +309,7 @@ Suggested modifications:
     file) such that the higher case sends a variable that is lower than the
     current one. For example change Line
     [34](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/C/HigherLowerC_CallbackImpl.fst#L34)
-    from ```next := (Mkstate72?.x st) + 1``` to ```next := (Mkstate72?.x st) - 1```. 
+    from ```next := (Mkstate72?.x st) + 1``` to ```next := (Mkstate72?.x st) - 1```.
     Compile the endpoint (```make -C HigherLower/C main.ocaml.exe```) to
     observe an error.
 
@@ -595,10 +595,10 @@ the value of the (last) offer and the payment must be equal.
       example can interoperate with HTTP clients, e.g Chrome, Firefox,
       etc.
 
-
+<!--
 #### A.3 Implementing your own protocols
 
-The template folder contains an  initial setup for implementing your own programs. It contains some boilerplate files:
+The template folder contains an initial setup for implementing your own programs. It contains some boilerplate files:
 * Makefile --to compile the program
 * payload.fst and network.fst -- for basic communication operations.
 
@@ -666,7 +666,13 @@ Hint: If you are struggling, the Calculator folder contains the full implementat
 ```bash
 make -C mycalc main.ocaml.exe
 ```
+-->
 ---
+
+
+#### A.3 Additional resources
+
+The [Session* wiki](https://github.com/sessionstar/oopsla20-artifact/wiki/Session*-in-5-minutes) contains additional resources and  explanations on how to write and verify Session* programs. 
 
 #### A.4 Debugging tips
 * If you have problems compiling the examples, try:
@@ -678,3 +684,7 @@ make -C mycalc main.ocaml.exe
   * the error indicates that you have not started the roles in the expected
     order, you should always start the "server" role (the role that listens for
     connections) first.
+* To kill a process in case of any errors (EADDRINUSE, ECONNREFUSED, etc.)
+ ```
+ pkill main.ocaml.exe
+ ```  
