@@ -287,7 +287,7 @@ sessionstar HigherLower/HigherLower.scr HigherLower C
 mv GeneratedHigherLowerC.fst HigherLower/C
 make -C HigherLower/C main.ocaml.exe
 ```
-Suggested modifications:
+Suggested modifications (to [HigherLower/B/HigherLowerB_CallbackImpl.fst](examples/HigherLower/B/HigherLowerB_CallbackImpl.fst) file):
   - Option 1: Modify the implementation ([HigherLower/C/HigherLowerC_CallbackImpl.fst](examples/HigherLower/C/HigherLowerC_CallbackImpl.fst) file) such that the higher case sends a variable that is lower than the current one. For example change Line [34](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/C/HigherLowerC_CallbackImpl.fst#L34) from ```next := (Mkstate72?.x st) + 1)``` to ```next := (Mkstate72?.x st) - 1)```. Compile the endpoint (```make -C HigherLower/C main.ocaml.exe```) to observer an error.  
 
   - Option 2: Modify the protocol ([HigherLower.scr](examples/HigherLower/HigherLower.scr)) by removing all constraints for x that depend on n.
