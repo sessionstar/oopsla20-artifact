@@ -12,8 +12,8 @@ and safely implementing the distributed endpoint programs in **F&#42;**.
 This artifact submission contains the following:
 
 - An [overview]() **TODO** of the artifact (this document).
-- The main artifact, a [Docker image]() **TODO**.
-- The md5 hash of the artifact file is **TODO**.
+- The main artifact, a [Docker image](https://drive.google.com/file/d/1HyGBnHrnyqJ3s0rTzoADJ6NjkqkSB6YE/view?usp=sharing).
+- The md5 hash of the artifact file is `a41a7cbbb61408df6f5fb080cd71d01b`.
 
 For better usability, please use the [online]() **TODO** version of this document.
 
@@ -56,13 +56,13 @@ For the OOPSLA'20 artifact evaluation, please use the docker image provided:
     ```bash
     docker load < artifact.tar
     ```
-5. You should see in the end of the output after last operation: **TODO: Change the tag**
+5. You should see in the end of the output after last operation:
     ```
-    Loaded image: docker.pkg.github.com/sessionstar/oopsla20-artifact/artifact:latest
+    Loaded image: sessionstar2020/sessionstar:artifact
     ```
 6. Run the docker container:
     ```bash
-    docker run -it -p 3000:3000 docker.pkg.github.com/sessionstar/oopsla20-artifact/artifact:latest
+    docker run -it -p 3000:3000 sessionstar2020/sessionstar:artifact
     ```
     Note: Exposing port 3000 is optional, used for running HTTP server example.
 7. The Docker image comes with an installation of vim and nano for editing.
@@ -75,7 +75,7 @@ For the OOPSLA'20 artifact evaluation, please use the docker image provided:
 
 ### <a name="artifact-layout"></a> 1.2 Artifact Layout
 
-The artifact is built from this [commit]() **TODO**
+The artifact is built from this [commit](https://github.com/sessionstar/oopsla20-artifact/tree/8bc297a28f12a188d08854f8cea39c8b063cd94f)
 in the sessionstar [GitHub](https://github.com/sessionstar/oopsla20-artifact) repository.
 
 The artifact contains the following:
