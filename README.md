@@ -168,15 +168,26 @@ Nevertheless, the claims stated in the paper should be preserved.
 
 #### <a name="benchmark-table-1"></a> 2.1  Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3).
 
-The purpose of this set of benchmarks is to demonstrate the scalability of our tool on protocols of increasing length (as explained in Section 5.2). We also measure the execution overhead of our implementation by comparing it against an implementation without session types or refinement types, which we call bare implementation (as explained in Section 5.3).
+The purpose of this set of benchmarks is to demonstrate the scalability of our
+tool on protocols of increasing length (as explained in Section 5.2). We also
+measure the execution overhead of our implementation by comparing it against an
+implementation without session types or refinement types, which we call bare
+implementation (as explained in Section 5.3).
 
-To reproduce the benchmarks reported in the paper run the script with an argument of 30 (**TODO: (verify the argument and what it means**). Note that the script will take a considerable time to complete **TODO: (how much approx: XXX)**:
-
+To reproduce the benchmarks reported in the paper, run the script:
 ```bash
-python3 scripts/pingpong.py 30
+FULL=1 python3 scripts/pingpong.py
 ```
+In the paper, we repeat the benchmark for 30 times and report the average.
+To do so, run with an argument of 30.
+```bash
+FULL=1 python3 scripts/pingpong.py 30
+```
+Note that the script will take a considerable time to complete (up to 30
+minutes for one complete run).
+
 Compare the results with the results reported in Table 1, taking into account that the absolute values may differ. Verify the associated claims regarding
-*  compilation time (Section 5.2, line 947):
+* compilation time (Section 5.2, line 947):
 > The increase of type-checking time is non-linear with regard to the protocol length
 
 * execution time (Section 5.3, line 971-972):
@@ -188,10 +199,6 @@ The produced table contains the following columns. In brackets we give the name 
 * ```TC Time (Gen.)``` - the time taken for the generated APIs to type-check in F\* (```Gen. Code```)
 * ```TC Time (Impl)``` - the time taken to time check the implementation (```Callbacks```)
 * Note that the compilation and execution time are separated in two tables.
-
-By default, the script reproduces the table and runs the experiment **once**.
-Optionally, you may add a parameter to repeat the experiment, i.e. `python3
-scripts/pingpong.py 10` for 10 repetitions.
 
 You should be able to observe a similar pattern of increase in compilation
 times as the protocol length increases, and no significant changes in the
