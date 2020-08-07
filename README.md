@@ -228,7 +228,8 @@ The produced table corresponds to Table 2 from the paper.
 It contains the same columns as the table produces in &#167;[2.1](#benchmark-table-1). Note that Table 2 from the paper reports:
 - the total generation time, which is a sum of the ```Gen Time (CFSM)``` and ```Gen Time (F*)``` from the produced table.
 - the total time checking time, which is a sum of ```TC Time (Gen.)``` and ```TC Time (Impl)``` from the produced table.
-- The entry for Travel Agency from the Table 2 corresponds to Booking from the produced table, the other names are self explanatory.  
+- the entry for Travel Agency from the Table 2 corresponds to Booking from the produced table, the other names are self explanatory.  
+
 The source code (protocols and implementations) for each of these examples is located in a separate folder. See &#167;[2.4](#modify-refinement) for details on how to run each of the examples.
 
 ---
