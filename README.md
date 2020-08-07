@@ -178,17 +178,16 @@ To reproduce the benchmarks reported in the paper run the script with an argumen
 python3 scripts/pingpong.py 30
 ```
 
-Compare the results with the results reported in Table 1, taking into account that the absolute values may differ. Verify the associated claim (Section 5.3, line 971-972):
-
-> Despite the different protocol lengths, there are no significant changes in execution time
-
 The produced table contains the following columns. In brackets we give the name of the corresponding columns from Table 1.
 * ```Gen Time (CFSM)``` - the time taken for Scribble to generate the CFSM (```CFSM```)
 * ```Gen Time (F*)``` - the time taken for the code generation tool to convert the CFSM to F\* (```F* APIs```)
 * ```TC Time (Gen.)``` - the time taken for the generated APIs to type-check in F\* (```Gen. Code```)
 * ```TC Time (Impl)``` - the time taken to time check the implementation (```Callbacks```)
+* Note that the compilation and execution time are separated in two tables. 
 
+Compare the results with the results reported in Table 1, taking into account that the absolute values may differ. Verify the associated claim (Section 5.3, line 971-972):
 
+> Despite the different protocol lengths, there are no significant changes in execution time
 
 The script runs the example 30 times and displays the average.
 
