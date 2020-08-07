@@ -180,7 +180,7 @@ To reproduce the benchmarks reported in the paper, run the script:
 FULL=1 python3 scripts/pingpong.py
 ```
 In the paper, we repeat the benchmark for 30 times and report the average.
-To do so, run with an argument of 30.
+To do so, run with an argument of 30. (We don't recommend you to try this because it takes a long time)
 ```bash
 FULL=1 python3 scripts/pingpong.py 30
 ```
