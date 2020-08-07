@@ -104,7 +104,7 @@ We provide several scripts that allow you to quickly run the main examples of th
 A step by step explanation on how to verify the claims of the paper, how to use the toolchain,
 and how to test each example separately is deferred to later sections (&#167;2 and &#167;3) of this document.
 
-#### <a name="run-all-examples"></a> 1.3.1 Test that at all examples can be executed
+#### <a name="run-all-examples"></a> 1.3.1 Test that all examples can be executed
 To verify and execute all implemented examples:
 
 ```bash
