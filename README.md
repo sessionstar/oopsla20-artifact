@@ -12,8 +12,8 @@ and safely implementing the distributed endpoint programs in **F&#42;**.
 This artifact submission contains the following:
 
 - An overview of the artifact (this document).
-- The main artifact, a [Docker image](https://drive.google.com/file/d/1HyGBnHrnyqJ3s0rTzoADJ6NjkqkSB6YE/view?usp=sharing).
-- The md5 hash of the artifact file is `a41a7cbbb61408df6f5fb080cd71d01b`.
+- The main artifact, a [Docker image](https://drive.google.com/file/d/1BvjiYfBUY9KbkCDUb-ErvqYZz4Q_bsmm/view?usp=sharing).
+- The md5 hash of the artifact file is `532b4e75bdcffe4c883aecf61371d373`.
 
 For better usability, please use the [online](https://github.com/sessionstar/oopsla20-artifact/blob/master/README.md) version of this document.
 
@@ -75,7 +75,7 @@ For the OOPSLA'20 artifact evaluation, please use the docker image provided:
 
 ### <a name="artifact-layout"></a> 1.2 Artifact Layout
 
-The artifact is built from this [commit](https://github.com/sessionstar/oopsla20-artifact/tree/8bc297a28f12a188d08854f8cea39c8b063cd94f)
+The artifact is built from this [commit](https://github.com/sessionstar/oopsla20-artifact/tree/7b1bbf5d770687f6deac354e9a31c0807272bf19)
 in the sessionstar [GitHub](https://github.com/sessionstar/oopsla20-artifact) repository.
 
 The artifact contains the following:
