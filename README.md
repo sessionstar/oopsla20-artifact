@@ -72,6 +72,7 @@ For the OOPSLA'20 artifact evaluation, please use the docker image provided:
 8. The instructions in this overview assume you are in the
    `/home/sessionstar/examples` directory.
 
+---
 
 ### <a name="artifact-layout"></a> 1.2 Artifact Layout
 
@@ -104,7 +105,7 @@ We provide several scripts that allow you to quickly run the main examples of th
 A step by step explanation on how to verify the claims of the paper, how to use the toolchain,
 and how to test each example separately is deferred to later sections (&#167;2 and &#167;3) of this document.
 
-#### <a name="run-all-examples"></a> 1.3.1 Test that at all examples can be executed
+#### <a name="run-all-examples"></a> 1.3.1 Test that all examples can be executed
 To verify and execute all implemented examples:
 
 ```bash
@@ -112,7 +113,7 @@ cd examples
 make
 make run
 ```
-&#167; [2.5](#other-examples) explains how to run each example separately.
+&#167;[2.5](#other-examples) explains how to run each example separately.
 
 ---
 
@@ -125,9 +126,7 @@ python3 scripts/pingpong.py
 
 The produced table corresponds (up to column renaming) to Table 1 from the paper.
 
-(**TODO:** explain the script arguments: 1. explain the option to adjust n, 2. option to adjust how many times the example are run; 3.explain the option to run remotely)
-
-&#167; [2.1](#benchmark-table-1) explains in details how to compare the produced results with the paper.
+&#167;[2.1](#benchmark-table-1) explains in details how to compare the produced results with the paper.
 
 ---
 
@@ -141,7 +140,7 @@ python3 scripts/examples.py
 
 The produced table corresponds (up to column renaming) to Table 2 from the paper.
 
-&#167; [2.2](#benchmark-table-2) explains in details how to compare the produced results with the paper.
+&#167;[2.2](#benchmark-table-2) explains in details how to compare the produced results with the paper.
 
 ---
 ---
@@ -170,7 +169,7 @@ Nevertheless, the claims stated in the paper should be preserved.
 
 #### <a name="benchmark-table-1"></a> 2.1  Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3).
 
-The purpose of this set of benchmarks is to demonstrate the scalabilty of our tool on protocols of increasing length (as explained in Section 5.2). We also measure the execution overhead of our implementation by comparing it against an implementation without session types or refinement types, which we call bare implementation (as explained in Section 5.3).
+The purpose of this set of benchmarks is to demonstrate the scalability of our tool on protocols of increasing length (as explained in Section 5.2). We also measure the execution overhead of our implementation by comparing it against an implementation without session types or refinement types, which we call bare implementation (as explained in Section 5.3).
 
 To reproduce the benchmarks reported in the paper run the script with an argument of 30 (**TODO: (verify the argument and what it means**). Note that the script will take a considerable time to complete **TODO: (how much approx: XXX)**:
 
@@ -178,27 +177,32 @@ To reproduce the benchmarks reported in the paper run the script with an argumen
 python3 scripts/pingpong.py 30
 ```
 
-Compare the results with the results reported in Table 1, taking into account that the absolute values may differ. Verify the associated claim (Section 5.3, line 971-972):
-
-> Despite the different protocol lengths, there are no significant changes in execution time
-
 The produced table contains the following columns. In brackets we give the name of the corresponding columns from Table 1.
 * ```Gen Time (CFSM)``` - the time taken for Scribble to generate the CFSM (```CFSM```)
 * ```Gen Time (F*)``` - the time taken for the code generation tool to convert the CFSM to F\* (```F* APIs```)
 * ```TC Time (Gen.)``` - the time taken for the generated APIs to type-check in F\* (```Gen. Code```)
 * ```TC Time (Impl)``` - the time taken to time check the implementation (```Callbacks```)
+* Note that the compilation and execution time are separated in two tables. 
 
+Compare the results with the results reported in Table 1, taking into account that the absolute values may differ. Verify the associated claim (Section 5.3, line 971-972):
 
+> Despite the different protocol lengths, there are no significant changes in execution time
 
-The script runs the example 30 times and displays the average.
+By default, the script reproduces the table and runs the experiment **once**.
+Optionally, you may add a parameter to repeat the experiment, i.e. `python3
+scripts/pingpong.py 10` for 10 repetitions.
 
-(TODO: 1. explain the option to adjust n, 2. option to adjust how many times the example are run; 3.explain the option to run remotely)
+You should be able to observe a similar pattern of increase in compilation
+times as the protocol length increases, and no significant changes in the
+execution times.
 
 **Note:** The result in the paper run the experiments under a network of latency of 0.340ms (64 bytes ping), while the script runs the examples in the same docker container.
 
+**TODO: Running remotely**
+
 
 ---
-#### <a name="benchmark-table-2"></a> 2.2 Run and verify the example listed in Table 2 (Section 5.4).
+#### <a name="benchmark-table-2"></a> 2.2 Run and verify the examples listed in Table 2 (Section 5.4).
 
 The purpose of these set of benchmarks is to show the expressivity of our toolchain. We have taken examples
 from the session type literature, and have added refinements to encode data dependencies in the protocols (as explained in Section 5.4).
@@ -255,7 +259,7 @@ HigherLower/B/main.ocaml.exe &
 HigherLower/C/main.ocaml.exe &
 HigherLower/A/main.ocaml.exe &
 ```
- The above command runs the three endpoins, i.e A, B and C.
+ The above commands run the three endpoins, i.e A, B and C.
 
 
 ---
@@ -275,7 +279,7 @@ make -C HigherLower/B main.ocaml.exe
 ```
   After each modification, compile and observe that an error is reported. Note that since we are not changing the protocol, you do not need to run sessionstar again, it is enough to run the F* type checker using ```make -C HigherLower/B main.ocaml.exe```
 
- Suggested modifications:
+ Suggested modifications (to [HigherLower/B/HigherLowerB_CallbackImpl.fst](examples/HigherLower/B/HigherLowerB_CallbackImpl.fst) file):
  - Option 1: Modify the condition for the lose case ([Line 32](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/B/HigherLowerB_CallbackImpl.fst#L32)) from ```t=1``` to ```t=0```  
  - Option 2: Comment the lose case ([Line 32-33](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/B/HigherLowerB_CallbackImpl.fst#L32)).
 Note: the syntax for comments in F* is (* commented code *).
@@ -294,18 +298,17 @@ Suggested modifications:
   - Option 2: Modify the protocol ([HigherLower.scr](examples/HigherLower/HigherLower.scr)) by removing all constraints for x that depend on n.
     - Change [Line 19](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L19) from ```@'n>x && t>1'``` to ```@'t>1```, and
     - Change [Line 23](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L23) by commenting ```n=x'``` (comment in Scribble is `//`), and
-    - Change [Line 31](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L31) from @'((n<x || n>x) && t=1)' to ```@'t=1'```
-
-   Since we changed the protocol, new callback signatures have to be generated. Generate new callback signatures and compile:
+    - Change [Line 31](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L31) from @'((n<x || n>x) && t=1)' to ```@'t=1'```. 
+    Since we changed the protocol, new callback signatures have to be generated. Generate new callback signatures and compile:
  ```bash
  sessionstar HigherLower/HigherLower.scr HigherLower C
  mv GeneratedHigherLowerC.fst HigherLower/C
  make -C HigherLower/C main.ocaml.exe
  ```
 
-#### ❗️__Note__ on syntax discrepancies:
+#### ❗️Note on syntax discrepancies:
 
-There are small syntax discrepancies between Scribble syntax and the paper. For details, see &#167;[A.1.1]((#discrepancy) and &#167;[A.1.2]((#syntax).
+There are small syntax discrepancies between Scribble syntax and the paper. For details, see &#167;[A.1.1](#discrepancy) and &#167;[A.1.2](#syntax).
 
 ---
 
@@ -317,7 +320,6 @@ make build-[name of the example]
 ```
 
 To run a selected example from Table 2:
-You can run them using:
 ```bash
 make run-[name of the example]
 ```
