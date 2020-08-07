@@ -180,7 +180,7 @@ To reproduce the benchmarks reported in the paper, run the script:
 FULL=1 python3 scripts/pingpong.py
 ```
 In the paper, we repeat the benchmark for 30 times and report the average.
-To do so, run with an argument of 30.
+To do so, run with an argument of 30. (We don't recommend you to try this because it takes a long time)
 ```bash
 FULL=1 python3 scripts/pingpong.py 30
 ```
@@ -596,13 +596,13 @@ the value of the (last) offer and the payment must be equal.
       that are used. We have implemented an HTTP server in F*. The
       example can interoperate with HTTP clients, e.g. Chrome, Firefox,
       etc.
-    - testing HTTP: ```make run-HTTP``` runs an Http sever. To test the
-    server open (`http://localhost:3000/`) in a browser. You will see the message
-    > a secret cannot be exposed  
+    - testing HTTP: ```make run-HTTP``` runs an Http server. 
+      To test the server, open (`http://localhost:3000/`) in a browser. You will
+      see the message
+      > a secret cannot be exposed  
+      returned by the server.
 
-    returned by the server.
-    Note that the docker container should expose port 3000 (as shown in &#167;[1.1](#run-the-artifact)).   
-
+      Note that the docker container should expose port 3000 (as shown in &#167;[1.1](#run-the-artifact)).   
 #### A.3 Additional resources
 
 The [Session* wiki](https://github.com/sessionstar/oopsla20-artifact/wiki/Session*-in-5-minutes) contains additional resources and  explanations on how to write and verify Session* programs.
