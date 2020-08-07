@@ -112,7 +112,7 @@ cd examples
 make
 make run
 ```
-&#167; [2.5](#other-examples) explains how to run each example separately.
+&#167;[2.5](#other-examples) explains how to run each example separately.
 
 ---
 
@@ -127,7 +127,7 @@ The produced table corresponds (up to column renaming) to Table 1 from the paper
 
 (**TODO:** explain the script arguments: 1. explain the option to adjust n, 2. option to adjust how many times the example are run; 3.explain the option to run remotely)
 
-&#167; [2.1](#benchmark-table-1) explains in details how to compare the produced results with the paper.
+&#167;[2.1](#benchmark-table-1) explains in details how to compare the produced results with the paper.
 
 ---
 
@@ -141,7 +141,7 @@ python3 scripts/examples.py
 
 The produced table corresponds (up to column renaming) to Table 2 from the paper.
 
-&#167; [2.2](#benchmark-table-2) explains in details how to compare the produced results with the paper.
+&#167;[2.2](#benchmark-table-2) explains in details how to compare the produced results with the paper.
 
 ---
 ---
