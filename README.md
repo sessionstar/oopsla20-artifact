@@ -72,6 +72,7 @@ For the OOPSLA'20 artifact evaluation, please use the docker image provided:
 8. The instructions in this overview assume you are in the
    `/home/sessionstar/examples` directory.
 
+---
 
 ### <a name="artifact-layout"></a> 1.2 Artifact Layout
 
