@@ -101,7 +101,7 @@ The artifact contains the following:
 We provide several scripts that allow you to quickly run the main examples of the paper.
 
 A step by step explanation on how to verify the claims of the paper, how to use the toolchain,
-and how to test each example separately is deferred to next section (&#167;[2](#step-by-step)) of this document.
+and how to test each example separately is deferred to the next section (&#167;[2](#step-by-step)) of this document.
 
 #### <a name="run-all-examples"></a> 1.3.1 Test that all examples can be executed
 To verify and execute all implemented examples:
