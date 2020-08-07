@@ -102,18 +102,18 @@ clean-HigherLower:
 
 .PHONY: build-HTTP
 build-HTTP:
-	# TODO
-	cd HTTP && sessionstar Http.scr Http C
-	cd HTTP && sessionstar Http.scr Http S
+	cd HTTP && scribblec-assrt.sh Http.scr -z3 -batch -fair -assrt -fsm Http S > Server.fsm
+	cd HTTP && ScribbleCodeGen.exe --custom-label --protocol Http --role S -o Server.fst Server.fsm
+	make -C HTTP main.ocaml.exe
+
+.PHONY: clean-HTTP
+clean-HTTP:
+	rm -f HTTP/Server.fsm
+	make -C HTTP clean
 
 .PHONY: run-HTTP
 run-HTTP:
-	# TODO
-	
-.PHONY: clean-HTTP
-clean-HTTP:
-	$(call clean-fsm,HTTP)
-	# TODO
+	HTTP/main.ocaml.exe
 
 
 .PHONY: build-Negotiation
