@@ -485,16 +485,10 @@ Scribble in the artifact and that presented in the paper.
 
 - There are small syntactic differences.
     - Refined state variable declarations were written in the paper: e.g.,
-      Fig. 3
-      ```
-      aux global protocol Aux(role A, role B, role C)
-                                          @'B[n: int{0<=n<100}, t: int{0<t}]
-      ```
-      whereas the implementation in the artifact requires syntax like:
-      ```
-      aux global protocol Aux(role A, role B, role C)
-                          @'B[n: int = 0, t: int = 1] (0<=n && n<100) && 0<t
-      ```
+      Fig.
+      `aux global protocol Aux(role A, role B, role C) @'B[n: int{0<=n<100}, t: int{0<t}]`  
+      whereas the implementation in the artifact requires syntax like:  
+      `aux global protocol Aux(role A, role B, role C) @'B[n: int = 0, t: int = 1] (0<=n && n<100) && 0<t`  
       The syntax in our implementation declares state variables with a default
       initial expression (which happen to be irrelevant to the HigherLower
       example), and the refinements of each variable are written as a
@@ -514,7 +508,7 @@ defined in the paper (Section 4).  The syntax and key features are already
 mostly demonstrated by the HigherLower example ([2.3](#main-example)).
 The following summarises the syntax using another compact example.
 
-```
+```java
 module Foo;  // Corresponds to the file name, i.e., Foo.scr
 
 type <fstar> "..." from "..." as int;  // The "..." are currently irrelevant
@@ -581,7 +575,7 @@ Below, we outline the main steps required to implement the client for a simple c
 1. Copy the template directory and rename it to mycalc
 2. Inside the new directory create a Scribble protocol (you can copy the Calculator.scr protocol from the examples/Calculator)
 3. Generate an F* API  using ```sessionstar```. We assume you are in the  examples directory (the parent directory of mycalc)
-```
+```bash
 sessionstar mycalc Calculator C
 ```
 4. Implement the logic for all callbacks, generated in the previous step
@@ -590,7 +584,7 @@ sessionstar mycalc Calculator C
   - Implement the business logic for all callbacks. The easiest way is to copy all F* callback signatures from GeneratedCalculatorC.fst, and implement them.
   We have given you a head start with the skeleton below.
 
-```
+```ocaml
 module CalcC_CallbackImpl
 
 open GeneratedCalcC
@@ -629,7 +623,7 @@ let callbacks : callbacksC = {
 Hint: the Calculator folder contains the full implementation, and you can use it for reference.
 5. Check that your implementation is correct. Below command assumes that you are in the examples folder (the parent directory of the mycalc folder)
 
-```
+```bash
 make -C mycalc main.ocaml.exe
 ```
 ---
