@@ -64,6 +64,7 @@ For the OOPSLA'20 artifact evaluation, please use the docker image provided:
     ```bash
     docker run -it -p 3000:3000 docker.pkg.github.com/sessionstar/oopsla20-artifact/artifact:latest
     ```
+    Note: Exposing port 3000 is optional, used for running HTTP server example.
 7. The Docker image comes with an installation of vim and nano for editing.
    If you wish to install additional software for editing or other purposes, you may obtain sudo
    access with the password `sessionstar`.
@@ -81,9 +82,8 @@ The artifact contains the following:
 * The directories `scribble-java` and `ScribbleCodeGenOCaml`
   comprise the full source code of the toolchain.
     * The `sessionstar` command, available on the command line `$PATH`,
-      performs the Scribble protocol to F* API generation (e.g. the F*
-      callback signatures)
-* The directory `FStar` contains a checkout of the F* compiler, patched to
+      performs the Scribble protocol to F\* API generation
+* The directory `FStar` contains a checkout of the F\* compiler, patched to
   enable `TCP_NODELAY` flag for benchmarking purposes.
 * The directory `examples` contains the source code for the various examples,
   including the HigherLower running example from the paper (Section 2) and
@@ -101,7 +101,7 @@ The artifact contains the following:
 We provide several scripts that allow you to quickly run the main examples of the paper.
 
 A step by step explanation on how to verify the claims of the paper, how to use the toolchain,
-and how to test each example separately is deferred to later sections (&#167;2 and &#167;3) of this document.
+and how to test each example separately is deferred to next section (&#167;[2](#step-by-step)) of this document.
 
 #### <a name="run-all-examples"></a> 1.3.1 Test that all examples can be executed
 To verify and execute all implemented examples:
@@ -122,9 +122,10 @@ To execute the benchmark experiment once:
 python3 scripts/pingpong.py
 ```
 
-The produced table corresponds (up to column renaming) to Table 1 from the paper.
+The produced table corresponds (up to column renaming) to Table 1 (truncated) from the paper.
 
-&#167;[2.1](#benchmark-table-1) explains in details how to compare the produced results with the paper.
+&#167;[2.1](#benchmark-table-1) explains in details how to reproduce the full
+table, and how to compare the produced results with the paper.
 
 ---
 
@@ -161,7 +162,7 @@ Additionally, you can test and modify any of the examples we have implemented
 protocols using our toolchain.
 
 **Note on performance:** Measurements in the paper are taken using a machine with Intel i7-7700K CPU (4.20 GHz,
-922 4 cores, 8 threads), 16 GiB RAM, operating system Ubuntu 18.04.
+4 cores, 8 threads), 16 GiB RAM, operating system Ubuntu 18.04.
 Depending on your test machine, the absolute values of the measurements produced in &#167;[2.1](#benchmark-table-1)
 and &#167;[2.2](#benchmark-table-2) may differ from the paper.
 Nevertheless, the claims stated in the paper should be preserved.
@@ -204,10 +205,9 @@ You should be able to observe a similar pattern of increase in compilation
 times as the protocol length increases, and no significant changes in the
 execution times.
 
-**Note:** The result in the paper run the experiments under a network of latency of 0.340ms (64 bytes ping), while the script runs the examples in the same docker container.
-
-**TODO: Running remotely**
-
+**Note:** The result in the paper run the experiments under a network of
+latency of 0.340ms (64 bytes ping), while the script runs the examples in the
+same docker container.
 
 ---
 #### <a name="benchmark-table-2"></a> 2.2 Run and verify the examples listed in Table 2 (Section 5.4).
@@ -215,11 +215,14 @@ execution times.
 The purpose of these set of benchmarks is to show the expressivity of our toolchain. We have taken examples
 from the session type literature, and have added refinements to encode data dependencies in the protocols (as explained in Section 5.4).
 
-To run all examples at once:
+To benchmark all examples at once:
 ```bash
 python3 scripts/examples.py
 ```
-Compare the results with the results reported in Table 2, taking into account that the absolute values may differ.
+Compare the results with the results reported in Table 2, taking into account
+that the absolute values may differ.
+You may specify the number of measurement repetitions as an optional argument
+to the script.
 
 The produced table corresponds to Table 2 from the paper.
 It contains the same columns as the table produces in &#167;[2.1](#benchmark-table-1) Note that Table 2 from the paper reports:
@@ -290,7 +293,7 @@ make -C HigherLower/B main.ocaml.exe
  Suggested modifications (to [HigherLower/B/HigherLowerB_CallbackImpl.fst](examples/HigherLower/B/HigherLowerB_CallbackImpl.fst) file):
  - Option 1: Modify the condition for the lose case ([Line 32](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/B/HigherLowerB_CallbackImpl.fst#L32)) from ```t=1``` to ```t=0```  
  - Option 2: Comment the lose case ([Line 32-33](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/B/HigherLowerB_CallbackImpl.fst#L32)).
-Note: the syntax for comments in F* is (* commented code *).
+Note: the syntax for comments in F* is `(* commented code *)`.
 
 (b) **Use of proof-irrelevant variables:** To demonstrate how our toolchain uses reasoning with latent information, we will modify the protocol HigherLower, and we will compile the  implementation for role C.
 
@@ -301,20 +304,28 @@ mv GeneratedHigherLowerC.fst HigherLower/C
 make -C HigherLower/C main.ocaml.exe
 ```
 Suggested modifications:
-  - Option 1: Modify the implementation ([HigherLower/C/HigherLowerC_CallbackImpl.fst](examples/HigherLower/C/HigherLowerC_CallbackImpl.fst) file) such that the higher case sends a variable that is lower than the current one. For example change Line [34](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/C/HigherLowerC_CallbackImpl.fst#L34) from ```next := (Mkstate72?.x st) + 1)``` to ```next := (Mkstate72?.x st) - 1)```. Compile the endpoint (```make -C HigherLower/C main.ocaml.exe```) to observer an error.  
+  - Option 1: Modify the implementation
+    ([HigherLower/C/HigherLowerC_CallbackImpl.fst](examples/HigherLower/C/HigherLowerC_CallbackImpl.fst)
+    file) such that the higher case sends a variable that is lower than the
+    current one. For example change Line
+    [34](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/C/HigherLowerC_CallbackImpl.fst#L34)
+    from ```next := (Mkstate72?.x st) + 1``` to ```next := (Mkstate72?.x st) - 1```. 
+    Compile the endpoint (```make -C HigherLower/C main.ocaml.exe```) to
+    observe an error.
 
   - Option 2: Modify the protocol ([HigherLower.scr](examples/HigherLower/HigherLower.scr)) by removing all constraints for x that depend on n.
     - Change [Line 19](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L19) from ```@'n>x && t>1'``` to ```@'t>1```, and
-    - Change [Line 23](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L23) by commenting ```n=x'``` (comment in Scribble is `//`), and
-    - Change [Line 31](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L31) from @'((n<x || n>x) && t=1)' to ```@'t=1'```.
-    Since we changed the protocol, new callback signatures have to be generated. Generate new callback signatures and compile:
- ```bash
- sessionstar HigherLower/HigherLower.scr HigherLower C
- mv GeneratedHigherLowerC.fst HigherLower/C
- make -C HigherLower/C main.ocaml.exe
- ```
+    - Change [Line 23](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L23) by commenting ```@'n=x'``` (comment in Scribble is `//`), and
+    - Change [Line 31](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L31) from ```@'((n<x || n>x) && t=1)'``` to ```@'t=1'```.
 
-**Note** on syntax discrepancies: There are small syntax discrepancies between Scribble syntax and the paper. For details, see &#167;[A.1.1](#discrepancy) and &#167;[A.1.2](#syntax).
+    Since we changed the protocol, new callback signatures have to be generated. Generate new callback signatures and compile:
+     ```bash
+     sessionstar HigherLower/HigherLower.scr HigherLower C
+     mv GeneratedHigherLowerC.fst HigherLower/C
+     make -C HigherLower/C main.ocaml.exe
+     ```
+
+**Note:** on syntax discrepancies: There are small syntax discrepancies between Scribble syntax and the paper. For details, see &#167;[A.1.1](#discrepancy) and &#167;[A.1.2](#syntax).
 
 ---
 
