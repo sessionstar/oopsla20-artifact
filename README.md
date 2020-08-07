@@ -180,7 +180,7 @@ To reproduce the benchmarks reported in the paper, run the script:
 FULL=1 python3 scripts/pingpong.py
 ```
 In the paper, we repeat the benchmark for 30 times and report the average.
-To do so, run with an argument of 30.
+To do so, run with an argument of 30. (We don't recommend you to try this because it takes a long time)
 ```bash
 FULL=1 python3 scripts/pingpong.py 30
 ```
@@ -455,10 +455,12 @@ Scribble in the artifact and that presented in the paper.
   <!---and is not required to support the properties described above.--->
 
 **F\* syntax**
-- The paper uses the dot notation to refer to state variables (e.g st.x). In practice, F* requires state variables to be extracted explicitly from the state record. Given the type of ```st``` is ```State1```, x can be extracted as follows:
-```ocaml
-len x = (Mkstate1?.x st)
-```
+- The paper uses the dot notation (accessing a field of a record) to refer to state variables (e.g `st.x`).
+  In practice, when many records contains the same field, the following syntax needs to be fixed for manual disambiguation:
+  Given the type of ```st``` is ```state1```, `x` can be extracted as follows:
+    ```ocaml
+    let x = (Mkstate1?.x st) in ...
+    ```
 
 #### <a name="syntax"></a>  A.1.2 Syntax of Refined Scribble
 
