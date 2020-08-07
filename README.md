@@ -11,11 +11,11 @@ and safely implementing the distributed endpoint programs in **F&#42;**.
 
 This artifact submission contains the following:
 
-- An [overview]() **TODO** of the artifact (this document).
+- An overview of the artifact (this document).
 - The main artifact, a [Docker image](https://drive.google.com/file/d/1HyGBnHrnyqJ3s0rTzoADJ6NjkqkSB6YE/view?usp=sharing).
 - The md5 hash of the artifact file is `a41a7cbbb61408df6f5fb080cd71d01b`.
 
-For better usability, please use the [online]() **TODO** version of this document.
+For better usability, please use the [online](https://github.com/sessionstar/oopsla20-artifact/blob/master/README.md) version of this document.
 
 This overview describes the steps to assess the practical claims of the
 paper using the artifact.
