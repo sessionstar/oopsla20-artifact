@@ -34,7 +34,7 @@ if __name__ == "__main__":
     repetition = int(sys.argv[1]) if len(sys.argv) > 1 else None
     print("=" * 80)
     headers = [
-        "Iteration",
+        "Example",
         "Gen Time (CFSM)",
         "Gen Time (F*)",
         "TC Time (Gen.)",
