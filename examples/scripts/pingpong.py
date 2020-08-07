@@ -81,7 +81,7 @@ def benchmark_for_pingpong_with_iteration(
     return result
 
 
-def compile_pingpong():
+def compile_pingpong(full):
     os.chdir("PingPong")
     print("Compiling endpoints for execution, this may take up to 20 min...")
     subprocess.check_output(["make", "main.ocaml.exe"], stderr=subprocess.DEVNULL)
@@ -90,9 +90,7 @@ def compile_pingpong():
 PING_PONGS = 100_000
 
 
-if __name__ == "__main__":
-    iterations = [1, 5, 10, 15, 20, 25]
-    repetition = int(sys.argv[1]) if len(sys.argv) > 1 else None
+def make_compilation_times(iterations, repetition):
     print("Compilation Times".center(80))
     print("=" * 80)
     headers = [
@@ -119,20 +117,34 @@ if __name__ == "__main__":
         columns = [c.center(15) for c in columns]
         print(*columns, sep="|")
     print("=" * 80)
-    compile_pingpong()
+
+
+def make_execution_times(iterations, repetition):
     print("Execution Times".center(80))
     print("=" * 80)
-    iterations = [1, 5, 10, 20, 25]
     headers = ["Protocol Len.", "Execution Time"]
     headers = [h.center(38) for h in headers]
     print(*headers, sep="|")
     print("=" * 80)
+    if repetition is None:
+        repetition = 1
+    bareserver = subprocess.Popen(
+        ["./main.ocaml.exe", "127.0.0.1", "3000", "bareserverforever"]
+    )
+    times = []
+    for i in range(repetition):
+        time = subprocess.check_output(
+            ["./main.ocaml.exe", "127.0.0.1", "3000", "bareclient", str(PING_PONGS)]
+        )
+        times.append(float(time.decode("ascii")))
+    columns = ["bare", "%f" % (sum(times) / len(times))]
+    columns = [c.center(38) for c in columns]
+    print(*columns, sep="|")
+    bareserver.terminate()
     for iteration in iterations:
         server = subprocess.Popen(
             ["./main.ocaml.exe", "127.0.0.1", "3000", "serverforever", str(iteration)]
         )
-        if repetition is None:
-            repetition = 1
         times = []
         for i in range(repetition):
             time = subprocess.check_output(
@@ -151,3 +163,13 @@ if __name__ == "__main__":
         print(*columns, sep="|")
         server.terminate()
     print("=" * 80)
+
+
+if __name__ == "__main__":
+    repetition = int(sys.argv[1]) if len(sys.argv) > 1 else None
+    full = os.getenv("FULL")
+    comp_iterations = [1, 5, 10, 15, 20, 25] if full else [1, 5, 10]
+    make_compilation_times(comp_iterations, repetition)
+    compile_pingpong(full)
+    exec_iterations = [1, 5, 10, 20, 25] if full else [1, 5, 10]
+    make_execution_times(exec_iterations, repetition)

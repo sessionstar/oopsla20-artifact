@@ -2,13 +2,16 @@
 # Customize these variables for your project
 ################################################################################
 # The root files of your project, from which to begin scanning dependences
+ifdef FULL
 FSTAR_FILES=$(wildcard *.fst)
+TOP_LEVEL_FILE=ml/main.ml
+else
+FSTAR_FILES=Client1.fst Client10.fst Client5.fst GeneratedPingPong10A.fst GeneratedPingPong10B.fst GeneratedPingPong1A.fst GeneratedPingPong1B.fst GeneratedPingPong5A.fst GeneratedPingPong5B.fst Network.fst Payload.fst PingPong10AImpl.fst PingPong10BImpl.fst PingPong1AImpl.fst PingPong1BImpl.fst PingPong5AImpl.fst PingPong5BImpl.fst PingPongABase.fst PingPongBBase.fst Server1.fst Server10.fst Server5.fst
+TOP_LEVEL_FILE=ml/main_short.ml
+endif
 
 # The executable file you want to produce
 PROGRAM=main
-
-# A driver in ML to call into your program
-TOP_LEVEL_FILE=ml/main.ml
 
 # A place to put all the emitted .ml files
 OUTPUT_DIRECTORY=_output
