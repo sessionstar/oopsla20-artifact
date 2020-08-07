@@ -598,21 +598,21 @@ the value of the (last) offer and the payment must be equal.
 
 #### A.3 Implementing your own protocols
 
-The template folder contains an  initial setup for implementing your own programs. It contains some boilerplate files:
-* Makefile --to compile the program
-* payload.fst and network.fst -- for basic communication operations.
+The `template` folder contains an  initial setup for implementing your own programs. It contains some boilerplate files:
+* `Makefile` --to compile the program
+* `Payload.fst` and `Network.fst` -- for basic communication operations.
 
 Below, we outline the main steps required to implement the client for a simple calculator protocol that supports addition:
-1. Copy the template directory and rename it to mycalc
-2. Inside the new directory create a Scribble protocol (you can copy the Calculator.scr protocol from the examples/Calculator)
-3. Generate an F* API  using ```sessionstar```. We assume you are in the  examples directory (the parent directory of mycalc)
+1. Copy the template directory and rename it to `mycalc`
+2. Inside the new directory create a Scribble protocol (you can copy the `Calculator.scr` protocol from the `examples/Calculator`)
+3. Generate an F* API  using ```sessionstar```. We assume you are in the  `examples` directory (the parent directory of `mycalc`)
 ```bash
-sessionstar mycalc Calculator C
+sessionstar mycalc/Calculator.scr Calculator C
 ```
 4. Implement the logic for all callbacks, generated in the previous step
-  - Create a new file CalcC_CallbackImpl.fst
-  - Import the generated F* file  (GeneratedCalculatorC.fst), and other relevant libraries you may need
-  - Implement the business logic for all callbacks. The easiest way is to copy all F* callback signatures from GeneratedCalculatorC.fst, and implement them:
+  - Create a new file `CalcC_CallbackImpl.fst`
+  - Import the generated F* file  (`GeneratedCalculatorC.fst`), and other relevant libraries you may need
+  - Implement the business logic for all callbacks. The easiest way is to copy all F* callback signatures from `GeneratedCalculatorC.fst`, and implement them:
   ``` ocaml
   (*state20Onsend : (st: state20) -> ML (state20Choice st);*)
   (*state22OnsendSum2 : (st: state22) -> ML (int);*)
@@ -655,13 +655,13 @@ let callbacks : callbacksC = {
   );
 
   (*state24OnreceiveTerminate : (st: state24) -> (_dummy: unit) -> ML (unit);*)
-  state24OnreceiveTerminate = (fun _ _ -> ()) // this is the terminating state
+  state24OnreceiveTerminate = (fun _ _ -> ()) (* this is the terminating state *)
 }
 ```
 
-Hint: If you are struggling, the Calculator folder contains the full implementation, and you can use it for reference.
+Hint: If you are struggling, the `Calculator` folder contains the full implementation, and you can use it for reference.
 
-5. Check that your implementation is correct. Below command assumes that you are in the examples folder (the parent directory of the mycalc folder)
+5. Check that your implementation is correct. Below command assumes that you are in the `examples` folder (the parent directory of the `mycalc` folder)
 
 ```bash
 make -C mycalc main.ocaml.exe
@@ -680,3 +680,4 @@ make -C mycalc main.ocaml.exe
     connections) first.
 * `Fatal error: exception Unix.Unix_error(Unix.EADDRINUSE, "bind", "")`:
   * the error indicates that port is being used by another program. The simplest way to solve this is `pkill main.ocaml.exe` to kill any running program.
+  
