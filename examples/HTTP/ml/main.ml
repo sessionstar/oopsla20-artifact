@@ -3,7 +3,7 @@ let () =
   let conn = Network.listen port in
   let rec aux () =
     let conn, disconn = conn () in
-    Server.run ServerImpl.callbacks conn;
+    GeneratedHttpS.run ServerImpl.callbacks conn;
     disconn ();
     aux ()
   in aux ()

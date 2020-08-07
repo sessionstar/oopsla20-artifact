@@ -27,6 +27,7 @@ ALL_EXAMPLES = [
         "OnlineWallet/C/OnlineWalletC_CallbackImpl.fst",
     ),
     ("Ticket/Ticket.scr", "Ticket", "C", "Ticket/C/TicketC_CallbackImpl.fst"),
+    ("HTTP/Http.scr", "Http", "S", "HTTP/ServerImpl.fst"),
 ]
 
 

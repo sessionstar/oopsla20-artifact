@@ -103,7 +103,7 @@ clean-HigherLower:
 .PHONY: build-HTTP
 build-HTTP:
 	cd HTTP && scribblec-assrt.sh Http.scr -z3 -batch -fair -assrt -fsm Http S > Server.fsm
-	cd HTTP && ScribbleCodeGen.exe --custom-label --protocol Http --role S -o Server.fst Server.fsm
+	cd HTTP && ScribbleCodeGen.exe --custom-label --protocol Http --role S -o GeneratedHttpS.fst Server.fsm
 	make -C HTTP main.ocaml.exe
 
 .PHONY: clean-HTTP
