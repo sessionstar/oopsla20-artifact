@@ -455,10 +455,12 @@ Scribble in the artifact and that presented in the paper.
   <!---and is not required to support the properties described above.--->
 
 **F\* syntax**
-- The paper uses the dot notation to refer to state variables (e.g st.x). In practice, F* requires state variables to be extracted explicitly from the state record. Given the type of ```st``` is ```State1```, x can be extracted as follows:
-```ocaml
-len x = (Mkstate1?.x st)
-```
+- The paper uses the dot notation (accessing a field of a record) to refer to state variables (e.g `st.x`).
+  In practice, when many records contains the same field, the following syntax needs to be fixed for manual disambiguation:
+  Given the type of ```st``` is ```state1```, `x` can be extracted as follows:
+    ```ocaml
+    let x = (Mkstate1?.x st) in ...
+    ```
 
 #### <a name="syntax"></a>  A.1.2 Syntax of Refined Scribble
 
