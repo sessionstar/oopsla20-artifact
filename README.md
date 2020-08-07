@@ -579,7 +579,7 @@ an amount that would not overdraw the account) or end the session.
 
 * Ticket
 
-    - source folder:[examples/Ticket](examples/Ticket)
+    - source folder:  [examples/Ticket](examples/Ticket)
     - explanation: This is the running example from [Bocchi et al.
 2013](http://mrg.doc.ic.ac.uk/publications/a-theory-of-design-by-contract-for-distributed-multiparty-interactions/concur.pdf),
 where a buyer negotiates with the seller and bank for buying a
