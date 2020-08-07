@@ -1,267 +1,462 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
-<head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>README</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      {  background-color: #f8f8f8; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span.al { color: #ef2929; } /* Alert */
-    code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #c4a000; } /* Attribute */
-    code span.bn { color: #0000cf; } /* BaseN */
-    code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4e9a06; } /* Char */
-    code span.cn { color: #000000; } /* Constant */
-    code span.co { color: #8f5902; font-style: italic; } /* Comment */
-    code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-    code span.dt { color: #204a87; } /* DataType */
-    code span.dv { color: #0000cf; } /* DecVal */
-    code span.er { color: #a40000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #0000cf; } /* Float */
-    code span.fu { color: #000000; } /* Function */
-    code span.im { } /* Import */
-    code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-    code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-    code span.ot { color: #8f5902; } /* Other */
-    code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-    code span.sc { color: #000000; } /* SpecialChar */
-    code span.ss { color: #4e9a06; } /* SpecialString */
-    code span.st { color: #4e9a06; } /* String */
-    code span.va { color: #000000; } /* Variable */
-    code span.vs { color: #4e9a06; } /* VerbatimString */
-    code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-  </style>
-  <link rel="stylesheet" href="md.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
-</head>
-<body>
-<h1 id="oopsla-20-artifacts-11-overview">OOPSLA ’20 Artifacts #11 Overview</h1>
+<h1 id="oopsla-20-artifacts-11-overview">OOPSLA ‘20 Artifacts #11 Overview</h1>
+<p><a href="https://doi.org/10.5281/zenodo.3970760"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3970760.svg" alt="DOI" /></a></p>
+
 <blockquote>
-<h1 id="statically-verified-refinements-for-multiparty-protocols"><em>Statically Verified Refinements for Multiparty Protocols</em></h1>
-<h4 id="fangyi-zhou-francisco-ferreira-raymond-hu-rumyana-neykova-and-nobuko-yoshida">Fangyi Zhou, Francisco Ferreira, Raymond Hu, Rumyana Neykova and Nobuko Yoshida</h4>
+  <h1 id="statically-verified-refinements-for-multiparty-protocols"><em>Statically Verified Refinements for Multiparty Protocols</em></h1>
+
+  <h4 id="fangyi-zhou-francisco-ferreira-raymond-hu-rumyana-neykova-and-nobuko-yoshida">Fangyi Zhou, Francisco Ferreira, Raymond Hu, Rumyana Neykova and Nobuko Yoshida</h4>
 </blockquote>
-<p>Our paper presents <strong>Session*</strong>, a toolchain for specifying message passing protocols using <strong>Refined Multiparty Session Types</strong> and safely implementing the distributed endpoint programs in <strong>F*</strong>.</p>
+
+<p>Our paper presents <strong>Session*</strong>, a toolchain for
+specifying message passing protocols using <strong>Refined Multiparty Session Types</strong>
+and safely implementing the distributed endpoint programs in <strong>F*</strong>.</p>
+
 <p>This artifact submission contains the following:</p>
+
 <ul>
-<li>An overview of the artifact (this document).</li>
-<li>The main artifact, a <a href="https://drive.google.com/file/d/1HyGBnHrnyqJ3s0rTzoADJ6NjkqkSB6YE/view?usp=sharing">Docker image</a>.</li>
-<li>The md5 hash of the artifact file is <code>a41a7cbbb61408df6f5fb080cd71d01b</code>.</li>
+  <li>An overview of the artifact (this document).</li>
+  <li>The main artifact, a <a href="https://drive.google.com/file/d/1BvjiYfBUY9KbkCDUb-ErvqYZz4Q_bsmm/view?usp=sharing">Docker image</a>.</li>
+  <li>The md5 hash of the artifact file is <code>532b4e75bdcffe4c883aecf61371d373</code>.</li>
 </ul>
+
 <p>For better usability, please use the <a href="https://github.com/sessionstar/oopsla20-artifact/blob/master/README.md">online</a> version of this document.</p>
-<p>This overview describes the steps to assess the practical claims of the paper using the artifact.</p>
-<ol type="1">
-<li><strong><a href="#getting-started">Getting Started</a></strong>
-<ul>
-<li><a href="#run-the-artifact">1.1</a> Run the Artifact (Docker image)</li>
-<li><a href="#artifact-layout">1.2</a> Artifact Layout</li>
-<li><a href="#quick-test">1.3</a> Quick Test
-<ul>
-<li><a href="#run-all-examples">1.3.1</a> Run all examples</li>
-<li><a href="#run-table-1">1.3.2</a> Run the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper)</li>
-<li><a href="#run-table-2">1.3.3</a> Run the benchmarks for Table 2 (Section 5.4 in the paper)</li>
-</ul></li>
-</ul></li>
-<li><strong><a href="#step-by-step">Step-by-Step Instructions</a></strong>
-<ul>
-<li><a href="#benchmark-table-1">2.1</a> Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper)</li>
-<li><a href="#benchmark-table-2">2.2</a> Run and verify the example listed in Table 2 (Section 5.4 in the paper)</li>
-<li><a href="#main-example">2.3</a> Run the main example (HigherLower) of the paper (Section 2 in the paper)</li>
-<li><a href="#modify-refinement">2.4</a> Modify examples and observe refinement violations</li>
-<li><a href="#other-examples">2.5</a> Run through other examples (Optional)</li>
-</ul></li>
+
+<p>This overview describes the steps to assess the practical claims of the
+paper using the artifact.</p>
+
+<ol>
+  <li><strong><a href="#getting-started">Getting Started</a></strong>
+    <ul>
+      <li><a href="#run-the-artifact">1.1</a> Run the Artifact (Docker image)</li>
+      <li><a href="#artifact-layout">1.2</a> Artifact Layout</li>
+      <li><a href="#quick-test">1.3</a> Quick Test
+        <ul>
+          <li><a href="#run-all-examples">1.3.1</a> Run all examples</li>
+          <li><a href="#run-table-1">1.3.2</a> Run the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper)</li>
+          <li><a href="#run-table-2">1.3.3</a> Run the benchmarks for Table 2 (Section 5.4 in the paper)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong><a href="#step-by-step">Step-by-Step Instructions</a></strong>
+    <ul>
+      <li><a href="#benchmark-table-1">2.1</a> Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper)</li>
+      <li><a href="#benchmark-table-2">2.2</a> Run and verify the example listed in Table 2 (Section 5.4 in the paper)</li>
+      <li><a href="#main-example">2.3</a> Run the main example (HigherLower) of the paper (Section 2 in the paper)</li>
+      <li><a href="#modify-refinement">2.4</a> Modify examples and observe refinement violations</li>
+      <li><a href="#other-examples">2.5</a> Run through other examples (Optional)</li>
+    </ul>
+  </li>
 </ol>
-<h2 id="getting-started"><a name="getting-started"></a> 1 Getting Started</h2>
+
 <hr />
-<h3 id="run-the-artifact-docker-image"><a name="run-the-artifact"></a> 1.1 Run the Artifact (Docker Image)</h3>
+<hr />
+
+<h2 id="-1-getting-started"><a name="getting-started"></a> 1 Getting Started</h2>
+
+<hr />
+
+<h3 id="-11-run-the-artifact-docker-image"><a name="run-the-artifact"></a> 1.1 Run the Artifact (Docker Image)</h3>
+
 <p>For the OOPSLA’20 artifact evaluation, please use the docker image provided:</p>
-<ol start="0" type="1">
-<li><a href="https://docs.docker.com/engine/install/">Install docker</a>.</li>
-<li>Download the artifact file (assume the filename is <code>artifact.tar.gz</code>)</li>
-<li>Unzip the artifact file. <code>bash     gunzip artifact.tar.gz</code></li>
-<li>You should see the tar file <code>artifact.tar</code> after last operation.</li>
-<li>Load the docker image <code>bash     docker load &lt; artifact.tar</code></li>
-<li>You should see in the end of the output after last operation: <code>Loaded image: sessionstar2020/sessionstar:artifact</code></li>
-<li>Run the docker container: <code>bash     docker run -it -p 3000:3000 sessionstar2020/sessionstar:artifact</code> Note: Exposing port 3000 is optional, used for running HTTP server example.</li>
-<li>The Docker image comes with an installation of vim and nano for editing. If you wish to install additional software for editing or other purposes, you may obtain sudo access with the password <code>sessionstar</code>.</li>
-<li>The instructions in this overview assume you are in the <code>/home/sessionstar/examples</code> directory.</li>
+
+<ol>
+  <li><a href="https://docs.docker.com/engine/install/">Install docker</a>.</li>
+  <li>Download the artifact file (assume the filename is <code>artifact.tar.gz</code>)</li>
+  <li>Unzip the artifact file.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> gunzip artifact.tar.gz
+</code></pre></div>    </div>
+  </li>
+  <li>You should see the tar file <code>artifact.tar</code> after last operation.</li>
+  <li>Load the docker image
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> docker load &lt; artifact.tar
+</code></pre></div>    </div>
+  </li>
+  <li>You should see in the end of the output after last operation:
+    <pre><code> Loaded image: sessionstar2020/sessionstar:artifact
+</code></pre>
+  </li>
+  <li>Run the docker container:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> docker run <span class="nt">-it</span> <span class="nt">-p</span> 3000:3000 sessionstar2020/sessionstar:artifact
+</code></pre></div>    </div>
+    <p>Note: Exposing port 3000 is optional, used for running HTTP server example.</p>
+  </li>
+  <li>The Docker image comes with an installation of vim and nano for editing.
+If you wish to install additional software for editing or other purposes, you may obtain sudo
+access with the password <code>sessionstar</code>.</li>
+  <li>The instructions in this overview assume you are in the
+<code>/home/sessionstar/examples</code> directory.</li>
 </ol>
+
 <hr />
-<h3 id="artifact-layout"><a name="artifact-layout"></a> 1.2 Artifact Layout</h3>
-<p>The artifact is built from this <a href="https://github.com/sessionstar/oopsla20-artifact/tree/8bc297a28f12a188d08854f8cea39c8b063cd94f">commit</a> in the sessionstar <a href="https://github.com/sessionstar/oopsla20-artifact">GitHub</a> repository.</p>
+
+<h3 id="-12-artifact-layout"><a name="artifact-layout"></a> 1.2 Artifact Layout</h3>
+
+<p>The artifact is built from this <a href="https://github.com/sessionstar/oopsla20-artifact/tree/7b1bbf5d770687f6deac354e9a31c0807272bf19">commit</a>
+in the sessionstar <a href="https://github.com/sessionstar/oopsla20-artifact">GitHub</a> repository.</p>
+
 <p>The artifact contains the following:</p>
+
 <ul>
-<li>The directories <code>scribble-java</code> and <code>ScribbleCodeGenOCaml</code> comprise the full source code of the toolchain.
-<ul>
-<li>The <code>sessionstar</code> command, available on the command line <code>$PATH</code>, performs the Scribble protocol to F* API generation</li>
-</ul></li>
-<li>The directory <code>FStar</code> contains a checkout of the F* compiler, patched to enable <code>TCP_NODELAY</code> flag for benchmarking purposes.</li>
-<li>The directory <code>examples</code> contains the source code for the various examples, including the HigherLower running example from the paper (Section 2) and those listed in Table 2 in the paper.
-<ul>
-<li>The sub-directory <code>scripts</code> contains scripts for executing the benchmarks from Table 1 and Table 2 in the paper.</li>
-</ul></li>
-<li>The directory <code>template</code> contains template files to help you through writing and testing your own examples.</li>
+  <li>The directories <code>scribble-java</code> and <code>ScribbleCodeGenOCaml</code>
+comprise the full source code of the toolchain.
+    <ul>
+      <li>The <code>sessionstar</code> command, available on the command line <code>$PATH</code>,
+performs the Scribble protocol to F* API generation</li>
+    </ul>
+  </li>
+  <li>The directory <code>FStar</code> contains a checkout of the F* compiler, patched to
+enable <code>TCP_NODELAY</code> flag for benchmarking purposes.</li>
+  <li>The directory <code>examples</code> contains the source code for the various examples,
+including the HigherLower running example from the paper (Section 2) and
+those listed in Table 2 in the paper.
+    <ul>
+      <li>The sub-directory <code>scripts</code> contains scripts for executing the
+benchmarks from Table 1 and Table 2 in the paper.</li>
+    </ul>
+  </li>
+  <li>The directory <code>template</code> contains template files to help you through writing
+and testing your own examples.</li>
 </ul>
+
 <hr />
-<h3 id="quick-test"><a name="quick-test"></a> 1.3 Quick Test</h3>
+
+<h3 id="-13-quick-test"><a name="quick-test"></a> 1.3 Quick Test</h3>
+
 <p>We provide several scripts that allow you to quickly run the main examples of the paper.</p>
-<p>A step by step explanation on how to verify the claims of the paper, how to use the toolchain, and how to test each example separately is deferred to the next section (§<a href="#step-by-step">2</a>) of this document.</p>
-<h4 id="test-that-all-examples-can-be-executed"><a name="run-all-examples"></a> 1.3.1 Test that all examples can be executed</h4>
+
+<p>A step by step explanation on how to verify the claims of the paper, how to use the toolchain,
+and how to test each example separately is deferred to the next section (§<a href="#step-by-step">2</a>) of this document.</p>
+
+<h4 id="-131-test-that-all-examples-can-be-executed"><a name="run-all-examples"></a> 1.3.1 Test that all examples can be executed</h4>
 <p>To verify and execute all implemented examples:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="bu">cd</span> examples</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="fu">make</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="fu">make</span> run</span></code></pre></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>examples
+make
+make run
+</code></pre></div></div>
 <p>§<a href="#other-examples">2.5</a> explains how to run each example separately.</p>
+
 <hr />
-<h4 id="run-the-benchmarks-for-table-1-sections-5.2-and-5.3-in-the-paper."><a name="run-table-1"></a> 1.3.2 Run the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper).</h4>
+
+<h4 id="-132--run-the-benchmarks-for-table-1-sections-52-and-53-in-the-paper"><a name="run-table-1"></a> 1.3.2  Run the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper).</h4>
 <p>To execute the benchmark experiment once:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="ex">python3</span> scripts/pingpong.py</span></code></pre></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 scripts/pingpong.py
+</code></pre></div></div>
+
 <p>The produced table corresponds (up to column renaming) to Table 1 (truncated) from the paper.</p>
-<p>§<a href="#benchmark-table-1">2.1</a> explains in details how to reproduce the full table, and how to compare the produced results with the paper.</p>
+
+<p>§<a href="#benchmark-table-1">2.1</a> explains in details how to reproduce the full
+table, and how to compare the produced results with the paper.</p>
+
 <hr />
-<h4 id="run-the-benchmarks-for-table-2-section-5.4-in-the-paper."><a name="run-table-2"></a> 1.3.3 Run the benchmarks for Table 2 (Section 5.4 in the paper).</h4>
+
+<h4 id="-133-run-the-benchmarks-for-table-2-section-54-in-the-paper"><a name="run-table-2"></a> 1.3.3 Run the benchmarks for Table 2 (Section 5.4 in the paper).</h4>
+
 <p>To compile all applications implemented with <strong>Session*</strong> (Table 2):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="ex">python3</span> scripts/examples.py</span></code></pre></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 scripts/examples.py
+</code></pre></div></div>
+
 <p>The produced table corresponds (up to column renaming) to Table 2 from the paper.</p>
+
 <p>§<a href="#benchmark-table-2">2.2</a> explains in details how to compare the produced results with the paper.</p>
-<h2 id="step-by-step-instructions"><a name="step-by-step"></a> 2 Step-by-Step Instructions</h2>
-<p>The purpose of this section is to describe in details the steps required to assess the artifact associated with our paper. Following the steps below you should be able to reproduce the main claims from the paper:</p>
+
+<hr />
+<hr />
+
+<h2 id="-2-step-by-step-instructions"><a name="step-by-step"></a> 2 Step-by-Step Instructions</h2>
+
+<p>The purpose of this section is to describe in details the steps required to
+assess the artifact associated with our paper.
+Following the steps below you should be able to reproduce the main claims from the paper:</p>
+
 <ul>
-<li>run the benchmarks from Table 1, Section 5.2 and 5.3. For that purpose, complete §<a href="#benchmark-table-1">2.1</a> of this document.</li>
-<li>compile the examples, reported in Table 2, Section 5.4. For that purpose, complete §<a href="#benchmark-table-2">2.2</a> of this document.</li>
-<li>test the running example (HigherLower) from the paper, described in Section 2. For that purpose, complete §<a href="#main-example">2.3</a> of this document.</li>
+  <li>run the benchmarks from Table 1, Section 5.2 and 5.3. For that purpose,
+complete §<a href="#benchmark-table-1">2.1</a> of this document.</li>
+  <li>compile the examples, reported in Table 2, Section 5.4. For that purpose,
+complete §<a href="#benchmark-table-2">2.2</a> of this document.</li>
+  <li>test the running example (HigherLower) from the paper, described in Section 2.
+For that purpose, complete §<a href="#main-example">2.3</a> of this document.</li>
 </ul>
-<p>Additionally, you can test and modify any of the examples we have implemented (§<a href="#modify-refinement">2.4</a> and §<a href="#other-examples">2.5</a>), as well as implement and verify your own protocols using our toolchain.</p>
-<p><strong>Note on performance:</strong> Measurements in the paper are taken using a machine with Intel i7-7700K CPU (4.20 GHz, 4 cores, 8 threads), 16 GiB RAM, operating system Ubuntu 18.04. Depending on your test machine, the absolute values of the measurements produced in §<a href="#benchmark-table-1">2.1</a> and §<a href="#benchmark-table-2">2.2</a> may differ from the paper. Nevertheless, the claims stated in the paper should be preserved.</p>
-<h4 id="run-and-verify-the-benchmarks-for-table-1-sections-5.2-and-5.3."><a name="benchmark-table-1"></a> 2.1 Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3).</h4>
-<p>The purpose of this set of benchmarks is to demonstrate the scalability of our tool on protocols of increasing length (as explained in Section 5.2). We also measure the execution overhead of our implementation by comparing it against an implementation without session types or refinement types, which we call bare implementation (as explained in Section 5.3).</p>
+
+<p>Additionally, you can test and modify any of the examples we have implemented
+(§<a href="#modify-refinement">2.4</a> and §<a href="#other-examples">2.5</a>), as well as implement and verify your own
+protocols using our toolchain.</p>
+
+<p><strong>Note on performance:</strong> Measurements in the paper are taken using a machine with Intel i7-7700K CPU (4.20 GHz,
+4 cores, 8 threads), 16 GiB RAM, operating system Ubuntu 18.04.
+Depending on your test machine, the absolute values of the measurements produced in §<a href="#benchmark-table-1">2.1</a>
+and §<a href="#benchmark-table-2">2.2</a> may differ from the paper.
+Nevertheless, the claims stated in the paper should be preserved.</p>
+
+<h4 id="-21--run-and-verify-the-benchmarks-for-table-1-sections-52-and-53"><a name="benchmark-table-1"></a> 2.1  Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3).</h4>
+
+<p>The purpose of this set of benchmarks is to demonstrate the scalability of our
+tool on protocols of increasing length (as explained in Section 5.2). We also
+measure the execution overhead of our implementation by comparing it against an
+implementation without session types or refinement types, which we call bare
+implementation (as explained in Section 5.3).</p>
+
 <p>To reproduce the benchmarks reported in the paper, run the script:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="va">FULL=</span>1 <span class="ex">python3</span> scripts/pingpong.py</span></code></pre></div>
-<p>In the paper, we repeat the benchmark for 30 times and report the average. To do so, run with an argument of 30. (We don’t recommend you to try this because it takes a long time)</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="va">FULL=</span>1 <span class="ex">python3</span> scripts/pingpong.py 30</span></code></pre></div>
-<p>Note that the script will take a considerable time to complete (up to 30 minutes for one complete run).</p>
-<p>Compare the results with the results reported in Table 1, taking into account that the absolute values may differ. Verify the associated claims regarding * compilation time (Section 5.2, line 947): &gt; The increase of type-checking time is non-linear with regard to the protocol length</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">FULL</span><span class="o">=</span>1 python3 scripts/pingpong.py
+</code></pre></div></div>
+<p>In the paper, we repeat the benchmark for 30 times and report the average.
+To do so, run with an argument of 30. (We don’t recommend you to try this because it takes a long time)</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">FULL</span><span class="o">=</span>1 python3 scripts/pingpong.py 30
+</code></pre></div></div>
+<p>Note that the script will take a considerable time to complete (up to 30
+minutes for one complete run).</p>
+
+<p>Compare the results with the results reported in Table 1, taking into account that the absolute values may differ. Verify the associated claims regarding</p>
 <ul>
-<li>execution time (Section 5.3, line 971-972): &gt; Despite the different protocol lengths, there are no significant changes in execution time</li>
+  <li>compilation time (Section 5.2, line 947):
+    <blockquote>
+      <p>The increase of type-checking time is non-linear with regard to the protocol length</p>
+    </blockquote>
+  </li>
+  <li>execution time (Section 5.3, line 971-972):
+    <blockquote>
+      <p>Despite the different protocol lengths, there are no significant changes in execution time</p>
+    </blockquote>
+  </li>
 </ul>
-<p>The produced table contains the following columns. In brackets we give the name of the corresponding columns from Table 1. * <code>Gen Time (CFSM)</code> - the time taken for Scribble to generate the CFSM (<code>CFSM</code>) * <code>Gen Time (F*)</code> - the time taken for the code generation tool to convert the CFSM to F* (<code>F* APIs</code>) * <code>TC Time (Gen.)</code> - the time taken for the generated APIs to type-check in F* (<code>Gen. Code</code>) * <code>TC Time (Impl)</code> - the time taken to time check the implementation (<code>Callbacks</code>) * Note that the compilation and execution time are separated in two tables.</p>
-<p>You should be able to observe a similar pattern of increase in compilation times as the protocol length increases, and no significant changes in the execution times.</p>
-<p><strong>Note:</strong> The result in the paper run the experiments under a network of latency of 0.340ms (64 bytes ping), while the script runs the examples in the same docker container.</p>
-<h4 id="run-the-main-example-higherlower-of-the-paper-section-2."><a name="main-example"></a> 2.3 Run the main example (HigherLower) of the paper (Section 2).</h4>
-<p>The purpose of this section is to give you a quick walk through of using the toolchain to implement and verify a protocol. We focus on the running example - <a href="/examples/HigherLower">HigherLower.scr</a>. For high-level overview of the toolchain refer to §<a href="#toolchain-overview">A.1</a></p>
-<p>:one: <strong>Generate.</strong> The first step of our toolchain is the generation of callback signatures from Scribble protocols. The <code>sessionstar</code> command takes a file name, a protocol name and a role. To generate the callback file for role A for the HigherLower protocol, i.e <code>HigherLower/HigherLower.scr</code>: <code>bash  sessionstar HigherLower/HigherLower.scr HigherLower A</code> The <code>sessionstar</code> command (1) generates a CFSM and (2) produces the callback signatures in F*. It produces the corresponding files: - <code>HigherLower_A.fsm</code> - contains the CFSM for role A - <code>GeneratedHigherLowerA.fst</code> - contains the generated API, as callback signatures, for role A.</p>
-<p>:two: <strong>Implement and compile.</strong> A user has to implement the program logic for each callback from the generated API file (<code>GeneratedHigherLowerA.fst</code>).</p>
+
+<p>The produced table contains the following columns. In brackets we give the name of the corresponding columns from Table 1.</p>
+<ul>
+  <li><code>Gen Time (CFSM)</code> - the time taken for Scribble to generate the CFSM (<code>CFSM</code>)</li>
+  <li><code>Gen Time (F*)</code> - the time taken for the code generation tool to convert the CFSM to F* (<code>F* APIs</code>)</li>
+  <li><code>TC Time (Gen.)</code> - the time taken for the generated APIs to type-check in F* (<code>Gen. Code</code>)</li>
+  <li><code>TC Time (Impl)</code> - the time taken to time check the implementation (<code>Callbacks</code>)</li>
+  <li>Note that the compilation and execution time are separated in two tables.</li>
+</ul>
+
+<p>You should be able to observe a similar pattern of increase in compilation
+times as the protocol length increases, and no significant changes in the
+execution times.</p>
+
+<p><strong>Note:</strong> The result in the paper run the experiments under a network of
+latency of 0.340ms (64 bytes ping), while the script runs the examples in the
+same docker container.</p>
+
+<hr />
+<h4 id="-22-run-and-verify-the-examples-listed-in-table-2-section-54"><a name="benchmark-table-2"></a> 2.2 Run and verify the examples listed in Table 2 (Section 5.4).</h4>
+
+<p>The purpose of this set of benchmarks is to show the expressivity of our toolchain. We take examples
+from the session type literature, and add refinements to encode data dependencies in the protocols (as explained in Section 5.4).</p>
+
+<p>To benchmark all examples at once:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 scripts/examples.py
+</code></pre></div></div>
+<p>Compare the results with the results reported in Table 2, taking into account
+that the absolute values may differ.
+You may specify the number of measurement repetitions as an optional argument
+to the script.</p>
+
+<p>The produced table corresponds to Table 2 from the paper.
+It contains the same columns as the table produces in §<a href="#benchmark-table-1">2.1</a>. Note that Table 2 from the paper reports:</p>
+<ul>
+  <li>the total generation time, which is a sum of the <code>Gen Time (CFSM)</code> and <code>Gen Time (F*)</code> from the produced table.</li>
+  <li>the total time checking time, which is a sum of <code>TC Time (Gen.)</code> and <code>TC Time (Impl)</code> from the produced table.</li>
+  <li>the entry for Travel Agency from the Table 2 corresponds to Booking from the produced table, the other names are self explanatory.</li>
+</ul>
+
+<p>The source code (protocols and implementations) for each of these examples is located in a separate folder. See §<a href="#modify-refinement">2.4</a> for details on how to run each of the examples.</p>
+
+<hr />
+
+<h4 id="-23--run-the-main-example-higherlower-of-the-paper-section-2"><a name="main-example"></a> 2.3  Run the main example (HigherLower) of the paper (Section 2).</h4>
+<p>The purpose of this section is to give you a quick walk through of using the toolchain to implement and verify a protocol. We focus on the running example - <a href="/examples/HigherLower">HigherLower.scr</a>.
+For high-level overview of the toolchain refer to
+§<a href="#toolchain-overview">A.1</a></p>
+
+<p>:one: <strong>Generate.</strong>
+The first step of our toolchain is the generation of callback signatures from Scribble protocols. The <code>sessionstar</code> command takes a file name, a protocol name and a role. To generate the callback file for role A for the HigherLower protocol, i.e <code>HigherLower/HigherLower.scr</code>:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> sessionstar HigherLower/HigherLower.scr HigherLower A
+</code></pre></div></div>
+<p>The <code>sessionstar</code> command  (1) generates a CFSM and (2) produces the callback signatures in F*. It produces the corresponding files:</p>
+<ul>
+  <li><code>HigherLower_A.fsm</code> - contains the CFSM for role A</li>
+  <li><code>GeneratedHigherLowerA.fst</code> - contains the generated API, as callback signatures, for role A.</li>
+</ul>
+
+<p>:two: <strong>Implement and compile.</strong>
+A user has to implement the program logic for each callback from the generated API file (<code>GeneratedHigherLowerA.fst</code>).</p>
+
 <!-- A sample implementation of role A is given in ```HigherLower/HigherLowerA_CallbackImpl.fst```. -->
-<p>After we implement the program logic for role A using the callback signatures produced in the previous step, we can verify that the implementation is correct by running the F* type checker.</p>
+
+<p>After we implement the program logic for role A  using the callback signatures produced in the previous step, we can verify that the implementation is correct by running the F* type checker.</p>
+
 <p>A sample implementation of role A is given in <code>HigherLower/A/HigherLowerA_CallbackImpl.fst</code>. To compile this implementation for endpoint A, we first move the generated file to the correct folder, and then we build the endpoint using the F* compiler:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="fu">mv</span> GeneratedHigherLowerA.fst HigherLower/A</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="fu">make</span> -C HigherLower/A main.ocaml.exe</span></code></pre></div>
-<p>The above command generates the binary for role A, <code>main.ocaml.exe</code>.</p>
-<p>:three: <strong>Execute.</strong> Repeat the above steps (generation and compilation for role B and C). After all endpoints have been implemented and their binaries have been generated, we can run them. To run all endpoins issue all the commands:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="ex">HigherLower/B/main.ocaml.exe</span> <span class="kw">&amp;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="ex">HigherLower/C/main.ocaml.exe</span> <span class="kw">&amp;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="ex">HigherLower/A/main.ocaml.exe</span> <span class="kw">&amp;</span></span></code></pre></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mv GeneratedHigherLowerA.fst HigherLower/A
+make <span class="nt">-C</span> HigherLower/A main.ocaml.exe
+</code></pre></div></div>
+<p>The above command generates the binary for role A,  <code>main.ocaml.exe</code>.</p>
+
+<p>:three: <strong>Execute.</strong>
+Repeat the above steps (generation and compilation for role B and C). After all endpoints have been implemented and their binaries have been generated, we can run them.
+ To run all endpoins issue all the commands:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HigherLower/B/main.ocaml.exe &amp;
+HigherLower/C/main.ocaml.exe &amp;
+HigherLower/A/main.ocaml.exe &amp;
+</code></pre></div></div>
 <p>The above commands run the three endpoints, i.e A, B and C.</p>
+
 <hr />
-<h4 id="observe-refinement-violations"><a name="modify-refinement"></a> 2.4 Observe Refinement Violations</h4>
+
+<h4 id="-24--observe-refinement-violations"><a name="modify-refinement"></a> 2.4  Observe Refinement Violations</h4>
+
 <p>Next we highlight how protocol violations are ruled out by static refinement typing, which is ultimately the practical purpose of <strong>Session*</strong>.</p>
-<ol type="a">
-<li><strong>Refinement violations:</strong> Change the implementation for role B. Below we suggest two modifications to the <a href="examples/HigherLower/B/HigherLowerB_CallbackImpl.fst">HigherLower/B/HigherLowerB_CallbackImpl.fst</a> file.</li>
-</ol>
+
+<p>(a) <strong>Refinement violations:</strong> Change the implementation for role B.
+Below we suggest two modifications to the <a href="examples/HigherLower/B/HigherLowerB_CallbackImpl.fst">HigherLower/B/HigherLowerB_CallbackImpl.fst</a> file.</p>
+
 <p>First, ensure that the current implementation for B is correct :</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="ex">sessionstar</span> HigherLower/HigherLower.scr HigherLower B</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="fu">mv</span> GeneratedHigherLowerB.fst HigherLower/B</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="fu">make</span> -C HigherLower/B main.ocaml.exe</span></code></pre></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sessionstar HigherLower/HigherLower.scr HigherLower B
+mv GeneratedHigherLowerB.fst HigherLower/B
+make <span class="nt">-C</span> HigherLower/B main.ocaml.exe
+</code></pre></div></div>
 <p>After each modification, compile and observe that an error is reported. Note that since we are not changing the protocol, you do not need to run sessionstar again, it is enough to run the F* type checker using <code>make -C HigherLower/B main.ocaml.exe</code></p>
-<p>Suggested modifications (to <a href="examples/HigherLower/B/HigherLowerB_CallbackImpl.fst">HigherLower/B/HigherLowerB_CallbackImpl.fst</a> file): - Option 1: Modify the condition for the lose case (<a href="https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/B/HigherLowerB_CallbackImpl.fst#L32">Line 32</a>) from <code>t=1</code> to <code>t=0</code><br />
-- Option 2: Comment the lose case (<a href="https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/B/HigherLowerB_CallbackImpl.fst#L32">Line 32-33</a>). Note: the syntax for comments in F* is <code>(* commented code *)</code>.</p>
-<ol start="2" type="a">
-<li><strong>Use of proof-irrelevant variables:</strong> To demonstrate how our toolchain uses reasoning with latent information, we will modify the protocol HigherLower, and we will compile the implementation for role C.</li>
-</ol>
+
+<p>Suggested modifications (to <a href="examples/HigherLower/B/HigherLowerB_CallbackImpl.fst">HigherLower/B/HigherLowerB_CallbackImpl.fst</a> file):</p>
+<ul>
+  <li>Option 1: Modify the condition for the lose case (<a href="https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/B/HigherLowerB_CallbackImpl.fst#L32">Line 32</a>) from <code>t=1</code> to <code>t=0</code></li>
+  <li>Option 2: Comment the lose case (<a href="https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/B/HigherLowerB_CallbackImpl.fst#L32">Line 32-33</a>).
+Note: the syntax for comments in F* is <code>(* commented code *)</code>.</li>
+</ul>
+
+<p>(b) <strong>Use of proof-irrelevant variables:</strong> To demonstrate how our toolchain uses reasoning with latent information, we will modify the protocol HigherLower, and we will compile the  implementation for role C.</p>
+
 <p>First, we verify that the implementation of C is correct:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="ex">sessionstar</span> HigherLower/HigherLower.scr HigherLower C</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="fu">mv</span> GeneratedHigherLowerC.fst HigherLower/C</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="fu">make</span> -C HigherLower/C main.ocaml.exe</span></code></pre></div>
-<p>Suggested modifications: - Option 1: Modify the implementation (<a href="examples/HigherLower/C/HigherLowerC_CallbackImpl.fst">HigherLower/C/HigherLowerC_CallbackImpl.fst</a> file) such that the higher case sends a variable that is lower than the current one. For example change Line <a href="https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/C/HigherLowerC_CallbackImpl.fst#L34">34</a> from <code>next := (Mkstate72?.x st) + 1</code> to <code>next := (Mkstate72?.x st) - 1</code>. Compile the endpoint (<code>make -C HigherLower/C main.ocaml.exe</code>) to observe an error.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sessionstar HigherLower/HigherLower.scr HigherLower C
+mv GeneratedHigherLowerC.fst HigherLower/C
+make <span class="nt">-C</span> HigherLower/C main.ocaml.exe
+</code></pre></div></div>
+<p>Suggested modifications:</p>
 <ul>
-<li>Option 2: Modify the protocol (<a href="examples/HigherLower/HigherLower.scr">HigherLower.scr</a>) by removing all constraints for x that depend on n.
-<ul>
-<li>Change <a href="https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L19">Line 19</a> from <code>@'n&gt;x &amp;&amp; t&gt;1'</code> to <code>@'t&gt;1</code>, and</li>
-<li>Change <a href="https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L23">Line 23</a> by commenting <code>@'n=x'</code> (comment in Scribble is <code>//</code>), and</li>
-<li>Change <a href="https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L26">Line 26</a> from <code>@'n&lt;x &amp;&amp; t&gt;1'</code> to <code>@'t&gt;1'</code></li>
-<li>Change <a href="https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L31">Line 31</a> from <code>@'((n&lt;x || n&gt;x) &amp;&amp; t=1)'</code> to <code>@'t=1'</code>.</li>
+  <li>
+    <p>Option 1: Modify the implementation
+(<a href="examples/HigherLower/C/HigherLowerC_CallbackImpl.fst">HigherLower/C/HigherLowerC_CallbackImpl.fst</a>
+file) such that the higher case sends a variable that is lower than the
+current one. For example change Line
+<a href="https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/C/HigherLowerC_CallbackImpl.fst#L34">34</a>
+from <code>next := (Mkstate72?.x st) + 1</code> to <code>next := (Mkstate72?.x st) - 1</code>.
+Compile the endpoint (<code>make -C HigherLower/C main.ocaml.exe</code>) to
+observe an error.</p>
+  </li>
+  <li>
+    <p>Option 2: Modify the protocol (<a href="examples/HigherLower/HigherLower.scr">HigherLower.scr</a>) by removing all constraints for x that depend on n.</p>
+    <ul>
+      <li>Change <a href="https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L19">Line 19</a> from <code>@'n&gt;x &amp;&amp; t&gt;1'</code> to <code>@'t&gt;1</code>, and</li>
+      <li>Change <a href="https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L23">Line 23</a> by commenting <code>@'n=x'</code> (comment in Scribble is <code>//</code>), and</li>
+      <li>Change <a href="https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L26">Line 26</a> from <code>@'n&lt;x &amp;&amp; t&gt;1'</code> to <code>@'t&gt;1'</code></li>
+      <li>Change <a href="https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L31">Line 31</a> from <code>@'((n&lt;x || n&gt;x) &amp;&amp; t=1)'</code> to <code>@'t=1'</code>.</li>
+    </ul>
+
+    <p>Since we changed the protocol, new callback signatures have to be generated. Generate new callback signatures and compile:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> sessionstar HigherLower/HigherLower.scr HigherLower C
+ mv GeneratedHigherLowerC.fst HigherLower/C
+ make <span class="nt">-C</span> HigherLower/C main.ocaml.exe
+</code></pre></div>    </div>
+  </li>
 </ul>
-Since we changed the protocol, new callback signatures have to be generated. Generate new callback signatures and compile: <code>bash  sessionstar HigherLower/HigherLower.scr HigherLower C  mv GeneratedHigherLowerC.fst HigherLower/C  make -C HigherLower/C main.ocaml.exe</code></li>
-</ul>
+
 <p><strong>Note:</strong> on syntax discrepancies: There are small syntax discrepancies between the syntax in paper and the actual syntax. For details, see §<a href="#discrepancy">A.1.1</a> and §<a href="#syntax">A.1.2</a>.</p>
+
 <hr />
-<h4 id="run-through-other-examples-optional"><a name="other-examples"></a> 2.5 Run Through Other Examples (Optional)</h4>
+
+<h4 id="-25-run-through-other-examples-optional"><a name="other-examples"></a> 2.5 Run Through Other Examples (Optional)</h4>
+
 <p>To build a selected example from Table 2:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="fu">make</span> build-[name of the example]</span></code></pre></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make build-[name of the example]
+</code></pre></div></div>
+
 <p>To run a selected example from Table 2:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="fu">make</span> run-[name of the example]</span></code></pre></div>
-<p>The list of available examples is given below (we give in brackets the [name of the example] used for build and run): - Two Buyer (TwoBuyer), Negotiation (Negotiation), Fibonacci (Fibonacci), Travel Agency (TravelAgency), Calculator (Calculator), SH (SH), Online Wallet (OnlineWallet), Ticket (Ticket), HTTP (HTTP).</p>
-<p>If you have enabled forwarding of port 3000, you can run <code>make build-HTTP</code> to build the HTTP server, and run <code>make run-HTTP</code> to start the server. You use your browser outside the docker container http://127.0.0.1:3000 (Find the secret at http://127.0.0.1:3000/secret)</p>
-<p>Each example is in a separate folder. The folder contains: - The protocol, specified in Scribble - a file with extension <code>.scr</code> - a folder for each role in a protocol. Each role folder contains: - Generated API file (automaticaly generated by the toolchain) - the name convention of such files is <code>Generated[ProtocolName][RoleName].fst</code>. Note that this file will be generated only after running the <code>sessionstar</code> command on the target protocol. - Callback Implementation file (specific to the implementation, should be implemented by the user) - the name convention of such files is <code>[ProtocolName][RoleName]_CallbackImpl.fst</code> - Boilerplate files (non-specific to the implementation): - <code>Payload.fst</code> - specifies serialisation of the payload types (e.g. int, strings) - <code>Network.fst</code> - standard communication functions for send/receive</p>
-<p>See the <a href="examples/Makefile">Makefile</a> for more details on execution scripts, and §<a href="#examples-cont">A.2</a> for a short explanation of each example.</p>
-<h2 id="appendix-additional-information"><a name="additional-information"></a> Appendix (Additional Information)</h2>
-<hr />
-<h4 id="a.1-toolchain-overview"><a name="toolchain-overview"></a> A.1 Toolchain Overview</h4>
-<p>The following is a quick recap of the <strong>Session*</strong> toolchain, as presented in the paper.</p>
-<p><strong>In a nutshell.</strong> The toolchain allows users to specify, implement and verify <em>refined</em> multiparty protocols and programs. Protocol specifications are based on our Refined Multiparty Session Types (RMPST), which express data dependent protocols via refinement types on interactions and message payloads, i.e., protocols with logical constraints on message value and control-flow.</p>
-<p><strong>How.</strong> Users write protocol specifications in our extension of the <a href="scribble.org">Scribble</a> protocol description language, and implement the endpoint programs in <a href="fstar.org">F*</a> using refinement-typed APIs generated from the protocol by the toolchain. The F* compiler statically verifies each endpoint program and its refinements to ensure that the program follows the protocol.</p>
-<p>The steps of the toolchain, as exercised in <a href="#main-example">2.3</a>, are outlined below (the figure corresponds to Fig. 2 in the paper).</p>
-<p><img src="images/framework_overview.png" width=1000/></p>
-<p>The <strong>Session*</strong> starts by writing the protocol in our extended Scribble: this artifact supplies the protocols for all the examples in the paper. This overview then runs through the following steps.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make run-[name of the example]
+</code></pre></div></div>
+
+<p>The list of available examples is given below (we give in brackets the [name of the example] used for build and run):</p>
 <ul>
-<li>1️⃣ <strong>Generate</strong> – for each role in a given Scribble protocol, we generate an F* API for implementing that role (by way of a CSFM representation). This is done using the <code>sessionstar</code> command, which is available on the command line path in the artifact conatiner and produces the following files. Outputs: (a dot file representation of the CFSM) and an F* API file.</li>
-<li>2️⃣ <strong>Implement and compile</strong> – the user supplies the application logic for each endpoint by implementing the I/O callback function types of the generated API. The implementation is verified by the F* compiler. Outputs: executable binaries.</li>
-<li>3️⃣ <strong>Execute</strong> – with a well-typed endpoint program for each role, we can execute the protocol. For this artifact, we run all endpoints within the same container as separate processes communicating asynchronously via TCP localhost (i.e., with the same communication semantics as geographically distributed TCP connections). Outputs: safe execution of the refined multiparty protocol.</li>
+  <li>Two Buyer (TwoBuyer), Negotiation (Negotiation), Fibonacci (Fibonacci), Travel Agency (TravelAgency), Calculator (Calculator), SH (SH), Online Wallet (OnlineWallet), Ticket (Ticket), HTTP (HTTP).</li>
 </ul>
+
+<p>If you have enabled forwarding of port 3000, you can run <code>make build-HTTP</code> to build the HTTP server, and run <code>make run-HTTP</code> to start the server.
+You use your browser outside the docker container http://127.0.0.1:3000 (Find the secret at http://127.0.0.1:3000/secret)</p>
+
+<p>Each example is in a separate folder. The folder contains:</p>
+<ul>
+  <li>The protocol, specified in Scribble - a file with extension <code>.scr</code></li>
+  <li>a folder for each role in a protocol. Each role folder contains:
+    <ul>
+      <li>Generated API file (automaticaly generated by the toolchain) - the name convention of such files is <code>Generated[ProtocolName][RoleName].fst</code>. Note that this file will be generated only after running the <code>sessionstar</code> command on the target protocol.</li>
+      <li>Callback Implementation file (specific to the implementation, should be implemented by the user) - the name convention of such files is <code>[ProtocolName][RoleName]_CallbackImpl.fst</code></li>
+      <li>Boilerplate files (non-specific to the implementation):
+        <ul>
+          <li><code>Payload.fst</code> - specifies serialisation of the payload types (e.g. int, strings)</li>
+          <li><code>Network.fst</code> - standard communication functions for send/receive</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>See the <a href="examples/Makefile">Makefile</a> for more details on execution scripts, and §<a href="#examples-cont">A.2</a> for a short explanation of each example.</p>
+
+<hr />
+<hr />
+
+<h2 id="-appendix-additional-information"><a name="additional-information"></a> Appendix (Additional Information)</h2>
+
+<hr />
+
+<h4 id="-a1-toolchain-overview"><a name="toolchain-overview"></a> A.1 Toolchain Overview</h4>
+
+<p>The following is a quick recap of the <strong>Session*</strong> toolchain, as
+presented in the paper.</p>
+
+<p><strong>In a nutshell.</strong>
+The toolchain allows users to specify, implement and verify <em>refined</em>
+multiparty protocols and programs.  Protocol specifications are based on our
+Refined Multiparty Session Types (RMPST), which express data dependent
+protocols via refinement types on interactions and message payloads, i.e.,
+protocols with logical constraints on message value and control-flow.</p>
+
+<p><strong>How.</strong>
+Users write protocol specifications in our extension of the
+<a href="scribble.org">Scribble</a> protocol description language, and implement the
+endpoint programs in [F<em>](fstar.org) using refinement-typed APIs generated from
+the protocol by the toolchain.  The F</em> compiler statically verifies each
+endpoint program and its refinements to ensure that the program follows the
+protocol.</p>
+
+<p>The steps of the toolchain, as exercised in <a href="#main-example">2.3</a>, are outlined
+below (the figure corresponds to Fig. 2 in the paper).</p>
+
+<p><img src="images/framework_overview.png" width="1000" /></p>
+
+<p>The <strong>Session*</strong> starts by writing the protocol in our extended Scribble:
+this artifact supplies the protocols for all the examples in the paper.
+This overview then runs through the following steps.</p>
+
+<ul>
+  <li>1️⃣ <strong>Generate</strong> – for each role in a given Scribble protocol, we generate
+an F* API for implementing that role (by way of a CSFM representation).
+This is done using the <code>sessionstar</code> command, which is available on the
+command line path in the artifact conatiner and produces the following files.
+Outputs: (a dot file representation of the CFSM) and an F* API file.</li>
+  <li>2️⃣ <strong>Implement and compile</strong> – the user supplies the application logic
+for each endpoint by implementing the I/O callback function types of the
+generated API.  The implementation is verified by the F* compiler.
+Outputs: executable binaries.</li>
+  <li>3️⃣ <strong>Execute</strong> – with a well-typed endpoint program for each role, we
+can execute the protocol.  For this artifact, we run all endpoints within the
+same container as separate processes communicating asynchronously via TCP
+localhost (i.e., with the same communication semantics as geographically
+distributed TCP connections).
+Outputs: safe execution of the refined multiparty protocol.</li>
+</ul>
+
 <!---
 **Properties of the toolchain.**
 The paper (Section 4) establishes Trace Equivalence (Theorem 4.8) between
@@ -280,128 +475,243 @@ programs with the following notes.
   execution is free of communication errors and deadlocks..**.  (Deadlock refers
   to the safety error of a wait-for cycle between two or more endpoints.)
 --->
-<h4 id="a.1.1-discrepancies-between-the-paper-and-the-artifact"><a name="discrepancy"></a> A.1.1 Discrepancies between the Paper and the Artifact</h4>
+
+<h4 id="-a11--discrepancies-between-the-paper-and-the-artifact"><a name="discrepancy"></a> A.1.1  Discrepancies between the Paper and the Artifact</h4>
+
 <p><strong>Scribble syntax</strong></p>
-<p>There are a few discrepancies between the implementation of our extended Scribble in the artifact and that presented in the paper.</p>
+
+<p>There are a few discrepancies between the implementation of our extended
+Scribble in the artifact and that presented in the paper.</p>
+
 <ul>
-<li>There are small syntactic differences.
-<ul>
-<li>Refined state variable declarations were written in the paper: e.g. Fig. 3: <code>aux global protocol Aux(role A, role B, role C) @'B[n: int{0&lt;=n&lt;100}, t: int{0&lt;t}]</code><br />
+  <li>There are small syntactic differences.
+    <ul>
+      <li>Refined state variable declarations were written in the paper: e.g.
+Fig. 3:
+<code>aux global protocol Aux(role A, role B, role C) @'B[n: int{0&lt;=n&lt;100}, t: int{0&lt;t}]</code><br />
 whereas the implementation in the artifact requires syntax like:<br />
 <code>aux global protocol Aux(role A, role B, role C) @'B[n: int = 0, t: int = 1] (0&lt;=n &amp;&amp; n&lt;100) &amp;&amp; 0&lt;t</code><br />
-The syntax in our implementation declares state variables with a default initial expression (which happen to be irrelevant to the HigherLower example), and the refinements of each variable are written as a combined assertion following the declarations.</li>
-<li>The code in the paper uses some compacted notation (e.g. ≤, ∧) which the implementation requires in longer form (e.g. <code>&lt;=</code>, <code>&amp;&amp;</code>).</li>
-</ul></li>
-<li>Our implementation of Scribble includes an additional protocol validation step prior to the F* API generation. This validation is an optional bonus, and the toolchain as presented in the paper does not depend on it. <!---and is not required to support the properties described above.---></li>
+The syntax in our implementation declares state variables with a default
+initial expression (which happen to be irrelevant to the HigherLower
+example), and the refinements of each variable are written as a
+combined assertion following the declarations.</li>
+      <li>The code in the paper uses some compacted notation (e.g. &amp;leq;, &amp;wedge;)
+which the implementation requires in longer form (e.g. <code>&lt;=</code>, <code>&amp;&amp;</code>).</li>
+    </ul>
+  </li>
+  <li>Our implementation of Scribble includes an additional protocol validation
+step prior to the F* API generation.  This validation is an optional bonus,
+and the toolchain as presented in the paper does not depend on it.
+<!---and is not required to support the properties described above.---></li>
 </ul>
-<p><strong>F* syntax</strong> - The paper uses the dot notation (accessing a field of a record) to refer to state variables (e.g. <code>st.x</code>). In practice, when many records contain the same field, the following syntax needs to be fixed for manual disambiguation: Given the type of <code>st</code> is <code>state1</code>, <code>x</code> can be extracted as follows: <code>ocaml     let x = (Mkstate1?.x st) in ...</code></p>
-<h4 id="a.1.2-syntax-of-refined-scribble"><a name="syntax"></a> A.1.2 Syntax of Refined Scribble</h4>
-<p>Our extended Scribble is based on the global types of our Refined MPST as defined in the paper (Section 4). The syntax and key features are already mostly demonstrated by the HigherLower example (<a href="#main-example">2.3</a>). The following summarises the syntax using another compact example.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>module Foo;  <span class="co">// Corresponds to the file name, i.e., Foo.scr</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a>type &lt;fstar&gt; <span class="st">&quot;...&quot;</span> from <span class="st">&quot;...&quot;</span> as <span class="dt">int</span>;  <span class="co">// The &quot;...&quot; are currently irrelevant</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a><span class="co">// A &quot;main&quot; protocol</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true"></a>global protocol <span class="fu">MyProto</span>(role A, role B, role C) {</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true"></a>    <span class="co">// Interaction sequences -- with payload variables and refinements</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true"></a>    <span class="fu">One</span>(x1: <span class="dt">int</span>) from A to B;        @&#39;x1&gt;<span class="dv">0</span>&#39;</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true"></a>    <span class="fu">Two</span>(x2: <span class="dt">int</span>) from A to C;        @&#39;x2=x1&#39;</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true"></a>    <span class="co">// A subprotocol -- essentially inlined</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true"></a>    <span class="kw">do</span> <span class="fu">MyProtoAux</span>(A, B, C);        @&#39;B[x1] C[x2]&#39;  <span class="co">// State variable arguments</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true"></a>}</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true"></a></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true"></a><span class="co">// &quot;aux&quot; protocols are used as subprotocols from main protocols</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true"></a>aux global protocol <span class="fu">MyProtoAux</span>(role A, role B, role C)</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true"></a>                                   <span class="co">// State variable declarations and assertion</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true"></a>                                   @&#39;B[xB: <span class="dt">int</span> = <span class="dv">0</span>] C[xC: <span class="dt">int</span> = <span class="dv">0</span>] xB&gt;=<span class="dv">0</span>&#39; {</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true"></a>    <span class="co">// &quot;Directed&quot; choice -- refinements specify control flow as well as message values</span></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true"></a>    choice at B {</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true"></a>        <span class="fu">Two</span>(curr: <span class="dt">int</span>) from B to C;    @&#39;xB&gt;<span class="dv">0</span> &amp;&amp; curr=xB&#39;</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true"></a>        <span class="fu">Three</span>(orig: <span class="dt">int</span>) from C to A;  @&#39;orig=xC&#39;</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true"></a>        <span class="co">// A (tail) recursive subprotocol -- translated: \mu X ... X</span></span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true"></a>        <span class="kw">do</span> <span class="fu">MyProtoAux</span>(A, B, C);    @&#39;B[xB-<span class="dv">1</span>] C[xC]&#39;</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true"></a>    } or {</span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true"></a>        <span class="fu">Bye</span>() from B to C;         @&#39;xB=<span class="dv">0</span>&#39;</span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true"></a>        <span class="fu">Bye</span>() from C to A;</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true"></a>        <span class="co">// End of protocol</span></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true"></a>    }</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true"></a>}</span></code></pre></div>
+
+<p><strong>F* syntax</strong></p>
 <ul>
-<li>Usability warning: Some user errors are reported with a full stack trace – you may find a basic error message at the top of the trace.</li>
-<li>To match our RMPST in the paper, choices must be <strong>directed</strong>: this means the initial messages inside each choice case must be sent from the choice subject (the <code>at</code> role) to the <em>same</em> role in all cases.
-<ul>
-<li>Our implementation expands slightly on the core theory presented in the paper by allowing a so-called merge of “third-party” branch cases with <em>distinct</em> labels in projection. For example, for the third-party <code>C</code> <code>choice at A {         One() from A to B; Two() from A to C;     } or {         Three() from A to B; Four() from A to C;     }</code> This is a common extension in the literature, e.g. <a href="https://link.springer.com/chapter/10.1007/978-3-642-12032-9_10">Yoshida et al.</a></li>
-</ul></li>
-<li>Regarding refinements, our current implementation supports <code>int</code> variables only, with operations for comparisons (<code>&lt;</code>, <code>&lt;=</code>, <code>=</code>, <code>&gt;=</code>, <code>&gt;</code>), addition (<code>+</code>) and connectives (<code>&amp;&amp;</code>, <code>||</code>). We can readily extend with additional sorts and functions based on what Z3 supports.</li>
+  <li>The paper uses the dot notation (accessing a field of a record) to refer to state variables (e.g. <code>st.x</code>).
+In practice, when many records contain the same field, the following syntax needs to be fixed for manual disambiguation:
+Given the type of <code>st</code> is <code>state1</code>, <code>x</code> can be extracted as follows:
+    <div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="nc">Mkstate1</span><span class="o">?.</span><span class="n">x</span> <span class="n">st</span><span class="p">)</span> <span class="k">in</span> <span class="o">...</span>
+</code></pre></div>    </div>
+  </li>
 </ul>
+
+<h4 id="--a12-syntax-of-refined-scribble"><a name="syntax"></a>  A.1.2 Syntax of Refined Scribble</h4>
+
+<p>Our extended Scribble is based on the global types of our Refined MPST as
+defined in the paper (Section 4).  The syntax and key features are already
+mostly demonstrated by the HigherLower example (<a href="#main-example">2.3</a>).
+The following summarises the syntax using another compact example.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">module</span> <span class="n">Foo</span><span class="o">;</span>  <span class="c1">// Corresponds to the file name, i.e., Foo.scr</span>
+
+<span class="n">type</span> <span class="o">&lt;</span><span class="n">fstar</span><span class="o">&gt;</span> <span class="s">"..."</span> <span class="n">from</span> <span class="s">"..."</span> <span class="n">as</span> <span class="kt">int</span><span class="o">;</span>  <span class="c1">// The "..." are currently irrelevant</span>
+
+<span class="c1">// A "main" protocol</span>
+<span class="n">global</span> <span class="n">protocol</span> <span class="nf">MyProto</span><span class="o">(</span><span class="n">role</span> <span class="n">A</span><span class="o">,</span> <span class="n">role</span> <span class="n">B</span><span class="o">,</span> <span class="n">role</span> <span class="n">C</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Interaction sequences -- with payload variables and refinements</span>
+    <span class="n">One</span><span class="o">(</span><span class="nl">x1:</span> <span class="kt">int</span><span class="o">)</span> <span class="n">from</span> <span class="n">A</span> <span class="n">to</span> <span class="n">B</span><span class="o">;</span>        <span class="err">@'</span><span class="n">x1</span><span class="o">&gt;</span><span class="mi">0</span><span class="err">'</span>
+    <span class="n">Two</span><span class="o">(</span><span class="nl">x2:</span> <span class="kt">int</span><span class="o">)</span> <span class="n">from</span> <span class="n">A</span> <span class="n">to</span> <span class="n">C</span><span class="o">;</span>        <span class="err">@'</span><span class="n">x2</span><span class="o">=</span><span class="n">x1</span><span class="err">'</span>
+    <span class="c1">// A subprotocol -- essentially inlined</span>
+    <span class="k">do</span> <span class="nf">MyProtoAux</span><span class="o">(</span><span class="n">A</span><span class="o">,</span> <span class="n">B</span><span class="o">,</span> <span class="n">C</span><span class="o">);</span>        <span class="err">@'</span><span class="n">B</span><span class="o">[</span><span class="n">x1</span><span class="o">]</span> <span class="n">C</span><span class="o">[</span><span class="n">x2</span><span class="o">]</span><span class="err">'</span>  <span class="c1">// State variable arguments</span>
+<span class="o">}</span>
+
+<span class="c1">// "aux" protocols are used as subprotocols from main protocols</span>
+<span class="n">aux</span> <span class="n">global</span> <span class="n">protocol</span> <span class="nf">MyProtoAux</span><span class="o">(</span><span class="n">role</span> <span class="n">A</span><span class="o">,</span> <span class="n">role</span> <span class="n">B</span><span class="o">,</span> <span class="n">role</span> <span class="n">C</span><span class="o">)</span>
+                                   <span class="c1">// State variable declarations and assertion</span>
+                                   <span class="err">@'</span><span class="n">B</span><span class="o">[</span><span class="nl">xB:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">0</span><span class="o">]</span> <span class="n">C</span><span class="o">[</span><span class="nl">xC:</span> <span class="kt">int</span> <span class="o">=</span> <span class="mi">0</span><span class="o">]</span> <span class="n">xB</span><span class="o">&gt;=</span><span class="mi">0</span><span class="err">'</span> <span class="o">{</span>
+    <span class="c1">// "Directed" choice -- refinements specify control flow as well as message values</span>
+    <span class="n">choice</span> <span class="n">at</span> <span class="n">B</span> <span class="o">{</span>
+        <span class="n">Two</span><span class="o">(</span><span class="nl">curr:</span> <span class="kt">int</span><span class="o">)</span> <span class="n">from</span> <span class="n">B</span> <span class="n">to</span> <span class="n">C</span><span class="o">;</span>    <span class="err">@'</span><span class="n">xB</span><span class="o">&gt;</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">curr</span><span class="o">=</span><span class="n">xB</span><span class="err">'</span>
+        <span class="n">Three</span><span class="o">(</span><span class="nl">orig:</span> <span class="kt">int</span><span class="o">)</span> <span class="n">from</span> <span class="n">C</span> <span class="n">to</span> <span class="n">A</span><span class="o">;</span>  <span class="err">@'</span><span class="n">orig</span><span class="o">=</span><span class="n">xC</span><span class="err">'</span>
+        <span class="c1">// A (tail) recursive subprotocol -- translated: \mu X ... X</span>
+        <span class="k">do</span> <span class="nf">MyProtoAux</span><span class="o">(</span><span class="n">A</span><span class="o">,</span> <span class="n">B</span><span class="o">,</span> <span class="n">C</span><span class="o">);</span>    <span class="err">@'</span><span class="n">B</span><span class="o">[</span><span class="n">xB</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span> <span class="n">C</span><span class="o">[</span><span class="n">xC</span><span class="o">]</span><span class="err">'</span>
+    <span class="o">}</span> <span class="n">or</span> <span class="o">{</span>
+        <span class="n">Bye</span><span class="o">()</span> <span class="n">from</span> <span class="n">B</span> <span class="n">to</span> <span class="n">C</span><span class="o">;</span>         <span class="err">@'</span><span class="n">xB</span><span class="o">=</span><span class="mi">0</span><span class="err">'</span>
+        <span class="n">Bye</span><span class="o">()</span> <span class="n">from</span> <span class="n">C</span> <span class="n">to</span> <span class="n">A</span><span class="o">;</span>
+        <span class="c1">// End of protocol</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Usability warning:  Some user errors are reported with a full stack trace –
+you may find a basic error message at the top of the trace.</li>
+  <li>To match our RMPST in the paper, choices must be <strong>directed</strong>: this means the
+initial messages inside each choice case must be sent from the choice subject
+(the <code>at</code> role) to the <em>same</em> role in all cases.
+    <ul>
+      <li>Our implementation expands slightly on the core theory presented in the
+paper by allowing a so-called merge of “third-party” branch cases with
+<em>distinct</em> labels in projection.  For example, for the third-party <code>C</code>
+        <pre><code>choice at A {
+    One() from A to B; Two() from A to C;
+} or {
+    Three() from A to B; Four() from A to C;
+}
+</code></pre>
+        <p>This is a common extension in the
+literature, e.g. <a href="https://link.springer.com/chapter/10.1007/978-3-642-12032-9_10">Yoshida et al.</a></p>
+      </li>
+    </ul>
+  </li>
+  <li>Regarding refinements, our current implementation supports <code>int</code> variables
+only, with operations for comparisons (<code>&lt;</code>, <code>&lt;=</code>, <code>=</code>, <code>&gt;=</code>, <code>&gt;</code>), addition
+(<code>+</code>) and connectives (<code>&amp;&amp;</code>, <code>||</code>).  We can readily extend with additional
+sorts and functions based on what Z3 supports.</li>
+</ul>
+
 <hr />
-<h4 id="a.2-description-of-examples-optional"><a name="examples-cont"></a> A.2 Description of Examples (Optional)</h4>
+<h4 id="-a2-description-of-examples-optional"><a name="examples-cont"></a> A.2 Description of Examples (Optional)</h4>
+
 <p>In this section, we provide a short overview for each of the implemented examples.</p>
+
 <ul>
-<li><p>Two Buyer</p>
-<ul>
-<li>source folder: <a href="examples/TwoBuyer">examples/TwoBuyer</a></li>
-<li>explanation: Two Buyer is a canonical example for demonstrating business logic interactions. It specifies a negotiation between two buyers and a seller to purchase a book. The Seller S sends the price of the book to Buyer A and Buyer B. The refinement ensures that the seller quotes the same price to both buyers. A and B negotiate and buyer B accepts to buy the book only if A contributes more to the purchase.</li>
-</ul></li>
-<li><p>Negotiation</p>
-<ul>
-<li>source folder: <a href="examples/Negotiation">examples/Negotiation</a></li>
-<li>explanation: This is a recursive protocol that describes a service agreement proposal between a producer P and a consumer C. The protocol starts by the producer P sending an initial proposal to C, the proposal contains the price of the service. Then C can either accept the proposal, or can send a counter proposal. The refinements ensure that when an offer is accepted the confirmed price and the offer price are the same.</li>
-</ul></li>
-<li><p>Fibonacci</p>
-<ul>
-<li>source folder: <a href="examples/Fibonacci">examples/Fibonacci</a></li>
-<li>explanation: The protocol specify a computation of a fibonacci sequence. The specified refinements ensure that each number (produced by role B) is the sum of two preceding numbers (provided by role A). Hence, the implementation is guaranteed to compute a fibonacci sequence.</li>
-</ul></li>
-<li><p>Travel Agency</p>
-<ul>
-<li>source folder: <a href="examples/TravelAgency">examples/TravelAgency</a></li>
-<li>explanation: This is a W3C Choreographies use case, and the running example from <a href="https://doi.org/10.1007/978-3-540-70592-5_22">Hu et al. 2008</a>. The protocol depicts the interactions between a client (C), the travel agency (A) and a travel service (S). Customer requests and receives by the Agency the price for a desired journey. This exchange may be repeated an arbitrary number of times for different journeys under the initiative of Customer. Customer either accepts an offer from Agency or decides that none of the received quotes are satisfactory. If the offer is accepted, the Service handles the payment.</li>
-</ul></li>
-<li><p>Calculator</p>
-<ul>
-<li>source folder: <a href="examples/Calculator">examples/Calculator</a></li>
-<li>explanation: a distributed service for addition of two numbers. The recursive protocol allows a client to repeatedly send an operation request (e.g. addition) with two numbers, and receive back the result (the sum of the two numbers).</li>
-</ul></li>
-<li><p>SH</p>
-<ul>
-<li>source folder: <a href="examples/SH">examples/SH</a></li>
-<li>explanation: SH is short for Sutherland-Hodgman algorithm. It is a 3-role protocol for polygon clipping. It takes a plane, and the vertices of a polygon as a series of points; and produces vertices for the polygon restricted to one side of the plane. This is the running example from <a href="https://doi.org/10.1145/3178372.3179495">Neykova et al. 2018</a></li>
-</ul></li>
-<li><p>OnlineWallet</p>
-<ul>
-<li>source folder: <a href="examples/OnlineWallet">examples/OnlineWallet</a></li>
-<li>explanation: This is the running example from <a href="https://www.doc.ic.ac.uk/~rn710/spy/main.pdf">Neykova et al. 2013</a>. It represents an online payment application between client C, bank S, and an Authentication service A. In each iteration, S sends C the current account status, and C has the choice to make a payment (but only for an amount that would not overdraw the account) or end the session.</li>
-</ul></li>
-<li><p>Ticket</p>
-<ul>
-<li>source folder: <a href="examples/Ticket">examples/Ticket</a></li>
-<li>explanation: This is the running example from <a href="http://mrg.doc.ic.ac.uk/publications/a-theory-of-design-by-contract-for-distributed-multiparty-interactions/concur.pdf">Bocchi et al. 2013</a>, where a buyer negotiates with the seller and bank for buying a purchase. The refinements ensure that the buyer has to increase the price during negotiations until an agreement is reached. In addition, the value of the (last) offer and the payment must be equal.</li>
-</ul></li>
-<li><p>HTTP</p>
-<ul>
-<li><p>source folder: <a href="examples/HTTP">examples/HTTP</a></p></li>
-<li><p>explanation: It is a minimal specification of the <a href="https://tools.ietf.org/html/rfc2616">Hypertext Transfer protocol</a> protocol. The refinements ensure the validity of the status code that are used. We have implemented an HTTP server in F*. The example can interoperate with HTTP clients, e.g. Chrome, Firefox, etc.</p></li>
-<li><p>testing HTTP: <code>make run-HTTP</code> runs an Http server. To test the server, open (<code>http://localhost:3000/</code>) in a browser. You will see the message &gt; a secret cannot be exposed<br />
+  <li>
+    <p>Two Buyer</p>
+
+    <ul>
+      <li>source folder:  <a href="examples/TwoBuyer">examples/TwoBuyer</a></li>
+      <li>explanation: Two Buyer is a canonical example for demonstrating business logic interactions. It specifies a negotiation between two buyers and a seller to purchase a book. The Seller S sends the price of the book to Buyer A and Buyer B. The refinement ensures that the seller quotes the same price to both buyers. A and B negotiate and buyer B accepts to buy the book only if A contributes more to the purchase.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Negotiation</p>
+
+    <ul>
+      <li>source folder:  <a href="examples/Negotiation">examples/Negotiation</a></li>
+      <li>explanation: This is a recursive protocol that describes a service agreement proposal between a producer P and a consumer C. The protocol starts by the producer P sending an initial proposal to C, the proposal contains the price of the service. Then C can either accept the proposal, or can send a counter proposal.
+The refinements ensure that when an offer is accepted the confirmed price and the offer price are the same.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Fibonacci</p>
+
+    <ul>
+      <li>source folder:  <a href="examples/Fibonacci">examples/Fibonacci</a></li>
+      <li>explanation: The protocol specify a computation of a fibonacci sequence. The specified refinements ensure that each number (produced by role B) is the sum of two preceding numbers (provided by role A). Hence, the implementation is guaranteed to compute a fibonacci sequence.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Travel Agency</p>
+
+    <ul>
+      <li>source folder:  <a href="examples/TravelAgency">examples/TravelAgency</a></li>
+      <li>explanation: This is a W3C Choreographies use case, and the running example from <a href="https://doi.org/10.1007/978-3-540-70592-5_22">Hu et al. 2008</a>. The protocol depicts the interactions between a client (C), the travel agency (A)
+and a travel service (S). Customer requests and receives by the Agency the price for a desired journey. This exchange may be repeated an arbitrary
+number of times for different journeys under the initiative of Customer.
+Customer either accepts an offer from Agency or decides that none of the
+received quotes are satisfactory. If the offer is accepted, the
+Service handles the payment.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Calculator</p>
+
+    <ul>
+      <li>source folder:  <a href="examples/Calculator">examples/Calculator</a></li>
+      <li>explanation: a distributed service for addition of two numbers. The recursive protocol allows a client to repeatedly send an operation request (e.g. addition) with two numbers, and receive back the result (the sum of the two numbers).</li>
+    </ul>
+  </li>
+  <li>
+    <p>SH</p>
+
+    <ul>
+      <li>source folder:  <a href="examples/SH">examples/SH</a></li>
+      <li>explanation:  SH is short for Sutherland-Hodgman algorithm. It is a 3-role protocol for polygon clipping. It takes a plane, and the vertices of a polygon as a series of points; and produces vertices for
+the polygon restricted to one side of the plane. This is the running example from <a href="https://doi.org/10.1145/3178372.3179495">Neykova et al. 2018</a></li>
+    </ul>
+  </li>
+  <li>
+    <p>OnlineWallet</p>
+
+    <ul>
+      <li>source folder:  <a href="examples/OnlineWallet">examples/OnlineWallet</a></li>
+      <li>explanation: This is the running example from <a href="https://www.doc.ic.ac.uk/~rn710/spy/main.pdf">Neykova et al.
+2013</a>. It represents an
+online payment application between client C, bank S, and an
+Authentication service A. In each iteration, S sends C the current
+account status, and C has the choice to make a payment (but only for
+an amount that would not overdraw the account) or end the session.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Ticket</p>
+
+    <ul>
+      <li>source folder:  <a href="examples/Ticket">examples/Ticket</a></li>
+      <li>explanation: This is the running example from <a href="http://mrg.doc.ic.ac.uk/publications/a-theory-of-design-by-contract-for-distributed-multiparty-interactions/concur.pdf">Bocchi et al.
+2013</a>,
+where a buyer negotiates with the seller and bank for buying a
+purchase. The refinements ensure that the buyer has to increase the
+price during negotiations until an agreement is reached. In addition,
+the value of the (last) offer and the payment must be equal.</li>
+    </ul>
+  </li>
+  <li>
+    <p>HTTP</p>
+
+    <ul>
+      <li>source folder:  <a href="examples/HTTP">examples/HTTP</a></li>
+      <li>explanation: It is a minimal specification of the <a href="https://tools.ietf.org/html/rfc2616">Hypertext
+Transfer protocol</a>
+protocol. The refinements ensure the validity of the status code
+that are used. We have implemented an HTTP server in F*. The
+example can interoperate with HTTP clients, e.g. Chrome, Firefox,
+etc.</li>
+      <li>testing HTTP: <code>make run-HTTP</code> runs an Http server.
+To test the server, open (<code>http://localhost:3000/</code>) in a browser. You will
+see the message
+        <blockquote>
+          <p>a secret cannot be exposed<br />
 returned by the server.</p>
-<p>Note that the docker container should expose port 3000 (as shown in §<a href="#run-the-artifact">1.1</a>).<br />
-#### A.3 Additional resources</p></li>
-</ul></li>
+        </blockquote>
+
+        <p>Note that the docker container should expose port 3000 (as shown in §<a href="#run-the-artifact">1.1</a>).</p>
+        <h4 id="a3-additional-resources">A.3 Additional resources</h4>
+      </li>
+    </ul>
+  </li>
 </ul>
-<p>The <a href="https://github.com/sessionstar/oopsla20-artifact/wiki/Session*-in-5-minutes">Session* wiki</a> contains additional resources and explanations on how to write and verify Session* programs.</p>
-<h4 id="a.4-debugging-tips">A.4 Debugging tips</h4>
+
+<p>The <a href="https://github.com/sessionstar/oopsla20-artifact/wiki/Session*-in-5-minutes">Session* wiki</a> contains additional resources and  explanations on how to write and verify Session* programs.</p>
+
+<h4 id="a4-debugging-tips">A.4 Debugging tips</h4>
 <ul>
-<li><p>If you have problems compiling the examples, try:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="fu">rm</span> .depend<span class="kw">;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a><span class="fu">make</span> clean-[example-name]</span></code></pre></div></li>
-<li><p>A socket error <code>ECONNREFUSED</code>:</p>
-<ul>
-<li>the error indicates that you have not started the roles in the expected order, you should always start the “server” role (the role that listens for connections) first.</li>
-</ul></li>
-<li><p><code>Fatal error: exception Unix.Unix_error(Unix.EADDRINUSE, "bind", "")</code>:</p>
-<ul>
-<li>the error indicates that port is being used by another program. The simplest way to solve this is <code>pkill main.ocaml.exe</code> to kill any running program.</li>
-</ul></li>
+  <li>If you have problems compiling the examples, try:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rm .depend<span class="p">;</span>
+make clean-[example-name]
+</code></pre></div>    </div>
+  </li>
+  <li>A socket error <code>ECONNREFUSED</code>:
+    <ul>
+      <li>the error indicates that you have not started the roles in the expected
+order, you should always start the “server” role (the role that listens for
+connections) first.</li>
+    </ul>
+  </li>
+  <li><code>Fatal error: exception Unix.Unix_error(Unix.EADDRINUSE, "bind", "")</code>:
+    <ul>
+      <li>the error indicates that port is being used by another program. The simplest way to solve this is <code>pkill main.ocaml.exe</code> to kill any running program.</li>
+    </ul>
+  </li>
 </ul>
-</body>
-</html>
