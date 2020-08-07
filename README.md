@@ -594,6 +594,7 @@ the value of the (last) offer and the payment must be equal.
       that are used. We have implemented an HTTP server in F*. The
       example can interoperate with HTTP clients, e.g Chrome, Firefox,
       etc.
+    - testing HTTP: ```make run-HTTP``` runs an Http sever. To test the server, you open in a browser (`http://localhost:3000/`). Note that the docker container should expose port 3000 (as shown in &#167;[1.1](#run-the-artifact)).   
 
 #### A.3 Additional resources
 
