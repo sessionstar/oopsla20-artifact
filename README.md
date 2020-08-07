@@ -25,12 +25,12 @@ paper using the artifact.
     - [1.2](#artifact-layout) Artifact Layout
     - [1.3](#quick-test) Quick Test
         - [1.3.1](#run-all-examples) Run all examples
-        - [1.3.2](#run-table-1) Run the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper).
-        - [1.3.3](#run-table-2) Run the benchmarks for Table 2 (Section 5.4 in the paper).
+        - [1.3.2](#run-table-1) Run the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper)
+        - [1.3.3](#run-table-2) Run the benchmarks for Table 2 (Section 5.4 in the paper)
 2. **[Step-by-Step Instructions](#step-by-step)**
-    - [2.1](#benchmark-table-1) Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper).
-    - [2.2](#benchmark-table-2) Run and verify the example listed in Table 2 (Section 5.4 in the paper).
-    - [2.3](#main-example) Run the main example (HigherLower) of the paper (Section 2 in the paper).
+    - [2.1](#benchmark-table-1) Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3 in the paper)
+    - [2.2](#benchmark-table-2) Run and verify the example listed in Table 2 (Section 5.4 in the paper)
+    - [2.3](#main-example) Run the main example (HigherLower) of the paper (Section 2 in the paper)
     - [2.4](#modify-refinement) Modify examples and observe refinement violations
     - [2.5](#other-examples) Run through other examples (Optional)
 
@@ -225,16 +225,16 @@ You may specify the number of measurement repetitions as an optional argument
 to the script.
 
 The produced table corresponds to Table 2 from the paper.
-It contains the same columns as the table produces in &#167;[2.1](#benchmark-table-1) Note that Table 2 from the paper reports:
+It contains the same columns as the table produces in &#167;[2.1](#benchmark-table-1). Note that Table 2 from the paper reports:
 - the total generation time, which is a sum of the ```Gen Time (CFSM)``` and ```Gen Time (F*)``` from the produced table.
 - the total time checking time, which is a sum of ```TC Time (Gen.)``` and ```TC Time (Impl)``` from the produced table.
-
+- The entry for Travel Agency from the Table 2 corresponds to Booking from the produced table, the other names are self explanatory.  
 The source code (protocols and implementations) for each of these examples is located in a separate folder. See &#167;[2.4](#modify-refinement) for details on how to run each of the examples.
 
 ---
 
 #### <a name="main-example"></a> 2.3  Run the main example (HigherLower) of the paper (Section 2).
-The purpose of this section is to give you a quick walk through of using the toolchains to implement and verify a protocol. We focus on the running example - [HigherLower.scr](/examples/HigherLower).
+The purpose of this section is to give you a quick walk through of using the toolchain to implement and verify a protocol. We focus on the running example - [HigherLower.scr](/examples/HigherLower).
 For high-level overview of the toolchain refer to
 &#167;[A.1](#toolchain-overview)
 
@@ -316,6 +316,7 @@ Suggested modifications:
   - Option 2: Modify the protocol ([HigherLower.scr](examples/HigherLower/HigherLower.scr)) by removing all constraints for x that depend on n.
     - Change [Line 19](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L19) from ```@'n>x && t>1'``` to ```@'t>1```, and
     - Change [Line 23](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L23) by commenting ```@'n=x'``` (comment in Scribble is `//`), and
+    - Change [Line 26](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L26) from ```@'n<x && t>1'``` to ```@'t>1'```
     - Change [Line 31](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L31) from ```@'((n<x || n>x) && t=1)'``` to ```@'t=1'```.
 
     Since we changed the protocol, new callback signatures have to be generated. Generate new callback signatures and compile:
@@ -342,7 +343,7 @@ make run-[name of the example]
 ```
 
 The list of available examples is given below (we give in brackets the [name of the example] used for build and run):
- - Two Buyer (TwoBuyer), Negotiation (Negotiation), Fibonacci (Fibonacci), Travel Agency (Travel Agency), Calculator (Calculator), SH (SH), Online Wallet (OnlineWallet), Ticket (Ticket), HTTP (HTTP).
+ - Two Buyer (TwoBuyer), Negotiation (Negotiation), Fibonacci (Fibonacci), Travel Agency (TravelAgency), Calculator (Calculator), SH (SH), Online Wallet (OnlineWallet), Ticket (Ticket), HTTP (HTTP).
 
 If you have enabled forwarding of port 3000, you can run `make build-HTTP` to build the HTTP server, and run `make run-HTTP` to start the server.
 You use your browser outside the docker container http://127.0.0.1:3000 (Find the secret at http://127.0.0.1:3000/secret)
@@ -596,7 +597,7 @@ the value of the (last) offer and the payment must be equal.
       that are used. We have implemented an HTTP server in F*. The
       example can interoperate with HTTP clients, e.g. Chrome, Firefox,
       etc.
-    - testing HTTP: ```make run-HTTP``` runs an Http server. 
+    - testing HTTP: ```make run-HTTP``` runs an Http server.
       To test the server, open (`http://localhost:3000/`) in a browser. You will
       see the message
       > a secret cannot be exposed  
