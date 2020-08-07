@@ -83,6 +83,8 @@ def benchmark_for_pingpong_with_iteration(
 
 def compile_pingpong(full):
     os.chdir("PingPong")
+    if os.path.exists(".depend"):
+        os.remove(".depend")
     print("Compiling endpoints for execution, this may take up to 20 min...")
     subprocess.check_output(["make", "main.ocaml.exe"], stderr=subprocess.DEVNULL)
 
