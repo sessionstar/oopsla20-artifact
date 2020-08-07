@@ -307,7 +307,7 @@ Suggested modifications:
 
 #### ❗️__Note__ on syntax discrepancies:
 
-There are small syntax discrepancies between Scribble syntax and the paper. For details, see &#167;[A.1.1]((#discrepancy) and &#167;[A.1.2]((#syntax).
+There are small syntax discrepancies between Scribble syntax and the paper. For details, see &#167;[A.1.1](#discrepancy) and &#167;[A.1.2](#syntax).
 
 ---
 
