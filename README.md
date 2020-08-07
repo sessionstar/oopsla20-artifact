@@ -212,8 +212,8 @@ same docker container.
 ---
 #### <a name="benchmark-table-2"></a> 2.2 Run and verify the examples listed in Table 2 (Section 5.4).
 
-The purpose of these set of benchmarks is to show the expressivity of our toolchain. We have taken examples
-from the session type literature, and have added refinements to encode data dependencies in the protocols (as explained in Section 5.4).
+The purpose of this set of benchmarks is to show the expressivity of our toolchain. We take examples
+from the session type literature, and add refinements to encode data dependencies in the protocols (as explained in Section 5.4).
 
 To benchmark all examples at once:
 ```bash
