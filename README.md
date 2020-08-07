@@ -79,18 +79,19 @@ The artifact is built from this [commit](https://github.com/sessionstar/oopsla20
 in the sessionstar [GitHub](https://github.com/sessionstar/oopsla20-artifact) repository.
 
 The artifact contains the following:
-* The directories `scribble-java` and `ScribbleCodeGenOCaml`
+
+- The directories `scribble-java` and `ScribbleCodeGenOCaml`
   comprise the full source code of the toolchain.
-    * The `sessionstar` command, available on the command line `$PATH`,
+    - The `sessionstar` command, available on the command line `$PATH`,
       performs the Scribble protocol to F\* API generation
-* The directory `FStar` contains a checkout of the F\* compiler, patched to
+- The directory `FStar` contains a checkout of the F\* compiler, patched to
   enable `TCP_NODELAY` flag for benchmarking purposes.
-* The directory `examples` contains the source code for the various examples,
+- The directory `examples` contains the source code for the various examples,
   including the HigherLower running example from the paper (Section 2) and
   those listed in Table 2 in the paper.
-  * The sub-directory `scripts` contains scripts for executing the
+  - The sub-directory `scripts` contains scripts for executing the
     benchmarks from Table 1 and Table 2 in the paper.
-* The directory `template` contains template files to help you through writing
+- The directory `template` contains template files to help you through writing
   and testing your own examples.
 
 
@@ -530,12 +531,13 @@ aux global protocol MyProtoAux(role A, role B, role C)
 #### <a name="examples-cont"></a> A.2 Description of Examples (Optional)
 
 In this section, we provide a short overview for each of the implemented examples.
-* Two Buyer
+
+- Two Buyer
 
     - source folder:  [examples/TwoBuyer](examples/TwoBuyer)
-    - explanation:Two Buyer is a canonical example for demonstrating business logic interactions. It specifies a negotiation between two buyers and a seller to purchase a book. The Seller S sends the price of the book to Buyer A and Buyer B. The refinement ensures that the seller quotes the same price to both buyers. A and B negotiate and buyer B accepts to buy the book only if A contributes more to the purchase.
+    - explanation: Two Buyer is a canonical example for demonstrating business logic interactions. It specifies a negotiation between two buyers and a seller to purchase a book. The Seller S sends the price of the book to Buyer A and Buyer B. The refinement ensures that the seller quotes the same price to both buyers. A and B negotiate and buyer B accepts to buy the book only if A contributes more to the purchase.
 
-* Negotiation
+- Negotiation
 
     - source folder:  [examples/Negotiation](examples/Negotiation)
     - explanation: This is a recursive protocol that describes a service agreement proposal between a producer P and a consumer C. The protocol starts by the producer P sending an initial proposal to C, the proposal contains the price of the service. Then C can either accept the proposal, or can send a counter proposal.
@@ -543,12 +545,12 @@ The refinements ensure that when an offer is accepted the confirmed price and th
 
 
 
-* Fibonacci
+- Fibonacci
 
     - source folder:  [examples/Fibonacci](examples/Fibonacci)
     - explanation: The protocol specify a computation of a fibonacci sequence. The specified refinements ensure that each number (produced by role B) is the sum of two preceding numbers (provided by role A). Hence, the implementation is guaranteed to compute a fibonacci sequence.
 
-* Travel Agency
+- Travel Agency
 
     - source folder:  [examples/TravelAgency](examples/TravelAgency)
     - explanation: This is a W3C Choreographies use case, and the running example from [Hu et al. 2008](https://doi.org/10.1007/978-3-540-70592-5_22). The protocol depicts the interactions between a client (C), the travel agency (A)
@@ -558,18 +560,18 @@ Customer either accepts an offer from Agency or decides that none of the
 received quotes are satisfactory. If the offer is accepted, the
 Service handles the payment.
 
-* Calculator
+- Calculator
 
     - source folder:  [examples/Calculator](examples/Calculator)
     - explanation: a distributed service for addition of two numbers. The recursive protocol allows a client to repeatedly send an operation request (e.g. addition) with two numbers, and receive back the result (the sum of the two numbers).
 
-* SH
+- SH
 
     - source folder:  [examples/SH](examples/SH)
     - explanation:  SH is short for Sutherland-Hodgman algorithm. It is a 3-role protocol for polygon clipping. It takes a plane, and the vertices of a polygon as a series of points; and produces vertices for
 the polygon restricted to one side of the plane. This is the running example from [Neykova et al. 2018](https://doi.org/10.1145/3178372.3179495)
 
-* OnlineWallet
+- OnlineWallet
 
     - source folder:  [examples/OnlineWallet](examples/OnlineWallet)
     - explanation: This is the running example from [Neykova et al.
@@ -579,7 +581,7 @@ Authentication service A. In each iteration, S sends C the current
 account status, and C has the choice to make a payment (but only for
 an amount that would not overdraw the account) or end the session.
 
-* Ticket
+- Ticket
 
     - source folder:  [examples/Ticket](examples/Ticket)
     - explanation: This is the running example from [Bocchi et al.
@@ -589,7 +591,7 @@ purchase. The refinements ensure that the buyer has to increase the
 price during negotiations until an agreement is reached. In addition,
 the value of the (last) offer and the payment must be equal.
 
-* HTTP
+- HTTP
 
     - source folder:  [examples/HTTP](examples/HTTP)
     - explanation: It is a minimal specification of the [Hypertext

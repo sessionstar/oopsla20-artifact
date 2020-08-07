@@ -7,12 +7,12 @@ run:
 	sleep 1s; make run-HigherLower 
 	sleep 1s; make run-TwoBuyer
 	sleep 1s; make run-Negotiation
-	#sleep 1s; make run-Fibonacci
+	sleep 1s; make run-Fibonacci
 	sleep 1s; make run-TravelAgency
 	sleep 1s; make run-Calculator 
 	sleep 1s; make run-SH 
 	sleep 1s; make run-OnlineWallet
-	#sleep 1s; make run-Ticket
+	sleep 1s; make run-Ticket
 	#sleep 1s; make run-HTTP
 
 .PHONY: clean

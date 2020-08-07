@@ -1,6 +1,7 @@
 module Server
 (* This file is GENERATED, do not modify manually *)
 open FStar.All
+open FStar.Ghost
 open FStar.Error
 
 type role =
@@ -14,7 +15,7 @@ type label =
 | Status
 | Target
 | Version
-type state106 = unit
+noeq type state106 = unit
 and state107 = unit
 and state108 = {
 _dumstate108 : unit;
@@ -83,7 +84,7 @@ status : (status : int{((status) >= (100)) && ((status) <= (999))});
 reason : string;
 respheadername : string;
 }
-type state115Choice (st: state115) =
+noeq type state115Choice (st: state115) =
 | Choice115HeaderName of string
 | Choice115Body of string
 noeq type callbacksS = {
