@@ -270,7 +270,7 @@ HigherLower/B/main.ocaml.exe &
 HigherLower/C/main.ocaml.exe &
 HigherLower/A/main.ocaml.exe &
 ```
- The above commands run the three endpoins, i.e A, B and C.
+ The above commands run the three endpoints, i.e A, B and C.
 
 
 ---
