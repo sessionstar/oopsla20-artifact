@@ -32,7 +32,7 @@ paper using the artifact.
     - [2.2](#benchmark-table-2) Run and verify the example listed in Table 2 (Section 5.4 in the paper).
     - [2.3](#main-example) Run the main example (HigherLower) of the paper (Section 2 in the paper).
     - [2.4](#modify-refinement) Modify examples and observe refinement violations
-    - [2.5](#other-examples) Run Through Other Examples (Optional)
+    - [2.5](#other-examples) Run through other examples (Optional)
 
 ---
 ---
