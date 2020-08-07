@@ -148,9 +148,10 @@ The produced table corresponds (up to column renaming) to Table 2 from the paper
 ## <a name="step-by-step"></a> 2 Step-by-Step Instructions
 
 The purpose of this section is to describe in details the steps required to
-assess the artifact associated with our paper. We would like you to be able to:
+assess the artifact associated with our paper.
+Following the steps below you should be able to reproduce the main claims from the paper:
 
-* reproduce our benchmarks from Table 1, Section 5.2 and 5.3. For that purpose,
+* run the benchmarks from Table 1, Section 5.2 and 5.3. For that purpose,
   complete &#167;[2.1](#benchmark-table-1) of this document.
 * compile the examples, reported in Table 2, Section 5.4. For that purpose,
   complete &#167;[2.2](#benchmark-table-2) of this document.
@@ -158,13 +159,13 @@ assess the artifact associated with our paper. We would like you to be able to:
   For that purpose, complete &#167;[2.3](#main-example) of this document.
 
 Additionally, you can test and modify any of the examples we have implemented
-(&#167;[2.4](#modify-refinement)), as well as implement and verify your own
+(&#167;[2.4](#modify-refinement) and &#167;[2.5](#other-examples)), as well as implement and verify your own
 protocols using our toolchain.
 
 **Note on performance:** Measurements in the paper are taken using a machine with Intel i7-7700K CPU (4.20 GHz,
 922 4 cores, 8 threads), 16 GiB RAM, operating system Ubuntu 18.04.
 Depending on your test machine, the absolute values of the measurements produced in &#167;[2.1](#benchmark-table-1)
-and &#167;[2.2](#benchmark-table-2) may differ slightly from the paper.
+and &#167;[2.2](#benchmark-table-2) may differ from the paper.
 Nevertheless, the claims stated in the paper should be preserved.
 
 #### <a name="benchmark-table-1"></a> 2.1  Run and verify the benchmarks for Table 1 (Sections 5.2 and 5.3).
@@ -176,17 +177,19 @@ To reproduce the benchmarks reported in the paper run the script with an argumen
 ```bash
 python3 scripts/pingpong.py 30
 ```
+Compare the results with the results reported in Table 1, taking into account that the absolute values may differ. Verify the associated claims regarding
+*  compilation time (Section 5.2, line 947):
+> The increase of type-checking time is non-linear with regard to the protocol length
+
+* execution time (Section 5.3, line 971-972):
+> Despite the different protocol lengths, there are no significant changes in execution time
 
 The produced table contains the following columns. In brackets we give the name of the corresponding columns from Table 1.
 * ```Gen Time (CFSM)``` - the time taken for Scribble to generate the CFSM (```CFSM```)
 * ```Gen Time (F*)``` - the time taken for the code generation tool to convert the CFSM to F\* (```F* APIs```)
 * ```TC Time (Gen.)``` - the time taken for the generated APIs to type-check in F\* (```Gen. Code```)
 * ```TC Time (Impl)``` - the time taken to time check the implementation (```Callbacks```)
-* Note that the compilation and execution time are separated in two tables. 
-
-Compare the results with the results reported in Table 1, taking into account that the absolute values may differ. Verify the associated claim (Section 5.3, line 971-972):
-
-> Despite the different protocol lengths, there are no significant changes in execution time
+* Note that the compilation and execution time are separated in two tables.
 
 By default, the script reproduces the table and runs the experiment **once**.
 Optionally, you may add a parameter to repeat the experiment, i.e. `python3
@@ -298,7 +301,7 @@ Suggested modifications:
   - Option 2: Modify the protocol ([HigherLower.scr](examples/HigherLower/HigherLower.scr)) by removing all constraints for x that depend on n.
     - Change [Line 19](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L19) from ```@'n>x && t>1'``` to ```@'t>1```, and
     - Change [Line 23](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L23) by commenting ```n=x'``` (comment in Scribble is `//`), and
-    - Change [Line 31](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L31) from @'((n<x || n>x) && t=1)' to ```@'t=1'```. 
+    - Change [Line 31](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/HigherLower.scr#L31) from @'((n<x || n>x) && t=1)' to ```@'t=1'```.
     Since we changed the protocol, new callback signatures have to be generated. Generate new callback signatures and compile:
  ```bash
  sessionstar HigherLower/HigherLower.scr HigherLower C
@@ -306,9 +309,7 @@ Suggested modifications:
  make -C HigherLower/C main.ocaml.exe
  ```
 
-#### ❗️Note on syntax discrepancies:
-
-There are small syntax discrepancies between Scribble syntax and the paper. For details, see &#167;[A.1.1](#discrepancy) and &#167;[A.1.2](#syntax).
+**Note** on syntax discrepancies: There are small syntax discrepancies between Scribble syntax and the paper. For details, see &#167;[A.1.1](#discrepancy) and &#167;[A.1.2](#syntax).
 
 ---
 
@@ -324,7 +325,8 @@ To run a selected example from Table 2:
 make run-[name of the example]
 ```
 
-See the [Makefile](examples/Makefile) for more details.
+The list of available examples is given below (we give in brackets the [name of the example] used for build and run):
+ - Two Buyer (TwoBuyer), Negotiation (Negotiation), Fibonacci (Fibonacci), Travel Agency (Travel Agency), Calculator (Calculator), SH (SH), Online Wallet (OnlineWallet), Ticket (Ticket), HTTP (HTTP).
 
 Each examples is in a separate folder. The folder contains:
 - The protocol, specified in Scribble - a file with extension `.scr`
@@ -335,78 +337,7 @@ Each examples is in a separate folder. The folder contains:
     - `Payload.fst` - specifies serialisation of the payload types (e.g. int, strings)
     - `Network.fst` - standard communication functions for send/receive
 
-
-
-Below we briefly explain each example:
-
-* Two Buyer
-
-    - source folder:  [examples/TwoBuyer](examples/TwoBuyer)
-    - explanation:Two Buyer is a canonical example for demonstrating business logic interactions. It specifies a negotiation between two buyers and a seller to purchase a book. The Seller S sends the price of the book to Buyer A and Buyer B. The refinement ensures that the seller quotes the same price to both buyers. A and B negotiate and buyer B accepts to buy the book only if A contributes more to the purchase.
-
-* Negotiation
-
-    - source folder:  [examples/Negotiation](examples/Negotiation)
-    - explanation: This is a recursive protocol that describes a service agreement proposal between a producer P and a consumer C. The protocol starts by the producer P sending an initial proposal to C, the proposal contains the price of the service. Then C can either accept the proposal, or can send a counter proposal.
-The refinements ensure that when an offer is accepted the confirmed price and the offer price are the same.
-
-
-
-* Fibonacci
-
-    - source folder:  [examples/Fibonacci](examples/Fibonacci)
-    - explanation: The protocol specify a computation of a fibonacci sequence. The specified refinements ensure that each number (produced by role B) is the sum of two preceding numbers (provided by role A). Hence, the implementation is guaranteed to compute a fibonacci sequence.
-
-* Travel Agency
-
-    - source folder:  [examples/TravelAgency](examples/TravelAgency)
-    - explanation: This is a W3C Choreographies use case, and the running example from [Hu et al. 2008](https://doi.org/10.1007/978-3-540-70592-5_22). The protocol depicts the interactions between a client (C), the travel agency (A)
-and a travel service (S). Customer requests and receives by the Agency the price for a desired journey. This exchange may be repeated an arbitrary
-number of times for different journeys under the initiative of Customer.
-Customer either accepts an offer from Agency or decides that none of the
-received quotes are satisfactory. If the offer is accepted, the
-Service handles the payment.
-
-* Calculator
-
-    - source folder:  [examples/Calculator](examples/Calculator)
-    - explanation: a distributed service for addition of two numbers. The recursive protocol allows a client to repeatedly send an operation request (e.g addition) with two numbers, and receive back the result (the sum of the two numbers).
-
-* SH
-
-    - source folder:  [examples/SH](examples/SH)
-    - explanation:  SH is short for Sutherland-Hodgman algorithm. It is a 3-role protocol for polygon clipping. It takes a plane, and the vertices of a polygon as a series of points; and produces vertices for
-the polygon restricted to one side of the plane. This is the running example from [Neykova et al. 2018](https://doi.org/10.1145/3178372.3179495)
-
-* OnlineWallet
-
-    - source folder:  [examples/OnlineWallet](examples/OnlineWallet)
-    - explanation: This is the running example from [Neykova et al.
-2013](https://www.doc.ic.ac.uk/~rn710/spy/main.pdf). It represents an
-online payment application between client C, bank S, and an
-Authentication service A. In each iteration, S sends C the current
-account status, and C has the choice to make a payment (but only for
-an amount that would not overdraw the account) or end the session.
-
-* Ticket
-
-    - source folder:[examples/Ticket](examples/Ticket)
-    - explanation: This is the running example from [Bocchi et al.
-2013](http://mrg.doc.ic.ac.uk/publications/a-theory-of-design-by-contract-for-distributed-multiparty-interactions/concur.pdf),
-where a buyer negotiates with the seller and bank for buying a
-purchase. The refinements ensure that the buyer has to increase the
-price during negotiations until an agreement is reached. In addition,
-the value of the (last) offer and the payment must be equal.
-
-* HTTP
-
-    - source folder:  [examples/HTTP](examples/HTTP)
-    - explanation: It is a minimal specification of the [Hypertext
-      Transfer protocol](https://tools.ietf.org/html/rfc2616)
-      protocol. The refinements ensure the validity of the status code
-      that are used. We have implemented an HTTP server in F*. The
-      example can interoperate with HTTP clients, e.g Chrome, Firefox,
-      etc.
+See the [Makefile](examples/Makefile) for more details on execution scripts, and &#167;[A.2](#examples-cont) for a short explanation of each example.
 
 ---
 ---
@@ -572,8 +503,80 @@ aux global protocol MyProtoAux(role A, role B, role C)
 
 
 ---
+#### <a name="examples-cont"></a> A.2 Description of Examples (Optional)
 
-#### A.2 Implementing your own protocols
+In this section, we provide a short overview for each of the implemented examples.
+* Two Buyer
+
+    - source folder:  [examples/TwoBuyer](examples/TwoBuyer)
+    - explanation:Two Buyer is a canonical example for demonstrating business logic interactions. It specifies a negotiation between two buyers and a seller to purchase a book. The Seller S sends the price of the book to Buyer A and Buyer B. The refinement ensures that the seller quotes the same price to both buyers. A and B negotiate and buyer B accepts to buy the book only if A contributes more to the purchase.
+
+* Negotiation
+
+    - source folder:  [examples/Negotiation](examples/Negotiation)
+    - explanation: This is a recursive protocol that describes a service agreement proposal between a producer P and a consumer C. The protocol starts by the producer P sending an initial proposal to C, the proposal contains the price of the service. Then C can either accept the proposal, or can send a counter proposal.
+The refinements ensure that when an offer is accepted the confirmed price and the offer price are the same.
+
+
+
+* Fibonacci
+
+    - source folder:  [examples/Fibonacci](examples/Fibonacci)
+    - explanation: The protocol specify a computation of a fibonacci sequence. The specified refinements ensure that each number (produced by role B) is the sum of two preceding numbers (provided by role A). Hence, the implementation is guaranteed to compute a fibonacci sequence.
+
+* Travel Agency
+
+    - source folder:  [examples/TravelAgency](examples/TravelAgency)
+    - explanation: This is a W3C Choreographies use case, and the running example from [Hu et al. 2008](https://doi.org/10.1007/978-3-540-70592-5_22). The protocol depicts the interactions between a client (C), the travel agency (A)
+and a travel service (S). Customer requests and receives by the Agency the price for a desired journey. This exchange may be repeated an arbitrary
+number of times for different journeys under the initiative of Customer.
+Customer either accepts an offer from Agency or decides that none of the
+received quotes are satisfactory. If the offer is accepted, the
+Service handles the payment.
+
+* Calculator
+
+    - source folder:  [examples/Calculator](examples/Calculator)
+    - explanation: a distributed service for addition of two numbers. The recursive protocol allows a client to repeatedly send an operation request (e.g addition) with two numbers, and receive back the result (the sum of the two numbers).
+
+* SH
+
+    - source folder:  [examples/SH](examples/SH)
+    - explanation:  SH is short for Sutherland-Hodgman algorithm. It is a 3-role protocol for polygon clipping. It takes a plane, and the vertices of a polygon as a series of points; and produces vertices for
+the polygon restricted to one side of the plane. This is the running example from [Neykova et al. 2018](https://doi.org/10.1145/3178372.3179495)
+
+* OnlineWallet
+
+    - source folder:  [examples/OnlineWallet](examples/OnlineWallet)
+    - explanation: This is the running example from [Neykova et al.
+2013](https://www.doc.ic.ac.uk/~rn710/spy/main.pdf). It represents an
+online payment application between client C, bank S, and an
+Authentication service A. In each iteration, S sends C the current
+account status, and C has the choice to make a payment (but only for
+an amount that would not overdraw the account) or end the session.
+
+* Ticket
+
+    - source folder:[examples/Ticket](examples/Ticket)
+    - explanation: This is the running example from [Bocchi et al.
+2013](http://mrg.doc.ic.ac.uk/publications/a-theory-of-design-by-contract-for-distributed-multiparty-interactions/concur.pdf),
+where a buyer negotiates with the seller and bank for buying a
+purchase. The refinements ensure that the buyer has to increase the
+price during negotiations until an agreement is reached. In addition,
+the value of the (last) offer and the payment must be equal.
+
+* HTTP
+
+    - source folder:  [examples/HTTP](examples/HTTP)
+    - explanation: It is a minimal specification of the [Hypertext
+      Transfer protocol](https://tools.ietf.org/html/rfc2616)
+      protocol. The refinements ensure the validity of the status code
+      that are used. We have implemented an HTTP server in F*. The
+      example can interoperate with HTTP clients, e.g Chrome, Firefox,
+      etc.
+
+
+#### A.3 Implementing your own protocols
 
 The template folder contains an  initial setup for implementing your own programs. It contains some boilerplate files:
 * Makefile --to compile the program
@@ -595,10 +598,10 @@ sessionstar mycalc Calculator C
 ```
 module CalcC_CallbackImpl
 
-open GeneratedCalcC
+open GeneratedCalcC (* import the F* API *)
 open FStar.All
 
-// these are some local variables that you can use
+(* these are some local variables that you can use *)
 let x : ref int = alloc 0
 let y : ref int = alloc 1
 
@@ -613,14 +616,15 @@ let callbacks : callbacksC = {
 
   (*state22OnsendSum2 : (st: state22) -> ML (int);*)
   state22OnsendSum2 = (fun _ r1 ->
-    ...you need to return a number, it can be any number
+  (*  ...you need to return a number, it can be any number *)
   );
 
   (*state23OnreceiveResult : (st: state23) -> (r1: int{((r1) = ((Mkstate23?.x1 st) + (Mkstate23?.y1 st)))}) -> ML (unit);*)
  state23OnreceiveResult = (fun _ r1 ->
+  (*
    the value that is receivbed is r1, here you can decide what to do with it,
    ...you can either return unit (), you can print the receive result,
-   or you can save it.
+   or you can save it. *)
   );
 
   (*state24OnreceiveTerminate : (st: state24) -> (_dummy: unit) -> ML (unit);*)
@@ -628,7 +632,8 @@ let callbacks : callbacksC = {
 }
 ```
 
-Hint: the Calculator folder contains the full implementation, and you can use it for reference.
+Hint: If you are struggling, the Calculator folder contains the full implementation, and you can use it for reference.
+
 5. Check that your implementation is correct. Below command assumes that you are in the examples folder (the parent directory of the mycalc folder)
 
 ```
@@ -636,7 +641,7 @@ make -C mycalc main.ocaml.exe
 ```
 ---
 
-#### A.3 Debugging tips
+#### A.4 Debugging tips
 * If you have problems compiling the examples, try:
   ```bash
   rm .depend;
