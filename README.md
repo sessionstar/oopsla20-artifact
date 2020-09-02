@@ -298,7 +298,7 @@ make -C HigherLower/B main.ocaml.exe
  - Option 2: Comment the lose case ([Line 32-33](https://github.com/sessionstar/oopsla20-artifact/blob/4061441dbdea9cb4ec7567af4e0efb2390174359/examples/HigherLower/B/HigherLowerB_CallbackImpl.fst#L32)).
 Note: the syntax for comments in F* is `(* commented code *)`.
 
-(b) **Use of proof-irrelevant variables:** To demonstrate how our toolchain uses reasoning with latent information, we will modify the protocol HigherLower, and we will compile the  implementation for role C.
+(b) **Use of irrelevant variables:** To demonstrate how our toolchain uses reasoning with latent information, we will modify the protocol HigherLower, and we will compile the  implementation for role C.
 
 First, we verify that the implementation of C is correct:
 ```bash
