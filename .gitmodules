@@ -7,3 +7,6 @@
 [submodule "ScribbleCodeGenOCaml"]
 	path = ScribbleCodeGenOCaml
 	url = git://github.com/fangyi-zhou/ScribbleCodeGenOCaml.git
+[submodule "nuscr"]
+	path = nuscr
+	url = https://github.com/nuscr/nuscr
